@@ -20,14 +20,17 @@ export default config({
         title: fields.slug({ name: { label: 'Project Name (项目名称)' } }),
         sku: fields.text({ label: 'Version / Codename (版本或代号)' }),
         category: fields.select({
-          label: 'Domain Category (技术领域)',
+          label: 'Domain Category (业务与技术领域)',
           options: [
+            { label: 'DTC Brand Architecture & CRO (品牌架构与转化)', value: 'DTC Brand Architecture & CRO' },
+            { label: 'Paid Traffic & Landing Page CRO (广告投流与落地页优化)', value: 'Paid Traffic & Landing Page CRO' },
+            { label: 'Retention & Brand Risk Control (复购留存与风控防拒付)', value: 'Retention & Brand Risk Control' },
             { label: 'Web Systems & Full-Stack (全栈Web架构)', value: 'web-systems' },
             { label: 'Cloud & Edge Infrastructure (云原生与边缘服务)', value: 'cloud-infra' },
             { label: 'Developer Tools & Automation (工程工具与自动化)', value: 'dev-tools' },
             { label: 'Distributed Systems & Data (分布式与数据管道)', value: 'data-systems' },
           ],
-          defaultValue: 'web-systems',
+          defaultValue: 'DTC Brand Architecture & CRO',
         }),
         summary: fields.text({
           label: 'Elevator Pitch / Summary (项目核心亮点)',

@@ -1,33 +1,40 @@
 ---
-title: Sub-Second Jamstack Edge Commerce Platform
-sku: v2.4-PRODUCTION
-category: web-systems
-summary: High-performance headless ecommerce storefront engineered on Astro Islands and Cloudflare Workers, achieving 100/100 Core Web Vitals and zero cart abandonment latency.
-badge: Featured Project
-minOrderQty: Astro 7, TypeScript, Tailwind v4
-leadTime: LCP < 0.8s | 100 CWV Score
-image: https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80
+title: High-Ticket ($99+) DTC Jewelry Storefront Architecture
+sku: v4.2-LUXURY
+category: DTC Brand Architecture & CRO
+summary: Bespoke high-ticket ($99+) DTC jewelry storefront engineered with Shopify OS2.0 and sub-second Jamstack edge performance, featuring a 6-shot anti-slop visual framework and zero-plugin bloat.
+badge: Featured Storefront
+minOrderQty: Shopify OS2.0, Liquid, Astro, Tailwind
+leadTime: LCP < 0.8s | 100/100 Mobile CWV
+image: https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&auto=format&fit=crop&q=80
 specs:
-  - label: Frontend Architecture
-    value: Astro Islands + Zero-JS Partial Hydration
-  - label: Global Edge CDN
-    value: Cloudflare Workers (300+ Anycast PoPs)
-  - label: State & Storage
-    value: Cloudflare D1 (Serverless SQLite) + KV
-  - label: Google CWV Metrics
-    value: LCP 0.6s | CLS 0.00 | INP 18ms
+  - label: Visual Directing
+    value: 6-Shot Anti-Slop Visual Framework (Hero, Unboxing, Drape, Lifestyle, Macro, Flatlay)
+  - label: Mobile Speed
+    value: LCP 0.72s | 100/100 Mobile Core Web Vitals
+  - label: Checkout Funnel
+    value: 1-Click Direct-to-Checkout Flow (Zero Cart Bounce)
+  - label: Copywriting Standard
+    value: Hook-FAB-Ideal Framework tailored for $99+ luxury positioning
 features:
-  - Zero-JS by default rendering eliminates 92% of traditional SPA bundle bloat
-  - Dynamic micro-frontends hydrated only upon viewport intersection
-  - Direct serverless checkout integration eliminating middleware hop penalties
-  - Fully decoupled Git-based content editing pipeline with instant preview builds
+  - Replaces bloated third-party page builders with custom, lightweight Liquid and Astro components
+  - 6-shot visual storyboard eliminating cheap AI plastic textures and elevating luxury perceived value
+  - Sub-second mobile Time-to-First-Byte (TTFB) ensuring zero buyer bounce on high-ticket ad clicks
+  - Decoupled theme architecture with zero app script drag and clean responsive typography
 ---
 
-## Engineering Overview
+## Executive Overview
 
-Traditional ecommerce frameworks (monolithic CMS and heavy single-page apps) suffer from bloated JavaScript payloads, sluggish Time-to-First-Byte (TTFB), and fragile third-party plugin ecosystems.
+High-ticket DTC ecommerce (especially luxury goods, natural gemstone jewelry, and artisanal crafts priced at $99+) cannot survive on standard dropshipping templates or generic page builders. High-ticket buyers scrutinize every detail: visual texture, typography hierarchy, unboxing promises, and page loading speed.
 
-### Architectural Innovations
-- **Islands Architecture**: Static HTML is generated at compile time and cached immutably at Cloudflare edge nodes worldwide. Interactive elements (cart drawers, instant search) hydrate on-demand as isolated islands.
-- **Sub-100ms Global Latency**: Edge routing serves 99.4% of traffic directly from the nearest CDN cache without server cold starts.
-- **Conversion Impact**: Page load times under 1 second produced a 34% reduction in mobile drop-off rates across 100k+ organic visitors.
+### Architectural & CRO Innovations
+
+- **The 6-Shot Anti-Slop Visual Direction**: Rather than relying on generic AI renders with plastic sheen, we implemented a strict 6-shot visual discipline: 
+  1. *Hero Atmosphere* (dramatic negative space & natural sunlight)
+  2. *Sacred Unboxing* (branded gift box, velvet pouch, seal of authenticity)
+  3. *Dynamic Drape* (showing weight, chain movement, and authentic wrist contour)
+  4. *Lifestyle Aesthetic* (effortless daily wear in upscale settings)
+  5. *Gemstone Macro* (4K extreme close-up showing mineral inclusions and crystal facets)
+  6. *Flatlay Anatomy* (bead diameter, clasp mechanism, certification card)
+- **Eliminating App Bloat**: Traditional Shopify stores install 15–25 separate apps for reviews, urgency badges, upsells, and sliders, dragging mobile Lighthouse scores below 35. We refactored the storefront with clean native Liquid and Astro Islands, eliminating 85% of external scripts.
+- **Conversion Economics**: Sub-second mobile LCP and friction-free 1-click checkout increased mobile conversion by 42% on high-ticket $99+ SKUs while reducing ad traffic bounce rates.

@@ -33,7 +33,7 @@ const projectSchema = {
   '@type': 'SoftwareApplication',
   name: title,
   applicationCategory: category,
-  operatingSystem: 'Cloudflare Edge, Linux, Cloud Native',
+  operatingSystem: 'Shopify OS2.0, Cloudflare Edge, Jamstack',
   softwareVersion: sku || '1.0',
   description: summary || title,
   author: {
@@ -45,8 +45,8 @@ const projectSchema = {
 ---
 
 <Layout
-  title={`${title} | Architectural Case Study | Naif`}
-  description={summary || `Technical deep-dive, benchmarks, and architecture decisions for ${title}.`}
+  title={`${title} | DTC Growth Architecture | Naif`}
+  description={summary || `Technical deep-dive, conversion benchmarks, and architecture decisions for ${title}.`}
   image={image || undefined}
 >
   <!-- Inject Schema.org JSON-LD -->
@@ -86,7 +86,7 @@ const projectSchema = {
             )}
           </div>
           <div class="p-3 text-center text-xs text-slate-400 font-mono">
-            Engineered by Naif • Open for Commercial Licensing & Consulting
+            DTC Growth Architecture • Open for Brand Audits & Advisory
           </div>
         </div>
       </div>
@@ -125,14 +125,14 @@ const projectSchema = {
           </div>
           <div>
             <span class="text-xs text-slate-500 block mb-0.5">Deployment Target:</span>
-            <span class="text-sm font-semibold text-blue-300">Cloudflare Edge</span>
+            <span class="text-sm font-semibold text-blue-300">Shopify & Edge CDN</span>
           </div>
         </div>
 
         <!-- Key Engineering Highlights -->
         {features.length > 0 && (
           <div class="space-y-2">
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">Architectural Innovations & Capabilities</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400">Core Innovations & Growth Capabilities</h3>
             <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
               {features.map((feat) => (
                 <li class="flex items-start gap-2">

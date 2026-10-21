@@ -11,11 +11,11 @@ const { presetSku = '' } = Astro.props;
 
   <div class="mb-6">
     <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-3">
-      ⚡ Technical Consultation & Advisory Protocol
+      ⚡ DTC Architecture & Growth Consultation
     </div>
-    <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Initiate an Engineering Project or Contract</h3>
+    <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Initiate a DTC Architecture Audit or Advisory Contract</h3>
     <p class="text-xs sm:text-sm text-slate-400 mt-1">
-      Whether you need greenfield serverless systems design, a sub-100ms web re-architecture, or senior technical advisory, reach out below. Response within 24 hours.
+      Whether you need high-ticket Shopify re-architecture, Meta ad landing page acceleration, or automated Klaviyo retention flows, reach out below. Direct response within 24 hours.
     </p>
   </div>
 
@@ -34,13 +34,13 @@ const { presetSku = '' } = Astro.props;
       </div>
 
       <div>
-        <label for="company" class="block text-xs font-medium text-slate-300 mb-1">Company / Startup / Project *</label>
+        <label for="company" class="block text-xs font-medium text-slate-300 mb-1">Brand / Store URL / Company *</label>
         <input
           type="text"
           id="company"
           name="company"
           required
-          placeholder="e.g. Acme Tech Inc. / Stealth Startup"
+          placeholder="e.g. Amesha Energy / brand.com"
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
@@ -54,13 +54,13 @@ const { presetSku = '' } = Astro.props;
           id="email"
           name="email"
           required
-          placeholder="alex@acme.com"
+          placeholder="alex@brand.com"
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
 
       <div>
-        <label for="whatsapp" class="block text-xs font-medium text-slate-300 mb-1">Telegram / Discord / Phone</label>
+        <label for="whatsapp" class="block text-xs font-medium text-slate-300 mb-1">Telegram / WhatsApp / Phone</label>
         <input
           type="text"
           id="whatsapp"
@@ -73,37 +73,37 @@ const { presetSku = '' } = Astro.props;
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
-        <label for="productSku" class="block text-xs font-medium text-slate-300 mb-1">Engagement Type / Project Focus</label>
+        <label for="productSku" class="block text-xs font-medium text-slate-300 mb-1">Engagement Type / Scope</label>
         <input
           type="text"
           id="productSku"
           name="productSku"
           value={presetSku}
-          placeholder="e.g. Jamstack Re-platforming / Edge Microservices"
+          placeholder="e.g. High-Ticket Shopify Storefront / Meta Ad Landing CRO / Klaviyo Flow"
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
 
       <div>
-        <label for="quantity" class="block text-xs font-medium text-slate-300 mb-1">Estimated Timeline & Budget Range</label>
+        <label for="quantity" class="block text-xs font-medium text-slate-300 mb-1">Target Timeline & Monthly Budget</label>
         <input
           type="text"
           id="quantity"
           name="quantity"
-          placeholder="e.g. Q4 Greenfield launch / $5k-$15k scope"
+          placeholder="e.g. Immediate / $3k-$10k sprint or advisory retainer"
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
     </div>
 
     <div>
-      <label for="message" class="block text-xs font-medium text-slate-300 mb-1">System Goals, Current Stack & Technical Challenges *</label>
+      <label for="message" class="block text-xs font-medium text-slate-300 mb-1">Store URL, Current Monthly GMV & Key Bottlenecks *</label>
       <textarea
         id="message"
         name="message"
         rows="4"
         required
-        placeholder="Briefly outline your architectural goals, current throughput bottlenecks, or desired deliverables..."
+        placeholder="Briefly describe your brand, current monthly GMV, ad platforms, and primary conversion or retention bottlenecks..."
         class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
       ></textarea>
     </div>
