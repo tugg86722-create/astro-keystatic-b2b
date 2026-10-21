@@ -1,0 +1,178 @@
+---
+interface Props {
+  presetSku?: string;
+}
+
+const { presetSku = '' } = Astro.props;
+---
+
+<div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+  <div class="absolute -right-20 -top-20 w-60 h-60 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-3">
+      ⚡ Fast Quotation Protocol
+    </div>
+    <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Request an Engineering Quotation (RFQ)</h3>
+    <p class="text-xs sm:text-sm text-slate-400 mt-1">
+      Upload drawings or send exact specifications. Our application engineers provide formal quotes & DFM feedback within 24 hours.
+    </p>
+  </div>
+
+  <form id="rfq-form" class="space-y-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="fullName" class="block text-xs font-medium text-slate-300 mb-1">Full Name *</label>
+        <input
+          type="text"
+          id="fullName"
+          name="fullName"
+          required
+          placeholder="e.g. John Doe"
+          class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="company" class="block text-xs font-medium text-slate-300 mb-1">Company / Organization *</label>
+        <input
+          type="text"
+          id="company"
+          name="company"
+          required
+          placeholder="e.g. Siemens Energy / Bosch Automation"
+          class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="email" class="block text-xs font-medium text-slate-300 mb-1">Corporate Email Address *</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="name@company.com"
+          class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="whatsapp" class="block text-xs font-medium text-slate-300 mb-1">WhatsApp / Phone Number</label>
+        <input
+          type="tel"
+          id="whatsapp"
+          name="whatsapp"
+          placeholder="+1 (555) 000-0000"
+          class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="productSku" class="block text-xs font-medium text-slate-300 mb-1">Product SKU / Interested Series</label>
+        <input
+          type="text"
+          id="productSku"
+          name="productSku"
+          value={presetSku}
+          placeholder="e.g. APEX-BV-316L / Custom 5-Axis CNC"
+          class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="quantity" class="block text-xs font-medium text-slate-300 mb-1">Estimated Annual / Batch Quantity</label>
+        <input
+          type="text"
+          id="quantity"
+          name="quantity"
+          placeholder="e.g. 500 pcs/quarter or 5 prototype samples"
+          class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label for="message" class="block text-xs font-medium text-slate-300 mb-1">Technical Requirements & Drawing Notes *</label>
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        required
+        placeholder="Please specify operating pressure, media type, dimensional tolerances, material grade, or delivery destination port..."
+        class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+      ></textarea>
+    </div>
+
+    <div class="flex items-center justify-between pt-2">
+      <div class="text-[11px] text-slate-500 flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <span>NDA & CAD Drawing Confidentiality Protected</span>
+      </div>
+
+      <button
+        type="submit"
+        id="submit-btn"
+        class="px-6 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer"
+      >
+        <span>Submit RFQ Now</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Feedback Message Banner -->
+    <div id="form-feedback" class="hidden mt-4 p-4 rounded-lg text-xs leading-relaxed"></div>
+  </form>
+</div>
+
+<script is:inline>
+  const form = document.getElementById('rfq-form');
+  const feedback = document.getElementById('form-feedback');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      feedback.classList.remove('hidden', 'bg-emerald-950/80', 'text-emerald-300', 'border-emerald-500/30', 'bg-rose-950/80', 'text-rose-300', 'border-rose-500/30');
+      feedback.classList.add('block', 'bg-blue-950/60', 'text-blue-300', 'border', 'border-blue-500/30');
+      feedback.innerHTML = 'Submitting your engineering RFQ to Edge Dispatcher...';
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch('/api/rfq', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          feedback.className = 'block mt-4 p-4 rounded-lg text-xs leading-relaxed bg-emerald-950/80 text-emerald-200 border border-emerald-500/30';
+          feedback.innerHTML = `<strong>RFQ Received!</strong> Thank you ${payload.fullName}. Our lead sales engineer has logged your request. We will review your requirements and follow up via email (${payload.email}) within 24 hours.`;
+          form.reset();
+        } else {
+          throw new Error(result.error || 'Submission failed');
+        }
+      } catch (err) {
+        feedback.className = 'block mt-4 p-4 rounded-lg text-xs leading-relaxed bg-rose-950/80 text-rose-200 border border-rose-500/30';
+        feedback.innerHTML = `<strong>Error submitting inquiry:</strong> ${err.message}. You can also email us directly at <a href="mailto:sales@apexprecision.com" class="underline text-white">sales@apexprecision.com</a>.`;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+    });
+  }
+</script>

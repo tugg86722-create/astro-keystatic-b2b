@@ -1,0 +1,185 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Apex Precision | Industrial OEM/ODM Manufacturing & Custom Engineering',
+  description = 'ISO 9001 certified manufacturer specializing in precision valves, optical sensors, and 5-axis CNC titanium components for global industrial buyers.',
+  image = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&auto=format&fit=crop&q=80',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://apexprecision.com');
+---
+
+<!doctype html>
+<html lang="en" class="bg-slate-950 text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Global Schema.org Organization -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Apex Precision Engineering Co., Ltd.",
+        "url": "https://apexprecision.com",
+        "logo": "https://apexprecision.com/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+852-9876-5432",
+          "contactType": "sales",
+          "availableLanguage": ["English", "German", "Spanish", "Chinese"]
+        }
+      }
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-slate-950 text-slate-200">
+    <!-- Top Announcement Bar -->
+    <div class="bg-blue-900/40 border-b border-blue-500/20 text-xs py-1.5 px-4 text-center text-blue-200 flex items-center justify-center gap-4">
+      <span class="inline-flex items-center gap-1.5 font-medium">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Direct Factory Capacity: Open for Q4 OEM/ODM Custom Inquiries
+      </span>
+      <span class="hidden md:inline text-blue-400/60">|</span>
+      <span class="hidden md:inline">ISO 9001:2015 & AS9100D Certified</span>
+      <a href="/keystatic" class="ml-auto text-blue-400 hover:text-blue-300 underline underline-offset-2">Admin CMS</a>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+        <!-- Brand Logo -->
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
+            A
+          </div>
+          <div>
+            <div class="font-bold text-lg text-white tracking-tight flex items-center gap-1.5">
+              APEX PRECISION
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono font-semibold">B2B</span>
+            </div>
+            <div class="text-[11px] text-slate-400 tracking-wider uppercase font-medium">OEM Industrial Engineering</div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <a href="/" class="hover:text-blue-400 transition-colors">Home</a>
+          <a href="/products" class="hover:text-blue-400 transition-colors">Products & Specs</a>
+          <a href="/#capabilities" class="hover:text-blue-400 transition-colors">Manufacturing</a>
+          <a href="/#about" class="hover:text-blue-400 transition-colors">Certifications</a>
+          <a href="/contact" class="hover:text-blue-400 transition-colors">Contact</a>
+        </nav>
+
+        <!-- Action CTA -->
+        <div class="flex items-center gap-3">
+          <a
+            href="/contact#rfq"
+            class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/30 transition-all hover:-translate-y-0.5"
+          >
+            Request a Quote (RFQ)
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Page Content -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 text-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <!-- Col 1: About -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white font-bold text-base">A</div>
+              <span class="font-bold text-white text-base tracking-tight">APEX PRECISION</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Global tier-1 precision manufacturing partner for harsh fluid systems, optical automation sensors, and aerospace 5-axis CNC machining.
+            </p>
+            <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+              <span>ISO 9001:2015</span> • <span>RoHS</span> • <span>CE Verified</span>
+            </div>
+          </div>
+
+          <!-- Col 2: Products -->
+          <div>
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Product Catalog</h4>
+            <ul class="space-y-2 text-xs">
+              <li><a href="/products" class="hover:text-blue-400 transition-colors">High-Pressure Ball Valves</a></li>
+              <li><a href="/products" class="hover:text-blue-400 transition-colors">Laser Distance Sensors</a></li>
+              <li><a href="/products" class="hover:text-blue-400 transition-colors">5-Axis CNC Titanium Parts</a></li>
+              <li><a href="/products" class="hover:text-blue-400 transition-colors">Custom Flanges & Seals</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Quick Navigation -->
+          <div>
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Corporate & Engineering</h4>
+            <ul class="space-y-2 text-xs">
+              <li><a href="/#capabilities" class="hover:text-blue-400 transition-colors">Machining Capabilities</a></li>
+              <li><a href="/#quality" class="hover:text-blue-400 transition-colors">Quality Assurance (Zeiss CMM)</a></li>
+              <li><a href="/contact" class="hover:text-blue-400 transition-colors">Factory Audit & Visit</a></li>
+              <li><a href="/keystatic" class="hover:text-blue-400 transition-colors">Keystatic Visual CMS</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Contact & RFQ -->
+          <div class="space-y-3">
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-2">Export Sales Inquiry</h4>
+            <div class="text-xs space-y-1.5 text-slate-300">
+              <p class="flex items-center gap-2">
+                <span class="text-slate-500">Email:</span>
+                <a href="mailto:sales@apexprecision.com" class="text-blue-400 hover:underline">sales@apexprecision.com</a>
+              </p>
+              <p class="flex items-center gap-2">
+                <span class="text-slate-500">WhatsApp:</span>
+                <span class="text-slate-300">+852 9876 5432</span>
+              </p>
+              <p class="text-slate-400 text-[11px] pt-1">
+                Guaranteed RFQ response within 24 hours with complete DFM engineering feedback.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+          <p>© {new Date().getFullYear()} Apex Precision Engineering Co., Ltd. All rights reserved.</p>
+          <div class="flex items-center gap-4">
+            <span class="text-slate-600">Powered by Jamstack: Astro + Keystatic + Cloudflare Edge</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

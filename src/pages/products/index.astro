@@ -1,0 +1,92 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProducts = await getCollection('products');
+
+// Extract unique categories
+const categories = Array.from(new Set(allProducts.map((p) => p.data.category)));
+---
+
+<Layout
+  title="Industrial Product Catalog & Data Sheets | Apex Precision"
+  description="Explore our high-performance industrial valves, laser distance sensors, and 5-axis CNC titanium components. Complete engineering specs, 3D CAD models, and RFQ."
+>
+  <div class="py-12 sm:py-16 bg-slate-900 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">OEM / ODM Product Catalog</div>
+      <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight">Industrial Products & Engineering Specs</h1>
+      <p class="text-sm text-slate-400 mt-2 max-w-2xl">
+        Select a component category below to inspect dimensional tolerances, pressure ratings, and certified test protocols. All models are available for custom volume manufacturing.
+      </p>
+
+      <!-- Category Filter Buttons (Interactive) -->
+      <div class="flex flex-wrap items-center gap-2 mt-8" id="category-filters">
+        <button
+          data-filter="all"
+          class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-blue-600 text-white shadow-sm transition-colors cursor-pointer"
+        >
+          All Products ({allProducts.length})
+        </button>
+        {categories.map((cat) => (
+          <button
+            data-filter={cat}
+            class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition-colors cursor-pointer capitalize"
+          >
+            {cat.replace('-', ' ')}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+      {allProducts.map((p) => (
+        <div class="product-item" data-category={p.data.category}>
+          <ProductCard
+            title={p.data.title}
+            slug={p.id}
+            sku={p.data.sku}
+            category={p.data.category}
+            summary={p.data.summary}
+            badge={p.data.badge}
+            minOrderQty={p.data.minOrderQty}
+            leadTime={p.data.leadTime}
+            image={p.data.image}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.product-item');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // Toggle button styles
+      buttons.forEach((b) => {
+        b.classList.remove('bg-blue-600', 'text-white');
+        b.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      btn.classList.add('bg-blue-600', 'text-white');
+      btn.classList.remove('bg-slate-800', 'text-slate-300');
+
+      const filter = btn.getAttribute('data-filter');
+
+      items.forEach((item) => {
+        const itemCat = item.getAttribute('data-category');
+        if (filter === 'all' || itemCat === filter) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
