@@ -162,6 +162,15 @@ const { presetSku = '' } = Astro.props;
         if (response.ok && result.success) {
           feedback.className = 'block mt-4 p-4 rounded-lg text-xs leading-relaxed bg-emerald-950/80 text-emerald-200 border border-emerald-500/30';
           feedback.innerHTML = `<strong>Inquiry Received!</strong> Thanks ${payload.fullName}. Your project request has been logged. I will review your requirements and respond via email (${payload.email}) within 24 hours.`;
+          
+          if (typeof window.trackEvent === 'function') {
+            window.trackEvent('lead_rfq_submitted', {
+              productSku: payload.productSku || 'General Advisory',
+              company: payload.company,
+              budget: payload.quantity || 'unspecified'
+            });
+          }
+          
           form.reset();
         } else {
           throw new Error(result.error || 'Submission failed');

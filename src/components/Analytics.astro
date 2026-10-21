@@ -1,0 +1,110 @@
+---
+// Analytics and Event Telemetry Component
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN || '';
+const gaMeasurementId = import.meta.env.PUBLIC_GA_ID || '';
+const clarityId = import.meta.env.PUBLIC_CLARITY_ID || '';
+---
+
+<!-- Cloudflare Web Analytics (Privacy-First & Non-Blocking) -->
+{cfBeaconToken && (
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={`{"token": "${cfBeaconToken}"}`}
+  ></script>
+)}
+
+<!-- Google Analytics 4 (Optional / Self-Hosted Injection) -->
+{gaMeasurementId && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+    <script is:inline define:vars={{ gaMeasurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gaMeasurementId);
+    </script>
+  </>
+)}
+
+<!-- Microsoft Clarity (Optional / Heatmap & Session Recording) -->
+{clarityId && (
+  <script is:inline define:vars={{ clarityId }}>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", clarityId);
+  </script>
+)}
+
+<!-- First-Party Zero-Latency Edge Telemetry & Event Bus -->
+<script is:inline>
+  (function () {
+    // Universal Event Dispatcher
+    window.trackEvent = function (eventName, properties) {
+      const payload = {
+        event: eventName,
+        properties: properties || {},
+        url: window.location.pathname + window.location.search,
+        referrer: document.referrer || '',
+        timestamp: new Date().toISOString(),
+      };
+
+      // 1. Dispatch to First-Party Cloudflare Edge Telemetry via sendBeacon (zero delay, guaranteed delivery)
+      try {
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon('/api/telemetry', JSON.stringify(payload));
+        } else {
+          fetch('/api/telemetry', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            keepalive: true,
+          }).catch(() => {});
+        }
+      } catch (e) {}
+
+      // 2. Dispatch to GA4 if active
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, properties);
+      }
+
+      // 3. Dispatch to Clarity if active
+      if (typeof window.clarity === 'function') {
+        window.clarity('event', eventName);
+      }
+
+      // 4. Debug output in local development
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.log('[Telemetry Dispatched]', eventName, payload);
+      }
+    };
+
+    // Automatic Outbound & Action Link Tracking
+    document.addEventListener('click', function (e) {
+      const target = e.target.closest('a');
+      if (!target) return;
+
+      const href = target.getAttribute('href') || '';
+      
+      // Track RFQ CTA clicks
+      if (href.includes('/contact#rfq') || href.includes('/contact')) {
+        window.trackEvent('cta_contact_clicked', { linkText: target.textContent.trim(), href });
+      }
+      // Track External Links (GitHub, Resources, Mailto)
+      else if (href.startsWith('mailto:')) {
+        window.trackEvent('lead_email_clicked', { email: href.replace('mailto:', '') });
+      } else if (href.startsWith('http') && !href.includes(window.location.hostname)) {
+        window.trackEvent('outbound_link_clicked', { destination: href, label: target.textContent.trim() });
+      }
+    });
+
+    // Custom Event Listener for decoupled components
+    window.addEventListener('dtc:track', function (e) {
+      if (e.detail && e.detail.name) {
+        window.trackEvent(e.detail.name, e.detail.properties);
+      }
+    });
+  })();
+</script>

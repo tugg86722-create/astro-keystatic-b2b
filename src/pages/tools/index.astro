@@ -390,9 +390,25 @@ const defaultCvr = 1.8;
     const labelCurrentLatency = document.getElementById('label-current-latency');
     const barCurrent = document.getElementById('bar-current');
 
+    let trackTimer = null;
+    function queueTrack() {
+      clearTimeout(trackTimer);
+      trackTimer = setTimeout(() => {
+        if (typeof window.trackEvent === 'function') {
+          window.trackEvent('roi_calculator_interacted', {
+            monthlySpend: parseFloat(spendInput.value) || 0,
+            loadTime: parseFloat(loadtimeInput.value) || 1,
+            cvr: parseFloat(cvrInput.value) || 1,
+            wastedSpend: metricWastedSpend.textContent || '$0'
+          });
+        }
+      }, 1200);
+    }
+
     function syncInputs(source, target) {
       target.value = source.value;
       recalculate();
+      queueTrack();
     }
 
     function formatCurrency(val) {
