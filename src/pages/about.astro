@@ -1,0 +1,399 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About Naif | Full-Stack Software Engineer & Serverless Architect"
+  description="Full-stack systems engineer specializing in sub-100ms Jamstack web architectures, Cloudflare Edge computing, zero-JS hydration, and enterprise serverless platforms."
+>
+  <!-- Breadcrumb -->
+  <div class="border-b border-slate-800 bg-slate-900/60 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-400">
+        <a href="/" class="hover:text-blue-400 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-slate-200">About & Engineering Standards</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Profile Section -->
+  <section class="py-16 sm:py-24 bg-slate-950 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b0a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b0a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    <div class="absolute top-1/4 right-1/4 w-[500px] h-[350px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left: Bio & Positioning (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-blue-400">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Available for Technical Architecture Contracts & Systems Advisory</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+            I build software where <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-300">every millisecond</span> creates business value.
+          </h1>
+
+          <p class="text-base text-slate-300 leading-relaxed">
+            I am <strong>Naif</strong>, a Full-Stack Software Engineer and Edge Cloud Architect. Over the past 8+ years, I have architected high-throughput web applications, serverless event pipelines, and distributed Jamstack ecommerce platforms.
+          </p>
+
+          <p class="text-sm text-slate-400 leading-relaxed">
+            My engineering philosophy is rooted in eliminating bloat: replacing slow monolithic servers with edge-native workers, swapping megabyte-heavy client frameworks with zero-JS partial hydration, and building fault-tolerant cloud backends that never need 3:00 AM server restarts.
+          </p>
+
+          <!-- Core Attributes Pill Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs">
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+              <span class="text-slate-500 block text-[10px] uppercase font-mono">Location</span>
+              <strong class="text-slate-200">Remote Worldwide</strong>
+              <div class="text-[11px] text-slate-400 mt-0.5">UTC+8 / US Friendly</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+              <span class="text-slate-500 block text-[10px] uppercase font-mono">Core Focus</span>
+              <strong class="text-slate-200">Edge & Serverless</strong>
+              <div class="text-[11px] text-slate-400 mt-0.5">Astro, Cloudflare, Python</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 col-span-2 sm:col-span-1">
+              <span class="text-slate-500 block text-[10px] uppercase font-mono">Uptime Record</span>
+              <strong class="text-emerald-400">99.99% Availability</strong>
+              <div class="text-[11px] text-slate-400 mt-0.5">Zero-single-point-of-failure</div>
+            </div>
+          </div>
+
+          <!-- Direct CTAs -->
+          <div class="flex flex-wrap items-center gap-4 pt-4">
+            <a
+              href="/contact#rfq"
+              class="px-6 py-3 rounded-xl font-semibold text-xs text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/30 transition-all hover:-translate-y-0.5"
+            >
+              Start Technical Discussion
+            </a>
+            <a
+              href="/tools"
+              class="px-6 py-3 rounded-xl font-semibold text-xs text-slate-300 bg-slate-900 hover:bg-slate-800 border border-slate-800 transition-colors"
+            >
+              Explore Latency Calculator
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Developer ID Card & Terminal Mockup (5 cols) -->
+        <div class="lg:col-span-5">
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl p-6 relative">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800 font-mono text-xs text-slate-400">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                <span class="ml-2 text-slate-300 font-semibold">naif@edge-cluster:~</span>
+              </div>
+              <span class="text-[10px] text-blue-400">v2.4-edge</span>
+            </div>
+
+            <!-- Terminal Content -->
+            <div class="py-4 space-y-3 font-mono text-xs leading-relaxed">
+              <div>
+                <span class="text-emerald-400">$</span> <span class="text-slate-200">whoami --verbose</span>
+                <div class="text-slate-400 pl-4 mt-1">
+                  Name: Naif<br />
+                  Role: Full-Stack Software Engineer & Edge Architect<br />
+                  Identity: naif.is-a.dev<br />
+                  Specialty: Jamstack, Sub-100ms TTFB, Event Queues
+                </div>
+              </div>
+
+              <div>
+                <span class="text-emerald-400">$</span> <span class="text-slate-200">curl -sI https://naif.is-a.dev | grep cf-ray</span>
+                <div class="text-blue-400 pl-4 mt-1">
+                  cf-cache-status: HIT<br />
+                  server-timing: edge;dur=2.4ms<br />
+                  content-encoding: zstd
+                </div>
+              </div>
+
+              <div>
+                <span class="text-emerald-400">$</span> <span class="text-slate-200">cat /etc/mission.txt</span>
+                <div class="text-amber-300/90 pl-4 mt-1">
+                  "Deliver deterministic, rock-solid software architectures that allow businesses to scale without ballooning cloud bills or operational fragility."
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span>Cloudflare Global Network</span>
+              <span class="text-emerald-400 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Online
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Stack Radar & Matrix -->
+  <section class="py-16 sm:py-24 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">Technical Capabilities</div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">Production Tech Stack Radar</h2>
+        <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+          I intentionally select technologies that prioritize zero cold-start latency, strict type safety, minimal memory footprints, and global horizontal scaling.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Radar Quadrant 1 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 relative group hover:border-slate-700 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-base mb-4">
+            FE
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">Modern Frontend</h3>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+            Eliminating client-side runtime bloat with selective hydration and semantic markup.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Astro 5+</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">TypeScript</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">React 19</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Tailwind v4</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Next.js</span>
+          </div>
+        </div>
+
+        <!-- Radar Quadrant 2 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 relative group hover:border-slate-700 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-indigo-600/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center font-bold text-base mb-4">
+            ED
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">Edge & Serverless</h3>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+            Running business logic at the network edge with instantaneous global failover.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Cloudflare Workers</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Cloudflare D1</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Workers KV</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Queues</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">AWS Lambda</span>
+          </div>
+        </div>
+
+        <!-- Radar Quadrant 3 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 relative group hover:border-slate-700 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-sky-600/10 text-sky-400 border border-sky-500/20 flex items-center justify-center font-bold text-base mb-4">
+            BE
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">Backend & Data</h3>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+            High-throughput API development, asynchronous pipelines, and relational safety.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Python / FastAPI</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Node.js</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">PostgreSQL</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Redis / Upstash</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">REST & GraphQL</span>
+          </div>
+        </div>
+
+        <!-- Radar Quadrant 4 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 relative group hover:border-slate-700 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center font-bold text-base mb-4">
+            OP
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">DevOps & Observability</h3>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+            Immutable infrastructure, continuous testing, and real-time performance tracing.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Keystatic Git CMS</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">GitHub Actions</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Wrangler CLI</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">Vitest & Playwright</span>
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">CrUX / RUM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering Standards: 4 Pillars -->
+  <section class="py-16 sm:py-24 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">Architectural Tenets</div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">The 4 Engineering Pillars</h2>
+        <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+          Every client project, system migration, and cloud architecture I deliver adheres strictly to these four uncompromising standards.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Pillar 1 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-sm">
+              01
+            </span>
+            <h3 class="text-xl font-bold text-white">Zero-JS Partial Hydration</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+            By default, web applications render as pure semantic HTML and pre-computed CSS at build or edge time. Interactive widgets (islands) are isolated and hydrated only when necessary, preventing client devices from burning CPU cycles on unnecessary bundle execution.
+          </p>
+          <div class="flex items-center gap-2 text-xs text-blue-400 font-mono">
+            <span>Result:</span>
+            <span class="text-slate-300">100/100 Mobile Lighthouse • INP &lt; 30ms</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-sm">
+              02
+            </span>
+            <h3 class="text-xl font-bold text-white">Sub-100ms Global TTFB Guarantee</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+            Origin server latency is the silent conversion killer. By placing content and compute across Cloudflare’s 300+ city Anycast edge network, visitors receive the first byte of data in under 100ms regardless of whether they browse from Tokyo, Frankfurt, or New York.
+          </p>
+          <div class="flex items-center gap-2 text-xs text-blue-400 font-mono">
+            <span>Result:</span>
+            <span class="text-slate-300">Sub-50ms Edge Response • Near-Zero Drop-Off</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-sm">
+              03
+            </span>
+            <h3 class="text-xl font-bold text-white">Strict IP & NDA Confidentiality</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+            Technical collaboration requires absolute trust. Client proprietary business logic, supply chain configurations, customer data, and repository code are treated under rigorous isolation standards. No client code is ever exposed or shared.
+          </p>
+          <div class="flex items-center gap-2 text-xs text-blue-400 font-mono">
+            <span>Result:</span>
+            <span class="text-slate-300">Clean IP Ownership • Formal NDA Compliance</span>
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-sm">
+              04
+            </span>
+            <h3 class="text-xl font-bold text-white">Zero-Maintenance Serverless</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+            Say goodbye to managing Linux kernel patches, Apache/Nginx configuration drift, and emergency database restarts during sales spikes. Serverless compute scales instantly from zero to 50,000 requests/sec with pay-only-for-what-you-use economics.
+          </p>
+          <div class="flex items-center gap-2 text-xs text-blue-400 font-mono">
+            <span>Result:</span>
+            <span class="text-slate-300">Zero Idle Hosting Bills • Hands-Off Maintenance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering Engagement Flow: 4-Step Lifecycle -->
+  <section class="py-16 sm:py-24 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">How We Work Together</div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">Engineering Engagement Flow</h2>
+        <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+          A predictable, transparent engineering process designed to eliminate risk and deliver measurable production results rapidly.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- Step 1 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 relative">
+          <div class="text-xs font-mono font-bold text-blue-400 mb-3">STAGE 01</div>
+          <h3 class="text-base font-bold text-white mb-2">Architecture Diagnosis</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            We perform a deep audit of your current web infrastructure: Core Web Vitals profiling, API latency bottlenecks, database queries, and hosting cost leaks.
+          </p>
+          <div class="mt-4 pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">
+            Timeline: 2-3 Days
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 relative">
+          <div class="text-xs font-mono font-bold text-blue-400 mb-3">STAGE 02</div>
+          <h3 class="text-base font-bold text-white mb-2">Edge Prototyping</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            I assemble an interactive, production-ready proof of concept running on Astro & Cloudflare Edge, verifying sub-100ms TTFB on your real data.
+          </p>
+          <div class="mt-4 pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">
+            Timeline: 5-7 Days
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 relative">
+          <div class="text-xs font-mono font-bold text-blue-400 mb-3">STAGE 03</div>
+          <h3 class="text-base font-bold text-white mb-2">Zero-Downtime Migration</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Execution of the cutover using canary edge routing and reverse-proxy fallbacks. Your active customers experience zero interruption during the transition.
+          </p>
+          <div class="mt-4 pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">
+            Timeline: 1-2 Weeks
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 relative">
+          <div class="text-xs font-mono font-bold text-blue-400 mb-3">STAGE 04</div>
+          <h3 class="text-base font-bold text-white mb-2">Observability & SLOs</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Continuous real-user monitoring, automated alert channels, error tracing, and performance budget enforcement to guarantee permanent high speed.
+          </p>
+          <div class="mt-4 pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">
+            Ongoing Monitoring
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement CTA Box -->
+  <section class="py-16 sm:py-20 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-6">
+        <span>Direct Engineering Partnership</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
+        Ready to engineer a faster, more reliable web presence?
+      </h2>
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+        Whether you are planning a migration from a legacy monolithic CMS, building a greenfield serverless API, or looking to eliminate mobile ad budget waste—let's build it right.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/contact#rfq"
+          class="px-8 py-3.5 rounded-xl font-semibold text-sm text-white bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5"
+        >
+          Submit Architectural Inquiry
+        </a>
+        <a
+          href="mailto:dewellsmell@gmail.com"
+          class="px-8 py-3.5 rounded-xl font-semibold text-sm text-slate-300 bg-slate-900 hover:bg-slate-800 border border-slate-800 transition-colors"
+        >
+          Email Me Directly
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

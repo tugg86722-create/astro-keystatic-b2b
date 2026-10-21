@@ -95,22 +95,33 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://naif.is-
         </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
           <a href="/" class="hover:text-blue-400 transition-colors">Home</a>
-          <a href="/products" class="hover:text-blue-400 transition-colors">Projects & Systems</a>
-          <a href="/#engineering" class="hover:text-blue-400 transition-colors">Architecture Standards</a>
-          <a href="/#articles" class="hover:text-blue-400 transition-colors">Technical Writing</a>
-          <a href="/contact" class="hover:text-blue-400 transition-colors">Work With Me</a>
+          <a href="/products" class="hover:text-blue-400 transition-colors">Projects</a>
+          <a href="/tools" class="hover:text-blue-400 transition-colors flex items-center gap-1">
+            <span>Tools</span>
+            <span class="text-[9px] px-1 py-0.2 rounded bg-rose-500/10 text-rose-400 font-mono font-semibold border border-rose-500/20">NEW</span>
+          </a>
+          <a href="/resources" class="hover:text-blue-400 transition-colors">Resources</a>
+          <a href="/about" class="hover:text-blue-400 transition-colors">About</a>
+          <a href="/contact" class="hover:text-blue-400 transition-colors">Contact</a>
         </nav>
 
-        <!-- CTA Action Button -->
+        <!-- CTA Action Button & Mobile Menu Toggle -->
         <div class="flex items-center gap-3">
           <a
             href="/contact#rfq"
-            class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/30 transition-all hover:-translate-y-0.5"
+            class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/30 transition-all hover:-translate-y-0.5"
           >
             Start a Project
           </a>
+
+          <!-- Mobile Quick Nav Buttons -->
+          <div class="flex md:hidden items-center gap-2 text-xs">
+            <a href="/tools" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-blue-400 font-medium">Tools</a>
+            <a href="/resources" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-medium">Hub</a>
+            <a href="/about" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-medium">About</a>
+          </div>
         </div>
       </div>
     </header>
@@ -138,24 +149,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://naif.is-
             </div>
           </div>
 
-          <!-- Col 2: Projects -->
+          <!-- Col 2: Projects & Systems -->
           <div>
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Featured Architectures</h4>
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Systems & Case Studies</h4>
             <ul class="space-y-2 text-xs">
-              <li><a href="/products" class="hover:text-blue-400 transition-colors">Jamstack Edge Commerce Platform</a></li>
-              <li><a href="/products" class="hover:text-blue-400 transition-colors">Serverless Webhook Gateway</a></li>
-              <li><a href="/products" class="hover:text-blue-400 transition-colors">Zero-Overhead Web Telemetry Engine</a></li>
-              <li><a href="/products" class="hover:text-blue-400 transition-colors">Edge-Native Distributed Caching</a></li>
+              <li><a href="/products" class="hover:text-blue-400 transition-colors">All Architecture Case Studies</a></li>
+              <li><a href="/products/sub-second-jamstack-edge-commerce-platform" class="hover:text-blue-400 transition-colors">Jamstack Edge Commerce Platform</a></li>
+              <li><a href="/products/event-driven-serverless-dispatch-gateway" class="hover:text-blue-400 transition-colors">Serverless Webhook Gateway</a></li>
+              <li><a href="/products/zero-overhead-web-telemetry-engine" class="hover:text-blue-400 transition-colors">Zero-Overhead Web Telemetry Engine</a></li>
             </ul>
           </div>
 
-          <!-- Col 3: Principles -->
+          <!-- Col 3: Navigation & Tools -->
           <div>
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Engineering Principles</h4>
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Navigation & Tools</h4>
             <ul class="space-y-2 text-xs">
-              <li><a href="/#engineering" class="hover:text-blue-400 transition-colors">Zero-JS Partial Hydration</a></li>
-              <li><a href="/#engineering" class="hover:text-blue-400 transition-colors">Edge-First Compute & Anycast CDN</a></li>
-              <li><a href="/#engineering" class="hover:text-blue-400 transition-colors">Sub-100ms TTFB Guarantee</a></li>
+              <li><a href="/about" class="hover:text-blue-400 transition-colors">About & Engineering Standards</a></li>
+              <li><a href="/tools" class="hover:text-blue-400 transition-colors">Ad ROI & Latency Calculator</a></li>
+              <li><a href="/resources" class="hover:text-blue-400 transition-colors">Curated Developer & Trade Hub</a></li>
+              <li><a href="/#articles" class="hover:text-blue-400 transition-colors">Technical Whitepapers</a></li>
               <li><a href="/keystatic" class="hover:text-blue-400 transition-colors">Keystatic Headless CMS</a></li>
             </ul>
           </div>
