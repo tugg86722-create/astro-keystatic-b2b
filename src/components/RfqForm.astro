@@ -11,36 +11,36 @@ const { presetSku = '' } = Astro.props;
 
   <div class="mb-6">
     <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-3">
-      ⚡ Fast Quotation Protocol
+      ⚡ Technical Consultation & Advisory Protocol
     </div>
-    <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Request an Engineering Quotation (RFQ)</h3>
+    <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Initiate an Engineering Project or Contract</h3>
     <p class="text-xs sm:text-sm text-slate-400 mt-1">
-      Upload drawings or send exact specifications. Our application engineers provide formal quotes & DFM feedback within 24 hours.
+      Whether you need greenfield serverless systems design, a sub-100ms web re-architecture, or senior technical advisory, reach out below. Response within 24 hours.
     </p>
   </div>
 
   <form id="rfq-form" class="space-y-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
-        <label for="fullName" class="block text-xs font-medium text-slate-300 mb-1">Full Name *</label>
+        <label for="fullName" class="block text-xs font-medium text-slate-300 mb-1">Your Name *</label>
         <input
           type="text"
           id="fullName"
           name="fullName"
           required
-          placeholder="e.g. John Doe"
+          placeholder="e.g. Alex Morgan"
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
 
       <div>
-        <label for="company" class="block text-xs font-medium text-slate-300 mb-1">Company / Organization *</label>
+        <label for="company" class="block text-xs font-medium text-slate-300 mb-1">Company / Startup / Project *</label>
         <input
           type="text"
           id="company"
           name="company"
           required
-          placeholder="e.g. Siemens Energy / Bosch Automation"
+          placeholder="e.g. Acme Tech Inc. / Stealth Startup"
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
@@ -48,24 +48,24 @@ const { presetSku = '' } = Astro.props;
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
-        <label for="email" class="block text-xs font-medium text-slate-300 mb-1">Corporate Email Address *</label>
+        <label for="email" class="block text-xs font-medium text-slate-300 mb-1">Work Email Address *</label>
         <input
           type="email"
           id="email"
           name="email"
           required
-          placeholder="name@company.com"
+          placeholder="alex@acme.com"
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
 
       <div>
-        <label for="whatsapp" class="block text-xs font-medium text-slate-300 mb-1">WhatsApp / Phone Number</label>
+        <label for="whatsapp" class="block text-xs font-medium text-slate-300 mb-1">Telegram / Discord / Phone</label>
         <input
-          type="tel"
+          type="text"
           id="whatsapp"
           name="whatsapp"
-          placeholder="+1 (555) 000-0000"
+          placeholder="@username or phone"
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
@@ -73,37 +73,37 @@ const { presetSku = '' } = Astro.props;
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
-        <label for="productSku" class="block text-xs font-medium text-slate-300 mb-1">Product SKU / Interested Series</label>
+        <label for="productSku" class="block text-xs font-medium text-slate-300 mb-1">Engagement Type / Project Focus</label>
         <input
           type="text"
           id="productSku"
           name="productSku"
           value={presetSku}
-          placeholder="e.g. APEX-BV-316L / Custom 5-Axis CNC"
+          placeholder="e.g. Jamstack Re-platforming / Edge Microservices"
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
 
       <div>
-        <label for="quantity" class="block text-xs font-medium text-slate-300 mb-1">Estimated Annual / Batch Quantity</label>
+        <label for="quantity" class="block text-xs font-medium text-slate-300 mb-1">Estimated Timeline & Budget Range</label>
         <input
           type="text"
           id="quantity"
           name="quantity"
-          placeholder="e.g. 500 pcs/quarter or 5 prototype samples"
+          placeholder="e.g. Q4 Greenfield launch / $5k-$15k scope"
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
     </div>
 
     <div>
-      <label for="message" class="block text-xs font-medium text-slate-300 mb-1">Technical Requirements & Drawing Notes *</label>
+      <label for="message" class="block text-xs font-medium text-slate-300 mb-1">System Goals, Current Stack & Technical Challenges *</label>
       <textarea
         id="message"
         name="message"
         rows="4"
         required
-        placeholder="Please specify operating pressure, media type, dimensional tolerances, material grade, or delivery destination port..."
+        placeholder="Briefly outline your architectural goals, current throughput bottlenecks, or desired deliverables..."
         class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
       ></textarea>
     </div>
@@ -113,7 +113,7 @@ const { presetSku = '' } = Astro.props;
         <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
-        <span>NDA & CAD Drawing Confidentiality Protected</span>
+        <span>Strict IP & NDA Confidentiality Protected</span>
       </div>
 
       <button
@@ -121,14 +121,14 @@ const { presetSku = '' } = Astro.props;
         id="submit-btn"
         class="px-6 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer"
       >
-        <span>Submit RFQ Now</span>
+        <span>Send Inquiry</span>
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </button>
     </div>
 
-    <!-- Feedback Message Banner -->
+    <!-- Feedback Banner -->
     <div id="form-feedback" class="hidden mt-4 p-4 rounded-lg text-xs leading-relaxed"></div>
   </form>
 </div>
@@ -145,7 +145,7 @@ const { presetSku = '' } = Astro.props;
       submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
       feedback.classList.remove('hidden', 'bg-emerald-950/80', 'text-emerald-300', 'border-emerald-500/30', 'bg-rose-950/80', 'text-rose-300', 'border-rose-500/30');
       feedback.classList.add('block', 'bg-blue-950/60', 'text-blue-300', 'border', 'border-blue-500/30');
-      feedback.innerHTML = 'Submitting your engineering RFQ to Edge Dispatcher...';
+      feedback.innerHTML = 'Connecting to edge gateway...';
 
       const formData = new FormData(form);
       const payload = Object.fromEntries(formData.entries());
@@ -161,14 +161,14 @@ const { presetSku = '' } = Astro.props;
 
         if (response.ok && result.success) {
           feedback.className = 'block mt-4 p-4 rounded-lg text-xs leading-relaxed bg-emerald-950/80 text-emerald-200 border border-emerald-500/30';
-          feedback.innerHTML = `<strong>RFQ Received!</strong> Thank you ${payload.fullName}. Our lead sales engineer has logged your request. We will review your requirements and follow up via email (${payload.email}) within 24 hours.`;
+          feedback.innerHTML = `<strong>Inquiry Received!</strong> Thanks ${payload.fullName}. Your project request has been logged. I will review your requirements and respond via email (${payload.email}) within 24 hours.`;
           form.reset();
         } else {
           throw new Error(result.error || 'Submission failed');
         }
       } catch (err) {
         feedback.className = 'block mt-4 p-4 rounded-lg text-xs leading-relaxed bg-rose-950/80 text-rose-200 border border-rose-500/30';
-        feedback.innerHTML = `<strong>Error submitting inquiry:</strong> ${err.message}. You can also email us directly at <a href="mailto:sales@apexprecision.com" class="underline text-white">sales@apexprecision.com</a>.`;
+        feedback.innerHTML = `<strong>Error submitting inquiry:</strong> ${err.message}. You can also email me directly at <a href="mailto:dewellsmell@gmail.com" class="underline text-white">dewellsmell@gmail.com</a>.`;
       } finally {
         submitBtn.disabled = false;
         submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');

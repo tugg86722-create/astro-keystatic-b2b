@@ -12,68 +12,68 @@ export default config({
         },
   collections: {
     products: collection({
-      label: 'Products (外贸产品库)',
+      label: 'Projects & Case Studies (项目与工程案例)',
       slugField: 'title',
       path: 'src/content/products/*',
       format: { contentField: 'description' },
       schema: {
-        title: fields.slug({ name: { label: 'Product Name (产品名称)' } }),
-        sku: fields.text({ label: 'Model / SKU (型号编码)' }),
+        title: fields.slug({ name: { label: 'Project Name (项目名称)' } }),
+        sku: fields.text({ label: 'Version / Codename (版本或代号)' }),
         category: fields.select({
-          label: 'Category (分类)',
+          label: 'Domain Category (技术领域)',
           options: [
-            { label: 'Precision Valves (精密阀门配件)', value: 'valves' },
-            { label: 'Optical Sensors (光电传感器)', value: 'sensors' },
-            { label: 'CNC Machined Parts (CNC精加工件)', value: 'cnc-parts' },
-            { label: 'Industrial Fasteners (工业紧固件)', value: 'fasteners' },
+            { label: 'Web Systems & Full-Stack (全栈Web架构)', value: 'web-systems' },
+            { label: 'Cloud & Edge Infrastructure (云原生与边缘服务)', value: 'cloud-infra' },
+            { label: 'Developer Tools & Automation (工程工具与自动化)', value: 'dev-tools' },
+            { label: 'Distributed Systems & Data (分布式与数据管道)', value: 'data-systems' },
           ],
-          defaultValue: 'valves',
+          defaultValue: 'web-systems',
         }),
         summary: fields.text({
-          label: 'Short Summary (简短摘要)',
+          label: 'Elevator Pitch / Summary (项目核心亮点)',
           multiline: true,
         }),
         badge: fields.text({
-          label: 'Badge / Tag (如: In Stock, Custom OEM, Best Seller)',
-          defaultValue: 'Custom OEM Available',
+          label: 'Status Tag (如: Open Source, Enterprise Client, Production Live)',
+          defaultValue: 'Production Live',
         }),
         minOrderQty: fields.text({
-          label: 'MOQ (最小起订量)',
-          defaultValue: '50 PCS',
+          label: 'Primary Stack (核心技术栈)',
+          defaultValue: 'Astro, TypeScript, Edge',
         }),
         leadTime: fields.text({
-          label: 'Lead Time (交期)',
-          defaultValue: '7-15 Days',
+          label: 'Performance Benchmark (性能基准指标)',
+          defaultValue: 'LCP < 0.8s | 100 CWV',
         }),
         image: fields.image({
-          label: 'Primary Image (主图)',
+          label: 'Project Hero Preview Image (项目主图)',
           directory: 'public/images/products',
           publicPath: '/images/products/',
         }),
         specs: fields.array(
           fields.object({
-            label: fields.text({ label: 'Specification Name (参数名)' }),
-            value: fields.text({ label: 'Value (参数值)' }),
+            label: fields.text({ label: 'Metric / Spec (技术参数/架构特性)' }),
+            value: fields.text({ label: 'Value (参数详情)' }),
           }),
           {
-            label: 'Technical Specifications (技术参数表)',
+            label: 'Architecture Specs Matrix (技术规格参数表)',
             itemLabel: props => `${props.fields.label.value}: ${props.fields.value.value}`,
           }
         ),
         features: fields.array(
-          fields.text({ label: 'Key Feature (核心优势卖点)' }),
+          fields.text({ label: 'Key Capability (核心技术壁垒与设计亮点)' }),
           {
-            label: 'Feature Bullets (优势要点)',
+            label: 'Feature Bullets (要点清单)',
             itemLabel: props => props.value,
           }
         ),
         description: fields.markdoc({
-          label: 'Product Details & Overview (详细描述富文本)',
+          label: 'Detailed Case Study (技术方案与业务成效复盘)',
         }),
       },
     }),
     posts: collection({
-      label: 'Insights & News (行业博客/动态)',
+      label: 'Engineering Articles (技术思考与工程白皮书)',
       slugField: 'title',
       path: 'src/content/posts/*',
       format: { contentField: 'content' },
@@ -85,7 +85,7 @@ export default config({
         }),
         author: fields.text({
           label: 'Author (作者)',
-          defaultValue: 'Technical Editorial Team',
+          defaultValue: 'Naif',
         }),
         summary: fields.text({
           label: 'Summary (摘要)',
@@ -97,35 +97,35 @@ export default config({
           publicPath: '/images/posts/',
         }),
         content: fields.markdoc({
-          label: 'Content (正文)',
+          label: 'Content (正文 Markdown)',
         }),
       },
     }),
   },
   singletons: {
     settings: singleton({
-      label: 'Global Settings (全局配置)',
+      label: 'Developer Profile (开发者个人档案)',
       path: 'src/content/settings/general',
       schema: {
         companyName: fields.text({
-          label: 'Company Name (公司英文全称)',
-          defaultValue: 'Apex Precision Engineering Co., Ltd.',
+          label: 'Name / Title (个人名称与定位)',
+          defaultValue: 'Naif | Full-Stack Software Engineer & Edge Architect',
         }),
         slogan: fields.text({
-          label: 'Slogan / Tagline (品牌标语)',
-          defaultValue: 'ISO 9001 Certified OEM/ODM Precision Manufacturing Partner',
+          label: 'Headline Tagline (主打技术格言)',
+          defaultValue: 'Building resilient, sub-100ms serverless applications and distributed web systems.',
         }),
         contactEmail: fields.text({
-          label: 'Inquiry Email (官方询盘邮箱)',
-          defaultValue: 'sales@apexprecision.com',
+          label: 'Work Email (业务咨询邮箱)',
+          defaultValue: 'dewellsmell@gmail.com',
         }),
         whatsapp: fields.text({
-          label: 'WhatsApp / Phone (海外即时联系)',
-          defaultValue: '+852 9876 5432',
+          label: 'GitHub / Telegram (社交联系)',
+          defaultValue: 'https://github.com/tugg86722-create',
         }),
         address: fields.text({
-          label: 'Factory / HQ Address (厂址/总部地址)',
-          defaultValue: 'Industrial Zone B, Hong Kong & Greater Bay Area Manufacturing Center',
+          label: 'Base Location (常驻地与协作时区)',
+          defaultValue: 'Remote Worldwide (UTC+8 / US Friendly)',
         }),
       },
     }),

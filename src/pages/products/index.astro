@@ -3,31 +3,31 @@ import Layout from '../../layouts/Layout.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import { getCollection } from 'astro:content';
 
-const allProducts = await getCollection('products');
+const allProjects = await getCollection('products');
 
 // Extract unique categories
-const categories = Array.from(new Set(allProducts.map((p) => p.data.category)));
+const categories = Array.from(new Set(allProjects.map((p) => p.data.category)));
 ---
 
 <Layout
-  title="Industrial Product Catalog & Data Sheets | Apex Precision"
-  description="Explore our high-performance industrial valves, laser distance sensors, and 5-axis CNC titanium components. Complete engineering specs, 3D CAD models, and RFQ."
+  title="Production Case Studies & Systems Architecture | Naif"
+  description="Explore production case studies by Naif. High-throughput edge backends, sub-second Jamstack commerce platforms, and zero-overhead web telemetry instrumentation."
 >
   <div class="py-12 sm:py-16 bg-slate-900 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">OEM / ODM Product Catalog</div>
-      <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight">Industrial Products & Engineering Specs</h1>
+      <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">Systems Engineering Portfolio</div>
+      <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight">Production Case Studies & Systems Architecture</h1>
       <p class="text-sm text-slate-400 mt-2 max-w-2xl">
-        Select a component category below to inspect dimensional tolerances, pressure ratings, and certified test protocols. All models are available for custom volume manufacturing.
+        Selected production architectures, performance case studies, and serverless infrastructure solutions. Each project highlights real-world trade-offs, benchmarks, and measurable outcomes.
       </p>
 
-      <!-- Category Filter Buttons (Interactive) -->
+      <!-- Category Filter Tabs -->
       <div class="flex flex-wrap items-center gap-2 mt-8" id="category-filters">
         <button
           data-filter="all"
           class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-blue-600 text-white shadow-sm transition-colors cursor-pointer"
         >
-          All Products ({allProducts.length})
+          All Domains ({allProjects.length})
         </button>
         {categories.map((cat) => (
           <button
@@ -41,10 +41,10 @@ const categories = Array.from(new Set(allProducts.map((p) => p.data.category)));
     </div>
   </div>
 
-  <!-- Product Grid -->
+  <!-- Projects Grid -->
   <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
-      {allProducts.map((p) => (
+      {allProjects.map((p) => (
         <div class="product-item" data-category={p.data.category}>
           <ProductCard
             title={p.data.title}
@@ -69,7 +69,7 @@ const categories = Array.from(new Set(allProducts.map((p) => p.data.category)));
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      // Toggle button styles
+      // Toggle button active classes
       buttons.forEach((b) => {
         b.classList.remove('bg-blue-600', 'text-white');
         b.classList.add('bg-slate-800', 'text-slate-300');

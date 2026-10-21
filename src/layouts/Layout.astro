@@ -8,12 +8,12 @@ interface Props {
 }
 
 const {
-  title = 'Apex Precision | Industrial OEM/ODM Manufacturing & Custom Engineering',
-  description = 'ISO 9001 certified manufacturer specializing in precision valves, optical sensors, and 5-axis CNC titanium components for global industrial buyers.',
-  image = 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&auto=format&fit=crop&q=80',
+  title = 'Naif | Full-Stack Software Engineer & Edge Cloud Architect',
+  description = 'Personal engineering portfolio and technical case studies. Crafting resilient serverless applications, sub-100ms Jamstack web systems, and high-concurrency cloud backends.',
+  image = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&auto=format&fit=crop&q=80',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://apexprecision.com');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://naif.is-a.dev');
 ---
 
 <!doctype html>
@@ -42,68 +42,74 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://apexprec
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
 
-    <!-- Global Schema.org Organization -->
+    <!-- Developer Schema.org JSON-LD -->
     <script type="application/ld+json" is:inline>
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Apex Precision Engineering Co., Ltd.",
-        "url": "https://apexprecision.com",
-        "logo": "https://apexprecision.com/logo.png",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+852-9876-5432",
-          "contactType": "sales",
-          "availableLanguage": ["English", "German", "Spanish", "Chinese"]
-        }
+        "@type": "Person",
+        "name": "Naif",
+        "jobTitle": "Full-Stack Software Engineer & Edge Architect",
+        "url": "https://naif.is-a.dev",
+        "sameAs": [
+          "https://github.com/tugg86722-create"
+        ],
+        "knowsAbout": [
+          "Astro",
+          "TypeScript",
+          "React",
+          "Cloudflare Workers",
+          "Serverless",
+          "Jamstack",
+          "Web Performance Optimization"
+        ]
       }
     </script>
   </head>
   <body class="min-h-screen flex flex-col bg-slate-950 text-slate-200">
-    <!-- Top Announcement Bar -->
-    <div class="bg-blue-900/40 border-b border-blue-500/20 text-xs py-1.5 px-4 text-center text-blue-200 flex items-center justify-center gap-4">
+    <!-- Top Status Bar -->
+    <div class="bg-blue-900/30 border-b border-blue-500/20 text-xs py-1.5 px-4 text-center text-blue-200 flex items-center justify-center gap-4">
       <span class="inline-flex items-center gap-1.5 font-medium">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        Direct Factory Capacity: Open for Q4 OEM/ODM Custom Inquiries
+        Status: Available for Technical Architecture Contracts & Systems Advisory
       </span>
       <span class="hidden md:inline text-blue-400/60">|</span>
-      <span class="hidden md:inline">ISO 9001:2015 & AS9100D Certified</span>
+      <span class="hidden md:inline font-mono text-[11px] text-blue-300">naif.is-a.dev</span>
       <a href="/keystatic" class="ml-auto text-blue-400 hover:text-blue-300 underline underline-offset-2">Admin CMS</a>
     </div>
 
     <!-- Main Navigation Header -->
     <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-        <!-- Brand Logo -->
+        <!-- Developer Brand Logo -->
         <a href="/" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
-            A
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 via-indigo-600 to-sky-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
+            N
           </div>
           <div>
             <div class="font-bold text-lg text-white tracking-tight flex items-center gap-1.5">
-              APEX PRECISION
-              <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono font-semibold">B2B</span>
+              NAIF
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono font-semibold">DEV</span>
             </div>
-            <div class="text-[11px] text-slate-400 tracking-wider uppercase font-medium">OEM Industrial Engineering</div>
+            <div class="text-[11px] text-slate-400 tracking-wider uppercase font-medium">Full-Stack & Edge Architect</div>
           </div>
         </a>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
           <a href="/" class="hover:text-blue-400 transition-colors">Home</a>
-          <a href="/products" class="hover:text-blue-400 transition-colors">Products & Specs</a>
-          <a href="/#capabilities" class="hover:text-blue-400 transition-colors">Manufacturing</a>
-          <a href="/#about" class="hover:text-blue-400 transition-colors">Certifications</a>
-          <a href="/contact" class="hover:text-blue-400 transition-colors">Contact</a>
+          <a href="/products" class="hover:text-blue-400 transition-colors">Projects & Systems</a>
+          <a href="/#engineering" class="hover:text-blue-400 transition-colors">Architecture Standards</a>
+          <a href="/#articles" class="hover:text-blue-400 transition-colors">Technical Writing</a>
+          <a href="/contact" class="hover:text-blue-400 transition-colors">Work With Me</a>
         </nav>
 
-        <!-- Action CTA -->
+        <!-- CTA Action Button -->
         <div class="flex items-center gap-3">
           <a
             href="/contact#rfq"
             class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/30 transition-all hover:-translate-y-0.5"
           >
-            Request a Quote (RFQ)
+            Start a Project
           </a>
         </div>
       </div>
@@ -118,65 +124,65 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://apexprec
     <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 text-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-          <!-- Col 1: About -->
+          <!-- Col 1: Bio -->
           <div class="space-y-4">
             <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white font-bold text-base">A</div>
-              <span class="font-bold text-white text-base tracking-tight">APEX PRECISION</span>
+              <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white font-bold text-base">N</div>
+              <span class="font-bold text-white text-base tracking-tight">NAIF // DEV</span>
             </div>
             <p class="text-xs text-slate-400 leading-relaxed">
-              Global tier-1 precision manufacturing partner for harsh fluid systems, optical automation sensors, and aerospace 5-axis CNC machining.
+              Full-Stack Software Engineer building resilient, sub-100ms serverless architectures, distributed event pipelines, and high-performance Jamstack platforms.
             </p>
             <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
-              <span>ISO 9001:2015</span> • <span>RoHS</span> • <span>CE Verified</span>
+              <span>TypeScript</span> • <span>Astro</span> • <span>Cloudflare Edge</span> • <span>Python</span>
             </div>
           </div>
 
-          <!-- Col 2: Products -->
+          <!-- Col 2: Projects -->
           <div>
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Product Catalog</h4>
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Featured Architectures</h4>
             <ul class="space-y-2 text-xs">
-              <li><a href="/products" class="hover:text-blue-400 transition-colors">High-Pressure Ball Valves</a></li>
-              <li><a href="/products" class="hover:text-blue-400 transition-colors">Laser Distance Sensors</a></li>
-              <li><a href="/products" class="hover:text-blue-400 transition-colors">5-Axis CNC Titanium Parts</a></li>
-              <li><a href="/products" class="hover:text-blue-400 transition-colors">Custom Flanges & Seals</a></li>
+              <li><a href="/products" class="hover:text-blue-400 transition-colors">Jamstack Edge Commerce Platform</a></li>
+              <li><a href="/products" class="hover:text-blue-400 transition-colors">Serverless Webhook Gateway</a></li>
+              <li><a href="/products" class="hover:text-blue-400 transition-colors">Zero-Overhead Web Telemetry Engine</a></li>
+              <li><a href="/products" class="hover:text-blue-400 transition-colors">Edge-Native Distributed Caching</a></li>
             </ul>
           </div>
 
-          <!-- Col 3: Quick Navigation -->
+          <!-- Col 3: Principles -->
           <div>
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Corporate & Engineering</h4>
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Engineering Principles</h4>
             <ul class="space-y-2 text-xs">
-              <li><a href="/#capabilities" class="hover:text-blue-400 transition-colors">Machining Capabilities</a></li>
-              <li><a href="/#quality" class="hover:text-blue-400 transition-colors">Quality Assurance (Zeiss CMM)</a></li>
-              <li><a href="/contact" class="hover:text-blue-400 transition-colors">Factory Audit & Visit</a></li>
-              <li><a href="/keystatic" class="hover:text-blue-400 transition-colors">Keystatic Visual CMS</a></li>
+              <li><a href="/#engineering" class="hover:text-blue-400 transition-colors">Zero-JS Partial Hydration</a></li>
+              <li><a href="/#engineering" class="hover:text-blue-400 transition-colors">Edge-First Compute & Anycast CDN</a></li>
+              <li><a href="/#engineering" class="hover:text-blue-400 transition-colors">Sub-100ms TTFB Guarantee</a></li>
+              <li><a href="/keystatic" class="hover:text-blue-400 transition-colors">Keystatic Headless CMS</a></li>
             </ul>
           </div>
 
-          <!-- Col 4: Contact & RFQ -->
+          <!-- Col 4: Contact -->
           <div class="space-y-3">
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-2">Export Sales Inquiry</h4>
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-2">Technical Inquiries</h4>
             <div class="text-xs space-y-1.5 text-slate-300">
               <p class="flex items-center gap-2">
                 <span class="text-slate-500">Email:</span>
-                <a href="mailto:sales@apexprecision.com" class="text-blue-400 hover:underline">sales@apexprecision.com</a>
+                <a href="mailto:dewellsmell@gmail.com" class="text-blue-400 hover:underline">dewellsmell@gmail.com</a>
               </p>
               <p class="flex items-center gap-2">
-                <span class="text-slate-500">WhatsApp:</span>
-                <span class="text-slate-300">+852 9876 5432</span>
+                <span class="text-slate-500">GitHub:</span>
+                <a href="https://github.com/tugg86722-create" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline">tugg86722-create</a>
               </p>
               <p class="text-slate-400 text-[11px] pt-1">
-                Guaranteed RFQ response within 24 hours with complete DFM engineering feedback.
+                Open for high-impact technical consulting, greenfield system design, and performance re-architectures.
               </p>
             </div>
           </div>
         </div>
 
         <div class="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} Apex Precision Engineering Co., Ltd. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Naif. Engineered with Astro, Tailwind CSS & Cloudflare Edge.</p>
           <div class="flex items-center gap-4">
-            <span class="text-slate-600">Powered by Jamstack: Astro + Keystatic + Cloudflare Edge</span>
+            <span class="text-slate-500">Domain: <strong class="text-blue-400">naif.is-a.dev</strong></span>
           </div>
         </div>
       </div>

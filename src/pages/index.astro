@@ -4,36 +4,36 @@ import ProductCard from '../components/ProductCard.astro';
 import RfqForm from '../components/RfqForm.astro';
 import { getCollection } from 'astro:content';
 
-const allProducts = await getCollection('products');
-const featuredProducts = allProducts.slice(0, 3);
+const allProjects = await getCollection('products');
+const featuredProjects = allProjects.slice(0, 3);
 const allPosts = await getCollection('posts');
 const latestPost = allPosts[0];
 ---
 
 <Layout
-  title="Apex Precision Engineering | High-Performance Industrial Valves, Sensors & 5-Axis CNC Machining"
-  description="Global ISO 9001 certified precision OEM manufacturing partner. Sub-millimeter laser sensors, 6,000 PSI high-pressure ball valves, and flight-ready titanium CNC machining."
+  title="Naif | Full-Stack Software Engineer & Serverless Edge Cloud Architect"
+  description="Personal engineering portfolio of Naif. Specializing in high-performance Jamstack platforms, edge-native microservices, and sub-100ms web architectures."
 >
   <!-- Hero Section -->
   <section class="relative pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden">
-    <!-- Background Glow & Grid Pattern -->
+    <!-- Subtle Grid & Radial Glow -->
     <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b08_1px,transparent_1px),linear-gradient(to_bottom,#1e293b08_1px,transparent_1px)] bg-[size:32px_32px]"></div>
     <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-600/15 rounded-full blur-[120px] pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl">
-        <!-- Certification Pill -->
+        <!-- Developer Status Pill -->
         <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-blue-400 mb-6 shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-          <span>ISO 9001:2015 & AS9100D Certified Manufacturing</span>
+          <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+          <span>Full-Stack Systems Engineer • naif.is-a.dev</span>
         </div>
 
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6">
-          High-Precision OEM Engineering For <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-300">Severe Service</span> Demands.
+          Architecting <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-300">Sub-100ms</span> Web Systems & Resilient Serverless Platforms.
         </h1>
 
         <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-2xl">
-          From 6,000 PSI bubble-tight valve manifolds to 20kHz sub-millimeter laser sensors and 5-axis aerospace titanium milling, Apex Precision delivers certified components to global tier-1 industrial buyers.
+          I build high-throughput edge backends, zero-JS Jamstack web platforms, and automated developer tooling. Focused on zero-cold-start latency, bulletproof reliability, and measurable client business outcomes.
         </p>
 
         <!-- CTA Action Buttons -->
@@ -42,7 +42,7 @@ const latestPost = allPosts[0];
             href="/contact#rfq"
             class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5 flex items-center gap-2"
           >
-            <span>Request Fast Quotation</span>
+            <span>Start a Project / Inquiry</span>
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
@@ -52,49 +52,49 @@ const latestPost = allPosts[0];
             href="/products"
             class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition-colors"
           >
-            Explore Product Specs
+            Explore Case Studies
           </a>
         </div>
       </div>
 
-      <!-- Trust Metrics Bar -->
+      <!-- Engineering Benchmarks Bar -->
       <div class="mt-16 pt-8 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-6">
         <div>
-          <div class="text-2xl sm:text-3xl font-black text-white">±0.005<span class="text-blue-400 text-base">mm</span></div>
-          <div class="text-xs text-slate-400 mt-0.5">Zeiss CMM Milling Accuracy</div>
+          <div class="text-2xl sm:text-3xl font-black text-white">&lt; 100<span class="text-blue-400 text-base">ms</span></div>
+          <div class="text-xs text-slate-400 mt-0.5">Global Anycast TTFB</div>
         </div>
         <div>
-          <div class="text-2xl sm:text-3xl font-black text-white">48<span class="text-blue-400 text-base">Hrs</span></div>
-          <div class="text-xs text-slate-400 mt-0.5">Rapid Prototyping Dispatch</div>
+          <div class="text-2xl sm:text-3xl font-black text-white">100<span class="text-blue-400 text-base">/100</span></div>
+          <div class="text-xs text-slate-400 mt-0.5">Google Core Web Vitals</div>
         </div>
         <div>
-          <div class="text-2xl sm:text-3xl font-black text-white">6,000<span class="text-blue-400 text-base">PSI</span></div>
-          <div class="text-xs text-slate-400 mt-0.5">Severe Pressure Rated Valves</div>
+          <div class="text-2xl sm:text-3xl font-black text-white">15k+<span class="text-blue-400 text-base">Req/s</span></div>
+          <div class="text-xs text-slate-400 mt-0.5">Serverless Edge Throughput</div>
         </div>
         <div>
-          <div class="text-2xl sm:text-3xl font-black text-white">40+<span class="text-blue-400 text-base">Countries</span></div>
-          <div class="text-xs text-slate-400 mt-0.5">Direct Global Export Logistcs</div>
+          <div class="text-2xl sm:text-3xl font-black text-white">0<span class="text-blue-400 text-base">Server Bill</span></div>
+          <div class="text-xs text-slate-400 mt-0.5">Pay-Per-Compute Economics</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured Products Section -->
+  <!-- Featured Projects & Architectures Section -->
   <section class="py-16 sm:py-24 bg-slate-950/50 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
         <div>
-          <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">Engineered Product Lines</div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Core Industrial Offerings</h2>
+          <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">Featured Engineering Systems</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Production Case Studies</h2>
         </div>
         <a href="/products" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300">
-          <span>View All Products & Data Sheets</span>
+          <span>View All Architectural Case Studies</span>
           <span>→</span>
         </a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {featuredProducts.map((p) => (
+        {featuredProjects.map((p) => (
           <ProductCard
             title={p.data.title}
             slug={p.id}
@@ -111,14 +111,14 @@ const latestPost = allPosts[0];
     </div>
   </section>
 
-  <!-- Manufacturing Capabilities & Quality Section -->
-  <section id="capabilities" class="py-20 bg-slate-900 border-t border-slate-800">
+  <!-- Engineering Principles & Technical Standards Section -->
+  <section id="engineering" class="py-20 bg-slate-900 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">Quality & Facilities</div>
-        <h2 class="text-3xl font-bold text-white tracking-tight">Built To Surpass Aerospace & Industrial Standards</h2>
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">Core Technical Philosophy</div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">How I Approach Software Architecture</h2>
         <p class="text-xs sm:text-sm text-slate-400 mt-3 leading-relaxed">
-          Our vertically integrated shop-floor spans robotic welding, 5-axis DMG MORI CNC workcenters, and class-10,000 cleanroom assembly.
+          I prioritize simplicity, ruthless performance, and decoupled architectures that minimize operational overhead and maximize system uptime.
         </p>
       </div>
 
@@ -128,9 +128,9 @@ const latestPost = allPosts[0];
           <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-lg mb-6">
             01
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">100% CMM Metrology Verification</h3>
+          <h3 class="text-lg font-bold text-white mb-2">Islands & Zero-JS By Default</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
-            Every critical dimension is measured on temperature-controlled Zeiss 3D CMMs. First Article Inspection (FAI) reports provided with every batch.
+            Eliminating client-side runtime bloat. Pages ship as raw HTML/CSS from edge caches, hydrating interactive components only when they scroll into view.
           </p>
         </div>
 
@@ -139,9 +139,9 @@ const latestPost = allPosts[0];
           <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-lg mb-6">
             02
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Severe Pressure & Helium Leak Rig</h3>
+          <h3 class="text-lg font-bold text-white mb-2">Edge-First Compute & Anycast</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
-            Automated hydrostatic pressure proofing up to 10,000 PSI, plus vacuum mass spectrometer helium leak probing down to 10⁻⁶ mbar·L/s.
+            Running business logic milliseconds from the user on Cloudflare Workers. Cold starts are reduced to under 5ms, with automatic multi-region fault tolerance.
           </p>
         </div>
 
@@ -150,30 +150,30 @@ const latestPost = allPosts[0];
           <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-lg mb-6">
             03
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Global DDP / FOB Logistics</h3>
+          <h3 class="text-lg font-bold text-white mb-2">Decoupled Asynchronous Resilience</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
-            Export crating with vapor-barrier foil packaging. Seamless customs clearance and door-to-door DDP express delivery to North America, Europe, and Asia.
+            Using idempotent queues, exponential backoff retries, and cryptographic signature validations to ensure zero data loss during vendor outages.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Lead Generation & RFQ Section -->
+  <!-- Interactive Project Inquiry / Work With Me Section -->
   <section id="rfq-section" class="py-20 bg-slate-950 border-t border-slate-800">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <RfqForm />
     </div>
   </section>
 
-  <!-- Latest Insights / Blog Preview -->
+  <!-- Technical Articles & Whitepapers -->
   {latestPost && (
-    <section class="py-16 bg-slate-900 border-t border-slate-800">
+    <section id="articles" class="py-16 bg-slate-900 border-t border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between mb-8">
           <div>
-            <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-1">Technical Whitepapers</div>
-            <h2 class="text-2xl font-bold text-white tracking-tight">Engineering Insights</h2>
+            <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-1">Publications & Notes</div>
+            <h2 class="text-2xl font-bold text-white tracking-tight">Engineering Writing</h2>
           </div>
         </div>
 
@@ -182,14 +182,14 @@ const latestPost = allPosts[0];
             <img src={latestPost.data.coverImage} alt={latestPost.data.title} class="w-full h-full object-cover" />
           </div>
           <div class="flex-1">
-            <div class="text-[11px] text-slate-500 font-mono mb-1">{latestPost.data.author}</div>
+            <div class="text-[11px] text-slate-500 font-mono mb-1">{latestPost.data.author} • {latestPost.data.publishedDate?.toString().slice(0, 10)}</div>
             <h3 class="text-lg font-bold text-white hover:text-blue-400 transition-colors mb-2">
               <a href="/contact#rfq">{latestPost.data.title}</a>
             </h3>
             <p class="text-xs text-slate-400 leading-relaxed mb-4">
               {latestPost.data.summary}
             </p>
-            <a href="/contact#rfq" class="text-xs font-semibold text-blue-400 hover:underline">Read Full Whitepaper & Technical Standards →</a>
+            <a href="/contact#rfq" class="text-xs font-semibold text-blue-400 hover:underline">Read Architecture Deep-Dive →</a>
           </div>
         </div>
       </div>
