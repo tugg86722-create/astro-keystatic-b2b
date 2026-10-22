@@ -1,0 +1,197 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface FaqItem {
+  q: string;
+  a: string;
+  detail?: string[];
+}
+
+const faqs: FaqItem[] = [
+  {
+    q: 'What does a DTC architecture engagement actually cost?',
+    a: 'Three ways to work together, with indicative ranges so you can self-qualify before we ever talk. Every scope is quoted in writing before any work starts — no hourly billing, no surprise invoices.',
+    detail: [
+      'Architecture Audit — $1,500–$3,500. A 2–3 day forensic teardown of your storefront, ad tracking and retention stack, delivered as a prioritized written report with revenue-weighted fixes.',
+      'Conversion Sprint — $5,000–$12,000. A 4–6 week implementation program: the highest-impact 3–5 changes shipped directly into your theme, measured before and after.',
+      'Growth Retainer — $3,000–$8,000/month. Ongoing CRO, performance and Klaviyo work with a monthly roadmap, testing cadence and direct access.',
+    ],
+  },
+  {
+    q: 'How long before we see results?',
+    a: 'The audit lands in 2–3 days, and the first sprint findings usually ship inside the first two weeks of implementation. But honest framing: a testing programme needs roughly 90 days before you can read the programme rather than a single result. Anyone promising you a conversion lift in month one is describing seasonality, not work.',
+    detail: [
+      'Days 1–3: audit, baseline agreement, prioritized roadmap',
+      'Weeks 1–2: first batch of fixes shipped and live',
+      'Weeks 3–8: test cycles, read-outs, compounding revenue impact',
+    ],
+  },
+  {
+    q: 'Which platforms do you work with?',
+    a: 'Shopify is my home turf — OS 2.0 and Shopify Plus, Liquid, Shopify Functions, custom sections, headless Hydrogen/Oxygen where it earns its keep, and Jamstack (Astro) storefronts. I also take on WooCommerce and BigCommerce replatforming into Shopify Plus.',
+    detail: [
+      'Storefront: Shopify OS 2.0, Shopify Plus, Hydrogen, Astro/Jamstack',
+      'Data & tracking: GA4, Meta Graph API, Conversions API, GTM, Shopify Web Pixels',
+      'Retention: Klaviyo flows, SMS, loyalty and subscription integrations',
+    ],
+  },
+  {
+    q: 'Can you work with our team in another timezone?',
+    a: 'Yes. I am UTC+8, which overlaps the US East Coast evening, the European morning and the APAC workday. Sprint deadlines and incidents do not respect timezones, so I keep a written async trail — Loom walkthroughs, written notes and a shared board — so nothing depends on us being awake at the same moment.',
+  },
+  {
+    q: 'What access do you need from us to start?',
+    a: 'Read access is enough to start: your GA4 property, your Meta Ads Manager account, and Shopify collaborator access. I do not need — and will not ask for — your Meta password or full admin rights on day one. Staging or a duplicate theme is preferable so your live store keeps trading while I work.',
+    detail: [
+      'GA4 property (viewer)',
+      'Meta Ads Manager (advertiser read access)',
+      'Shopify collaborator access, or a duplicate theme branch',
+      'Klaviyo account read access for retention work',
+    ],
+  },
+  {
+    q: 'Will you work under NDA?',
+    a: 'Always, and it is the default. Most of the engagements I run are under NDA because the work is commercially sensitive. I will publish anonymized case studies with the real numbers intact — your data, your metrics, your brand removed.',
+  },
+  {
+    q: 'How do you prove a change actually worked?',
+    a: 'We agree the baseline before the first change ships, then track conversion rate, revenue per session, p75 field CWV (LCP, INP, CLS), click-to-landing loss rate and chargeback rate against it. If a test loses, it gets rolled back. No vanity wins, no screenshots of a good day.',
+  },
+  {
+    q: 'Can you guarantee a conversion rate lift?',
+    a: 'No, and you should be suspicious of anyone who does. What I guarantee is the process: a documented baseline, a prioritized roadmap, changes shipped inside your theme, and measurement that either confirms or kills each hypothesis. The lift is the outcome — it is not a contract term.',
+  },
+  {
+    q: 'Do you only do strategy, or do you actually implement?',
+    a: 'I implement. Strategy handed to an in-house team usually dies in the backlog, especially when the fix is a Liquid loop, a Meta event, or a Klaviyo flow. I write the code, ship it into a staging theme, and hand over a Loom walkthrough plus written notes so your team owns it afterwards.',
+  },
+  {
+    q: 'We already work with a Shopify agency. Can you still help?',
+    a: 'Yes, and this is a well-trodden path. I work white-label for agencies that need senior CRO and performance capacity without adding headcount — your team keeps the client relationship, I do the audit and the implementation, everything is delivered in your brand. It is also how I keep a steady pipeline without building a sales team.',
+  },
+  {
+    q: 'We are a small store. Is this worth it for us?',
+    a: 'Honestly, often no. Below roughly $50,000/month in revenue the fee would be a meaningful percentage of margin, and the cheaper fix is usually a well-built free Shopify theme plus one focused CRO session. I will tell you that on the first call rather than sell you a retainer you cannot justify.',
+  },
+  {
+    q: 'We have no paid traffic yet. Can you help?',
+    a: 'On storefront, speed and CRO — yes, absolutely. On ad-spend efficiency and click-loss recovery — not yet, because there is no click data to reconcile. Start with the audit, get the site fast and conversion-ready, and revisit paid traffic when there is budget behind it.',
+  },
+  {
+    q: 'What happens after the engagement ends?',
+    a: 'You keep everything: the code, the Liquid, the Klaviyo flows, the GA4 events, the documentation and the measurement setup. The retainer is a convenience, not a lock-in. If the work is not paying, the exit should not be the hard part.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a + (f.detail ? ' ' + f.detail.join(' ') : ''),
+    },
+  })),
+};
+---
+
+<Layout
+  title="FAQ — DTC Architecture, CRO & Klaviyo Advisory | Naif"
+  description="Direct answers on engagement costs, timelines, platform coverage, access requirements, NDA handling, measurement standards and who this service is actually for."
+>
+  <!-- Breadcrumb -->
+  <div class="border-b border-slate-800 bg-slate-900/60 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-400">
+        <a href="/" class="hover:text-blue-400 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-blue-400">Advisory</span>
+        <span>/</span>
+        <span class="text-slate-200">FAQ</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <section class="py-14 sm:py-20 bg-slate-950 border-b border-slate-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b0a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b0a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[250px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-5">
+        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+        <span>Before You Write In — {faqs.length} Direct Answers</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-5">
+        Questions <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-300">Answered</span> Before You Ask
+      </h1>
+      <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
+        Cost, timeline, access, NDA, measurement, and — just as importantly — the situations where I will tell you not to hire me. If your question is not here, ask it directly and you will get a straight answer within 24 hours.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ List -->
+  <section class="py-16 sm:py-20 bg-slate-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-4">
+        {faqs.map((f, i) => (
+          <details class="group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/40 transition-colors" open={i === 0}>
+            <summary class="flex items-start justify-between gap-4 p-5 sm:p-6 cursor-pointer list-none select-none">
+              <div class="flex items-start gap-3.5">
+                <span class="shrink-0 w-7 h-7 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-xs font-bold flex items-center justify-center mt-0.5">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span class="text-sm sm:text-base font-bold text-white leading-snug group-hover:text-blue-300 transition-colors">
+                  {f.q}
+                </span>
+              </div>
+              <svg class="w-5 h-5 text-slate-500 shrink-0 mt-0.5 group-open:rotate-45 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14M5 12h14" />
+              </svg>
+            </summary>
+            <div class="px-5 sm:px-6 pb-5 sm:pb-6 pl-[4.25rem] sm:pl-[4.5rem]">
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">{f.a}</p>
+              {f.detail && (
+                <ul class="mt-4 space-y-2">
+                  {f.detail.map((d) => (
+                    <li class="flex items-start gap-2.5 text-xs text-slate-400 leading-relaxed">
+                      <span class="text-blue-400 font-bold shrink-0 mt-0.5">→</span>
+                      <span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Still Have Questions CTA -->
+      <div class="mt-12 bg-gradient-to-br from-blue-950/50 to-slate-900 border border-blue-500/20 rounded-2xl p-7 sm:p-9 text-center">
+        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">Your question is not on this page</h2>
+        <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto mb-6 leading-relaxed">
+          Good — that usually means it is the interesting one. Send it with your store URL and I will answer it with specifics, not a brochure.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="/contact#rfq"
+            class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5"
+          >
+            Ask Your Question
+          </a>
+          <a
+            href="/services"
+            class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition-colors"
+          >
+            Compare Engagement Tiers
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</Layout>

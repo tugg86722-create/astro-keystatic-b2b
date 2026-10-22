@@ -12,6 +12,19 @@ const products = defineCollection({
     minOrderQty: z.string().optional().default('50 PCS'),
     leadTime: z.string().optional().default('7-15 Days'),
     image: z.string().optional().nullable(),
+    industry: z.string().optional().default(''),
+    clientProfile: z.string().optional().default(''),
+    engagementWindow: z.string().optional().default(''),
+    year: z.string().optional().default('2026'),
+    headlineMetrics: z
+      .array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+        })
+      )
+      .optional()
+      .default([]),
     specs: z
       .array(
         z.object({

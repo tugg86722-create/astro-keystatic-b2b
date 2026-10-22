@@ -7,6 +7,19 @@ badge: Featured Storefront
 minOrderQty: Shopify OS2.0, Liquid, Astro, Tailwind
 leadTime: LCP < 0.8s | 100/100 Mobile CWV
 image: https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&auto=format&fit=crop&q=80
+industry: Fine Jewelry & Luxury Accessories
+clientProfile: 7-figure DTC jewelry brand (NDA — anonymized by agreement)
+engagementWindow: 6 sprints · 14 weeks · 2026
+year: "2026"
+headlineMetrics:
+  - label: Mobile CWV
+    value: "100/100"
+  - label: LCP
+    value: "0.72s"
+  - label: Direct Checkout
+    value: "1 tap"
+  - label: App Stack
+    value: "0 plugins"
 specs:
   - label: Visual Directing
     value: 6-Shot Anti-Slop Visual Framework (Hero, Unboxing, Drape, Lifestyle, Macro, Flatlay)

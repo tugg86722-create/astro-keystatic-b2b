@@ -9,6 +9,10 @@ interface Props {
   minOrderQty?: string;
   leadTime?: string;
   image?: string | null;
+  industry?: string;
+  engagementWindow?: string;
+  year?: string;
+  headlineMetrics?: { label: string; value: string }[];
 }
 
 const {
@@ -21,6 +25,10 @@ const {
   minOrderQty = 'Astro, TypeScript, Edge',
   leadTime = '100 CWV Score',
   image = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
+  industry = '',
+  engagementWindow = '',
+  year = '',
+  headlineMetrics = [],
 } = Astro.props;
 ---
 
@@ -60,25 +68,46 @@ const {
           {title}
         </a>
       </h3>
+      {industry && (
+        <div class="text-[11px] text-slate-500 mb-2.5 flex items-center gap-1.5">
+          <span class="px-1.5 py-0.5 rounded bg-slate-800/80 border border-slate-700 text-slate-400 font-mono">{industry}</span>
+          {year && <span class="font-mono">{year}</span>}
+        </div>
+      )}
       {summary && (
         <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-4">
           {summary}
         </p>
       )}
+      {headlineMetrics.length > 0 && (
+        <div class="grid grid-cols-2 gap-2 mb-4">
+          {headlineMetrics.slice(0, 4).map((m) => (
+            <div class="bg-slate-950/70 border border-slate-800/80 rounded-lg px-2.5 py-2">
+              <div class="text-[10px] text-slate-500 font-mono truncate">{m.label}</div>
+              <div class="text-xs font-bold text-emerald-400 font-mono truncate">{m.value}</div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
 
-    <!-- Tech Specs & Action Button -->
-    <div class="pt-4 border-t border-slate-800/80 mt-auto">
-      <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-400 mb-3">
-        <div>
-          <span class="text-slate-500 block">Core Stack:</span>
-          <span class="font-medium text-slate-200 truncate block">{minOrderQty}</span>
+      <!-- Tech Specs & Action Button -->
+      <div class="pt-4 border-t border-slate-800/80 mt-auto">
+        {engagementWindow && (
+          <div class="text-[11px] text-slate-500 font-mono mb-2.5">
+            <span class="text-slate-600">Engagement:</span> {engagementWindow}
+          </div>
+        )}
+        <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-400 mb-3">
+          <div>
+            <span class="text-slate-500 block">Core Stack:</span>
+            <span class="font-medium text-slate-200 truncate block">{minOrderQty}</span>
+          </div>
+          <div>
+            <span class="text-slate-500 block">Benchmark:</span>
+            <span class="font-medium text-emerald-400 truncate block">{leadTime}</span>
+          </div>
         </div>
-        <div>
-          <span class="text-slate-500 block">Benchmark:</span>
-          <span class="font-medium text-emerald-400 truncate block">{leadTime}</span>
-        </div>
-      </div>
 
       <div class="flex items-center gap-2">
         <a

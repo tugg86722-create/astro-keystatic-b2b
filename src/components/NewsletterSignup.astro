@@ -1,0 +1,137 @@
+---
+interface Props {
+  source: string;
+  heading?: string;
+  subheading?: string;
+  ctaLabel?: string;
+  showNameField?: boolean;
+  showStoreField?: boolean;
+  note?: string;
+}
+
+const {
+  source,
+  heading = 'The Ad-Waste Report',
+  subheading = 'A weekly teardown of real DTC stores that are burning paid media — with the exact fix, the revenue math, and the one metric that proves it. Free, no fluff.',
+  ctaLabel = 'Send Me The Report',
+  showNameField = false,
+  showStoreField = false,
+  note = 'No spam. One email a week, unsubscribe in one click.',
+} = Astro.props;
+
+const uid = `nl-${source.replace(/[^a-z0-9]/gi, '')}`;
+---
+
+<div class={`bg-gradient-to-br from-blue-950/40 to-slate-900 border border-blue-500/25 rounded-2xl p-6 sm:p-8 relative overflow-hidden`}>
+  <div class="absolute -right-16 -top-16 w-52 h-52 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative z-10">
+    <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-3">
+      <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+      <span>Weekly DTC Audit Newsletter</span>
+    </div>
+
+    <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight mb-2">{heading}</h3>
+    <p class="text-xs text-slate-400 leading-relaxed mb-5 max-w-xl">{subheading}</p>
+
+    <form class={`newsletter-form ${showNameField || showStoreField ? 'space-y-3' : 'space-y-3'}`} data-source={source} data-uid={uid}>
+      {showNameField && (
+        <input
+          type="text"
+          name="name"
+          placeholder="Your name (optional)"
+          class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+        />
+      )}
+
+      {showStoreField && (
+        <input
+          type="text"
+          name="storeUrl"
+          placeholder="yourstore.com (for the personalised version)"
+          class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+        />
+      )}
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="you@yourbrand.com"
+          class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+        />
+        <button
+          type="submit"
+          class="px-5 py-2.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-600/30 transition-all hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
+        >
+          {ctaLabel}
+        </button>
+      </div>
+
+      <div class="hidden newsletter-feedback p-3.5 rounded-lg text-xs leading-relaxed"></div>
+
+      <div class="flex items-center gap-1.5 text-[11px] text-slate-500">
+        <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <span>{note}</span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const forms = document.querySelectorAll('.newsletter-form');
+    forms.forEach((form) => {
+      if (form.dataset.bound === '1') return;
+      form.dataset.bound = '1';
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const feedback = form.querySelector('.newsletter-feedback');
+        const fd = new FormData(form);
+        const payload = {
+          email: fd.get('email'),
+          name: fd.get('name') || null,
+          storeUrl: fd.get('storeUrl') || null,
+          source: form.dataset.source || 'newsletter',
+          meta: form.dataset.meta || null,
+        };
+
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+        feedback.className = 'newsletter-feedback p-3.5 rounded-lg text-xs leading-relaxed bg-blue-950/60 text-blue-300 border border-blue-500/30';
+        feedback.textContent = 'Subscribing...';
+
+        try {
+          const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const result = await res.json();
+
+          if (res.ok && result.success) {
+            feedback.className = 'newsletter-feedback p-3.5 rounded-lg text-xs leading-relaxed bg-emerald-950/80 text-emerald-200 border border-emerald-500/30';
+            feedback.innerHTML = '<strong>You are in.</strong> Your report is queued — check your inbox in the next few minutes.';
+            if (typeof window.trackEvent === 'function') {
+              window.trackEvent('newsletter_subscribed', { source: payload.source });
+            }
+            form.reset();
+          } else {
+            throw new Error(result.error || 'Subscription failed');
+          }
+        } catch (err) {
+          feedback.className = 'newsletter-feedback p-3.5 rounded-lg text-xs leading-relaxed bg-rose-950/80 text-rose-200 border border-rose-500/30';
+          feedback.innerHTML = '<strong>Could not subscribe:</strong> ' + err.message + ' — or email me directly at <a href="mailto:dewellsmell@gmail.com" class="underline text-white">dewellsmell@gmail.com</a>.';
+        } finally {
+          btn.disabled = false;
+          btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      });
+    });
+  })();
+</script>

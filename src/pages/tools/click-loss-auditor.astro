@@ -1,0 +1,417 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
+---
+
+<Layout
+  title="Click-Loss Auditor — Reconcile Meta Outbound Clicks vs GA4 Landing Page Views | Naif"
+  description="Free tool: reconcile Meta Ads outbound clicks against GA4 landing page views to measure real click loss, wasted ad spend, and recoverable revenue. Tells you if the leak is rendering or attribution."
+>
+  <!-- Breadcrumb -->
+  <div class="border-b border-slate-800 bg-slate-900/60 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-400">
+        <a href="/" class="hover:text-blue-400 transition-colors">Home</a>
+        <span>/</span>
+        <a href="/tools" class="hover:text-blue-400 transition-colors">Interactive Tools</a>
+        <span>/</span>
+        <span class="text-slate-200">Click-Loss Auditor</span>
+      </nav>
+    </div>
+  </div>
+
+  <section class="py-12 sm:py-16 bg-slate-950 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b0a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b0a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    <div class="absolute top-12 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <!-- Header -->
+      <div class="max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-4">
+          <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+          <span>Meta Graph API × GA4 Reconciliation Engine</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          Click-Loss <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-rose-400">Auditor</span>
+        </h1>
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+          Your ad platform says you bought 40,000 clicks. Your analytics says 31,000 people arrived. That 9,000 gap is money you already paid for and never got a chance to sell to — and most brands blame creative fatigue for it. This tool measures the real loss, prices it, and tells you whether it is a <span class="text-white font-semibold">rendering problem</span> or a <span class="text-white font-semibold">measurement artifact</span>.
+        </p>
+      </div>
+
+      <!-- Main Stage -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Left: Inputs (5 cols) -->
+        <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+            <h2 class="text-base font-bold text-white flex items-center gap-2">
+              <svg class="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2v0a2 2 0 00-2-2h-2a2 2 0 00-2 2v0a2 2 0 00-2 2h-2a2 2 0 00-2-2z" />
+              </svg>
+              <span>Reconciliation Inputs</span>
+            </h2>
+            <button id="reset-btn" type="button" class="text-xs text-slate-400 hover:text-blue-400 transition-colors underline underline-offset-2">
+              Reset Defaults
+            </button>
+          </div>
+
+          <!-- Meta Outbound Clicks -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="outbound-input" class="font-semibold text-slate-300">Meta Outbound Clicks / Month</label>
+              <div class="flex items-center bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1">
+                <input id="outbound-input" type="number" min="100" max="2000000" step="100" value="40000" class="w-20 bg-transparent text-right font-mono font-bold text-white focus:outline-none" />
+              </div>
+            </div>
+            <input id="outbound-range" type="range" min="1000" max="500000" step="1000" value="40000" class="w-full accent-blue-500 cursor-pointer bg-slate-800 h-2 rounded-lg" />
+            <div class="flex justify-between text-[11px] text-slate-500 font-mono"><span>1K</span><span>500K</span></div>
+            <p class="text-[11px] text-slate-500 leading-relaxed">Meta Ads Manager → Ads Manager → Columns → Outbound clicks (all campaigns, last 30 days).</p>
+          </div>
+
+          <!-- GA4 Landing Page Views -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="lpv-input" class="font-semibold text-slate-300">GA4 Landing Page Views / Month</label>
+              <div class="flex items-center bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1">
+                <input id="lpv-input" type="number" min="50" max="2000000" step="100" value="31000" class="w-20 bg-transparent text-right font-mono font-bold text-white focus:outline-none" />
+              </div>
+            </div>
+            <input id="lpv-range" type="range" min="500" max="500000" step="500" value="31000" class="w-full accent-indigo-500 cursor-pointer bg-slate-800 h-2 rounded-lg" />
+            <div class="flex justify-between text-[11px] text-slate-500 font-mono"><span>500</span><span>500K</span></div>
+            <p class="text-[11px] text-slate-500 leading-relaxed">GA4 → Reports → Acquisition → Traffic acquisition → Session source/medium = Meta → Landing page + session starts.</p>
+          </div>
+
+          <!-- CPC -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="cpc-input" class="font-semibold text-slate-300">Average Cost Per Click ($)</label>
+              <div class="flex items-center bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1">
+                <span class="text-slate-500 mr-1">$</span>
+                <input id="cpc-input" type="number" min="0.1" max="50" step="0.1" value="2.40" class="w-16 bg-transparent text-right font-mono font-bold text-white focus:outline-none" />
+              </div>
+            </div>
+            <input id="cpc-range" type="range" min="0.1" max="15" step="0.1" value="2.4" class="w-full accent-blue-500 cursor-pointer bg-slate-800 h-2 rounded-lg" />
+            <div class="flex justify-between text-[11px] text-slate-500 font-mono"><span>$0.10</span><span>$5</span><span>$15</span></div>
+          </div>
+
+          <!-- Mobile Load Time -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="loadtime-input" class="font-semibold text-slate-300">Landing Page Mobile Load Time (s)</label>
+              <div class="flex items-center bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1">
+                <input id="loadtime-input" type="number" min="0.4" max="12" step="0.1" value="4.4" class="w-14 bg-transparent text-right font-mono font-bold text-white focus:outline-none" />
+                <span class="text-slate-500 ml-1">s</span>
+              </div>
+            </div>
+            <input id="loadtime-range" type="range" min="0.4" max="12" step="0.1" value="4.4" class="w-full accent-rose-500 cursor-pointer bg-slate-800 h-2 rounded-lg" />
+            <div class="flex justify-between text-[11px] text-slate-500 font-mono">
+              <span class="text-emerald-400">0.8s</span><span class="text-amber-400">3.0s</span><span class="text-rose-400">8.0s+</span>
+            </div>
+            <p class="text-[11px] text-slate-500 leading-relaxed">Check with PageSpeed Insights (mobile, throttled) or CrUX field data for the URL your ads point to.</p>
+          </div>
+
+          <!-- Conversion Rate -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="cvr-input" class="font-semibold text-slate-300">Landing Page Conversion Rate (%)</label>
+              <div class="flex items-center bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1">
+                <input id="cvr-input" type="number" min="0.1" max="20" step="0.1" value="2.2" class="w-14 bg-transparent text-right font-mono font-bold text-white focus:outline-none" />
+                <span class="text-slate-500 ml-1">%</span>
+              </div>
+            </div>
+            <input id="cvr-range" type="range" min="0.1" max="10" step="0.1" value="2.2" class="w-full accent-blue-500 cursor-pointer bg-slate-800 h-2 rounded-lg" />
+            <div class="flex justify-between text-[11px] text-slate-500 font-mono"><span>0.1%</span><span>2.5%</span><span>10%</span></div>
+          </div>
+
+          <!-- AOV -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="aov-input" class="font-semibold text-slate-300">Average Order Value ($)</label>
+              <div class="flex items-center bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1">
+                <span class="text-slate-500 mr-1">$</span>
+                <input id="aov-input" type="number" min="10" max="2000" step="5" value="120" class="w-16 bg-transparent text-right font-mono font-bold text-white focus:outline-none" />
+              </div>
+            </div>
+            <input id="aov-range" type="range" min="20" max="800" step="5" value="120" class="w-full accent-blue-500 cursor-pointer bg-slate-800 h-2 rounded-lg" />
+            <div class="flex justify-between text-[11px] text-slate-500 font-mono"><span>$20</span><span>$120</span><span>$800</span></div>
+          </div>
+        </div>
+
+        <!-- Right: Results (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          <!-- Primary metrics -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-slate-900 border border-rose-500/30 rounded-2xl p-6 relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl pointer-events-none"></div>
+              <div class="text-[11px] uppercase tracking-wider font-semibold text-rose-400 mb-1 flex items-center justify-between">
+                <span>Real Click-Loss Rate</span>
+                <span id="health-pill" class="text-[10px] px-2 py-0.5 rounded-full font-mono bg-rose-500/10 text-rose-400 border border-rose-500/30">Critical</span>
+              </div>
+              <div class="text-3xl sm:text-4xl font-black text-white font-mono tracking-tight" id="metric-loss-rate">22.5%</div>
+              <p class="text-xs text-slate-400 mt-2">
+                Of <span id="metric-outbound-total" class="text-slate-200 font-semibold font-mono">40,000</span> paid clicks never produced a landing page view.
+              </p>
+              <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between text-xs text-slate-400">
+                <span>Industry benchmark:</span>
+                <strong class="text-rose-400 font-mono">25%+ typical</strong>
+              </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 relative overflow-hidden">
+              <div class="text-[11px] uppercase tracking-wider font-semibold text-amber-400 mb-1">Wasted Ad Spend / Month</div>
+              <div class="text-3xl sm:text-4xl font-black text-white font-mono tracking-tight" id="metric-wasted-spend">$21,600</div>
+              <p class="text-xs text-slate-400 mt-2">
+                Capital paid for <span id="metric-lost-clicks" class="text-slate-200 font-semibold font-mono">9,000</span> clicks that never rendered a page.
+              </p>
+              <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between text-xs text-slate-400">
+                <span>Annualized:</span>
+                <strong class="text-amber-400 font-mono" id="metric-wasted-annual">$259,200 / yr</strong>
+              </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 relative overflow-hidden">
+              <div class="text-[11px] uppercase tracking-wider font-semibold text-blue-400 mb-1">Recoverable Orders / Month</div>
+              <div class="text-3xl sm:text-4xl font-black text-white font-mono tracking-tight text-emerald-400" id="metric-recovered-orders">+44 orders/mo</div>
+              <p class="text-xs text-slate-400 mt-2">
+                Orders captured if you close the gap to the sub-8% target rate.
+              </p>
+              <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between text-xs text-slate-400">
+                <span>Annual orders:</span>
+                <strong class="text-emerald-400 font-mono" id="metric-recovered-annual">+528 orders</strong>
+              </div>
+            </div>
+
+            <div class="bg-slate-900 border border-blue-500/30 rounded-2xl p-6 relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none"></div>
+              <div class="text-[11px] uppercase tracking-wider font-semibold text-blue-400 mb-1">Recoverable Revenue / Month</div>
+              <div class="text-3xl sm:text-4xl font-black text-white font-mono tracking-tight" id="metric-recovered-revenue">+$5,280</div>
+              <p class="text-xs text-slate-400 mt-2">
+                Revenue from the same media budget, minus the <span class="text-slate-200 font-semibold">same</span> spend.
+              </p>
+              <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between text-xs text-slate-400">
+                <span>Annualized upside:</span>
+                <strong class="text-blue-400 font-mono" id="metric-recovered-annual-value">+$63,360</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Diagnosis engine -->
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-7">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                </svg>
+                <span>Root Cause Diagnosis</span>
+              </h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-950 border border-slate-800 text-slate-400" id="diagnosis-type">Rendering Loss</span>
+            </div>
+
+            <p class="text-xs text-slate-300 leading-relaxed mb-4" id="diagnosis-summary">
+              Your landing page is slow enough that real visitors are leaving before the page renders. This is genuine lost demand, not a reporting quirk.
+            </p>
+
+            <div class="space-y-2.5" id="diagnosis-causes">
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80">
+                <strong class="text-white block mb-1 text-xs">1. Preload the LCP hero image, strip render-blocking tag manager scripts</strong>
+                <span class="text-slate-400 text-[11px] leading-relaxed">Defer non-essential pixels behind <code class="text-blue-300">requestIdleCallback</code> so the first paint does not wait on third-party JS.</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80">
+                <strong class="text-white block mb-1 text-xs">2. Kill app bloat and unblock the main thread</strong>
+                <span class="text-slate-400 text-[11px] leading-relaxed">Every app you added loads scripts on every template. Audit Total Blocking Time and remove or defer the worst offenders.</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80">
+                <strong class="text-white block mb-1 text-xs">3. Serve AVIF/WebP at matching DPR to drive CLS to zero</strong>
+                <span class="text-slate-400 text-[11px] leading-relaxed">Layout shift during the ad click is a top cause of the white-flash bounce on mobile in-app browsers.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benchmark bar -->
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300 mb-4 flex items-center justify-between">
+              <span>Click-Loss Rate vs Benchmarks</span>
+              <span class="text-slate-500 font-mono font-normal">Target &lt; 8%</span>
+            </h3>
+            <div class="space-y-2.5">
+              <div class="flex justify-between text-xs"><span class="text-slate-400">Your store:</span><span class="font-mono font-bold text-rose-400" id="label-your-rate">22.5%</span></div>
+              <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden border border-slate-800"><div id="bar-your-rate" class="h-full bg-gradient-to-r from-amber-500 to-rose-500 rounded-full transition-all duration-300" style="width: 75%;"></div></div>
+
+              <div class="flex justify-between text-xs pt-1"><span class="text-slate-400">Typical Shopify store:</span><span class="font-mono font-bold text-slate-300">20% – 30%</span></div>
+              <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-gradient-to-r from-slate-600 to-slate-500 rounded-full" style="width: 80%;"></div></div>
+
+              <div class="flex justify-between text-xs pt-1"><span class="text-slate-400">Sub-second edge architecture:</span><span class="font-mono font-bold text-emerald-400">&lt; 8%</span></div>
+              <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden border border-slate-800"><div class="h-full bg-gradient-to-r from-blue-500 to-emerald-400 rounded-full" style="width: 22%;"></div></div>
+            </div>
+          </div>
+
+          <!-- Email gate -->
+          <div id="report-gate" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-7">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+              <div>
+                <div class="text-sm font-bold text-white">Get the full reconciliation report</div>
+                <div class="text-xs text-slate-400 mt-1">Session-by-session gap breakdown, the exact GA4 & Meta report paths, and a 90-day fix sequence for your store.</div>
+              </div>
+            </div>
+            <NewsletterSignup
+              source="click-loss-auditor"
+              heading="Send me the full reconciliation report"
+              subheading="Drop your store URL in and I will personalise the diagnosis — including which of your landing pages is leaking the most."
+              ctaLabel="Get The Report"
+              showNameField={true}
+              showStoreField={true}
+              note="One report, then The Ad-Waste Report each week. Unsubscribe any time."
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script is:inline>
+  function initClickLossAuditor() {
+    const ids = ['outbound', 'lpv', 'cpc', 'loadtime', 'cvr', 'aov'];
+    const input = {};
+    const range = {};
+    ids.forEach((k) => {
+      input[k] = document.getElementById(k + '-input');
+      range[k] = document.getElementById(k + '-range');
+      if (!input[k] || !range[k]) return;
+      input[k].addEventListener('input', () => { range[k].value = input[k].value; recalc(); queueTrack(); });
+      range[k].addEventListener('input', () => { input[k].value = range[k].value; recalc(); queueTrack(); });
+    });
+
+    const el = (id) => document.getElementById(id);
+    const resetBtn = el('reset-btn');
+
+    const defaults = { outbound: 40000, lpv: 31000, cpc: 2.4, loadtime: 4.4, cvr: 2.2, aov: 120 };
+
+    let trackTimer = null;
+    function queueTrack() {
+      clearTimeout(trackTimer);
+      trackTimer = setTimeout(() => {
+        if (typeof window.trackEvent === 'function') {
+          window.trackEvent('click_loss_auditor_interacted', {
+            lossRate: el('metric-loss-rate') ? el('metric-loss-rate').textContent : null,
+            diagnosis: el('diagnosis-type') ? el('diagnosis-type').textContent : null
+          });
+        }
+      }, 1500);
+    }
+
+    function money(v) { return '$' + Math.round(v).toLocaleString('en-US'); }
+
+    function recalc() {
+      const outbound = Math.max(0, parseFloat(input.outbound.value) || 0);
+      const lpv = Math.max(0, parseFloat(input.lpv.value) || 0);
+      const cpc = Math.max(0, parseFloat(input.cpc.value) || 0);
+      const loadTime = Math.max(0.1, parseFloat(input.loadtime.value) || 1);
+      const cvr = Math.max(0, parseFloat(input.cvr.value) || 0);
+      const aov = Math.max(0, parseFloat(input.aov.value) || 0);
+
+      const lossRate = outbound > 0 ? Math.max(0, (outbound - lpv) / outbound) : 0;
+      const lostClicks = Math.max(0, Math.round(outbound - lpv));
+      const wasted = lostClicks * cpc;
+
+      const targetLpv = outbound * 0.92;
+      const recoveredSessions = Math.max(0, Math.round(targetLpv - lpv));
+      const recoveredOrders = Math.round(recoveredSessions * (cvr / 100));
+      const recoveredRevenue = recoveredOrders * aov;
+
+      el('metric-loss-rate').textContent = (lossRate * 100).toFixed(1) + '%';
+      el('metric-outbound-total').textContent = Math.round(outbound).toLocaleString('en-US');
+      el('metric-lost-clicks').textContent = lostClicks.toLocaleString('en-US');
+      el('metric-wasted-spend').textContent = money(wasted);
+      el('metric-wasted-annual').textContent = money(wasted * 12) + ' / yr';
+      el('metric-recovered-orders').textContent = '+' + recoveredOrders.toLocaleString('en-US') + ' orders/mo';
+      el('metric-recovered-annual').textContent = '+' + (recoveredOrders * 12).toLocaleString('en-US') + ' orders';
+      el('metric-recovered-revenue').textContent = '+' + money(recoveredRevenue);
+      el('metric-recovered-annual-value').textContent = '+' + money(recoveredRevenue * 12);
+
+      // Health pill
+      const pill = el('health-pill');
+      let pillClass = 'text-[10px] px-2 py-0.5 rounded-full font-mono ';
+      if (lossRate >= 0.2) { pillClass += 'bg-rose-500/10 text-rose-400 border border-rose-500/30'; pill.textContent = 'Critical Leakage'; }
+      else if (lossRate >= 0.12) { pillClass += 'bg-orange-500/10 text-orange-400 border border-orange-500/30'; pill.textContent = 'Elevated Loss'; }
+      else if (lossRate >= 0.08) { pillClass += 'bg-amber-500/10 text-amber-400 border border-amber-500/30'; pill.textContent = 'Guarded'; }
+      else { pillClass += 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'; pill.textContent = 'Healthy'; }
+      pill.className = pillClass;
+
+      // Bar
+      el('bar-your-rate').style.width = Math.min(100, Math.max(4, lossRate * 100 * 3)) + '%';
+      el('label-your-rate').textContent = (lossRate * 100).toFixed(1) + '%';
+
+      // Diagnosis engine: rendering loss vs measurement artifact
+      const typeEl = el('diagnosis-type');
+      const sumEl = el('diagnosis-summary');
+      const causesEl = el('diagnosis-causes');
+
+      const renderingCauses = [
+        ['1. Preload the LCP hero image, strip render-blocking tag manager scripts', 'Defer non-essential pixels behind requestIdleCallback so the first paint does not wait on third-party JS.'],
+        ['2. Kill app bloat and unblock the main thread', 'Every app you added loads scripts on every template. Audit Total Blocking Time and remove or defer the worst offenders.'],
+        ['3. Serve AVIF/WebP at matching DPR to drive CLS to zero', 'Layout shift during the ad click is a top cause of the white-flash bounce on mobile in-app browsers.']
+      ];
+      const attributionCauses = [
+        ['1. Reconcile the Meta signal under iOS 14.5+ / Consent Mode v2', 'Your CAPI server events and client events must dedupe on event_id, or GA4 undercounts paid sessions that Meta is counting.'],
+        ['2. Check for redirect chains and cross-domain measurement loss', 'Ad redirects through a shortener or a country selector break the session attribution — the click lands, GA4 never sees it.'],
+        ['3. Filter out internal traffic, consent denials and ITP effects', 'Safari and in-app browsers strip third-party cookies; a real audience can look like a measurement gap.'],
+        ['4. Validate that your landing URL matches the ad destination exactly', 'A mismatch between the ad URL and the final URL silently splits the session before it is counted.']
+      ];
+      const mixedCauses = [
+        ['1. Fix the render path first — it explains most of the gap', 'Your page is over the 3-second threshold where mobile abandonment climbs sharply, so part of this loss is real lost demand.'],
+        ['2. Then reconcile the tracking gap', 'With a fast page, any remaining gap is measurement. Compare Meta outbound clicks against GA4 sessions and CAPI dedupe on event_id.'],
+        ['3. Run the audit on your top 5 ad landing pages, not just the store', 'Leakage is rarely uniform — one slow variant can account for most of the loss.']
+      ];
+
+      let type, summary, causes;
+      if (loadTime > 3.0 && lossRate >= 0.12) {
+        type = 'Rendering Loss';
+        summary = 'Your landing page is slow enough that real visitors are leaving before the page renders. This is genuine lost demand, not a reporting quirk.';
+        causes = renderingCauses;
+      } else if (loadTime <= 2.0 && lossRate >= 0.12) {
+        type = 'Measurement Artifact';
+        summary = 'Your page loads fast, so the gap is not a bounce problem. This is most likely a tracking and attribution failure — you are paying for clicks that GA4 never records, which also means your ROAS is wrong.';
+        causes = attributionCauses;
+      } else if (lossRate >= 0.12) {
+        type = 'Mixed Cause';
+        summary = 'Both factors are in play: some visitors genuinely bounce on a mid-range load time, and some of the gap is measurement drift. Fix them in that order.';
+        causes = mixedCauses;
+      } else if (lossRate >= 0.08) {
+        type = 'Guarded';
+        summary = 'Your click-loss rate is close to the sub-8% target. The residual gap is worth a quarterly check rather than an emergency fix — tighten the tracking reconciliation and move on.';
+        causes = mixedCauses;
+      } else {
+        type = 'Healthy Pipeline';
+        summary = 'Your paid traffic is landing and being recorded. At this level the remaining upside is in conversion rate and average order value, not in traffic reconciliation.';
+        causes = mixedCauses;
+      }
+
+      typeEl.textContent = type;
+      sumEl.textContent = summary;
+      causesEl.innerHTML = causes.map((c) =>
+        '<div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80">' +
+        '<strong class="text-white block mb-1 text-xs">' + c[0] + '</strong>' +
+        '<span class="text-slate-400 text-[11px] leading-relaxed">' + c[1] + '</span></div>'
+      ).join('');
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        Object.keys(defaults).forEach((k) => {
+          if (input[k]) input[k].value = defaults[k];
+          if (range[k]) range[k].value = defaults[k];
+        });
+        recalc();
+      });
+    }
+
+    recalc();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initClickLossAuditor);
+  } else {
+    initClickLossAuditor();
+  }
+</script>

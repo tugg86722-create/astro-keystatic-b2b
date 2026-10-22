@@ -7,6 +7,19 @@ badge: Traffic Defense
 minOrderQty: Meta Graph API, GA4, Liquid, Edge CDN
 leadTime: Click-Loss < 8% | 3.4x ROAS Lift
 image: https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80
+industry: DTC Home & Lifestyle (paid social scale)
+clientProfile: Multi-SKU DTC brand scaling Meta spend past $40k/mo (NDA)
+engagementWindow: 4 sprints · 9 weeks · 2026
+year: "2026"
+headlineMetrics:
+  - label: Click-Loss
+    value: "26.2% → 7.4%"
+  - label: ROAS
+    value: "3.4x"
+  - label: Mobile LCP
+    value: "0.64s"
+  - label: Revenue at Risk
+    value: "$259k/yr"
 specs:
   - label: Click-Loss Rate
     value: Slashed from 26.2% to 7.4% on mobile Meta ad campaigns

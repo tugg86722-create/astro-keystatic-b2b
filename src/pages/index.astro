@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ProductCard from '../components/ProductCard.astro';
 import RfqForm from '../components/RfqForm.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('products');
@@ -35,6 +36,19 @@ const latestPost = allPosts[0];
         <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-2xl">
           Bridging the gap between luxury brand storytelling, technical storefront performance, and Meta/Google ad profitability. Zero bloated plugins, zero cheap AI plastic slop, 100% data-driven conversion.
         </p>
+
+        <!-- Client Qualification Statement -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-xl px-4 py-3.5 mb-8 max-w-2xl">
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 mt-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              <span class="text-white font-semibold">Who I work with:</span> DTC brands doing
+              <span class="text-white font-semibold">$50k–$2M/month</span> in revenue, typically
+              <span class="text-white font-semibold">$99+ AOV</span>, that are already spending on paid traffic and losing it before the page renders.
+              <a href="/services" class="text-blue-400 hover:text-blue-300 font-semibold ml-1">See if that is you →</a>
+            </p>
+          </div>
+        </div>
 
         <!-- CTA Action Buttons -->
         <div class="flex flex-wrap items-center gap-4">
@@ -105,6 +119,10 @@ const latestPost = allPosts[0];
             minOrderQty={p.data.minOrderQty}
             leadTime={p.data.leadTime}
             image={p.data.image}
+            industry={p.data.industry}
+            engagementWindow={p.data.engagementWindow}
+            year={p.data.year}
+            headlineMetrics={p.data.headlineMetrics}
           />
         ))}
       </div>
@@ -167,6 +185,129 @@ const latestPost = allPosts[0];
           </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Fit Check: Who It's For / Not A Fit -->
+  <section class="py-16 sm:py-24 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-4">
+          <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">Fit Check</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight mb-4">
+            The honest version of <span class="text-blue-400">who this works for</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            The fastest way to waste both our time is a bad fit. Here is the filter I actually apply — and I would rather lose the deal than take it badly.
+          </p>
+        </div>
+
+        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="bg-slate-900 border border-emerald-500/20 rounded-2xl p-6">
+            <h3 class="text-sm font-bold text-emerald-400 mb-4 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-xs">✓</span>
+              This is a fit if…
+            </h3>
+            <ul class="space-y-2.5 text-xs text-slate-300 leading-relaxed">
+              <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold shrink-0">·</span> You are past $50k/month and already running paid traffic</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold shrink-0">·</span> Your AOV is $99+ and checkout friction is visibly high</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold shrink-0">·</span> Mobile PageSpeed is red and nobody owns it</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold shrink-0">·</span> Klaviyo exists but the flows were never rebuilt</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold shrink-0">·</span> You can get a decision-maker to approve changes weekly</li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-900 border border-rose-500/20 rounded-2xl p-6">
+            <h3 class="text-sm font-bold text-rose-400 mb-4 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-xs">✕</span>
+              This is not a fit if…
+            </h3>
+            <ul class="space-y-2.5 text-xs text-slate-300 leading-relaxed">
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold shrink-0">·</span> You are under roughly $50k/month in revenue</li>
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold shrink-0">·</span> You need a guaranteed conversion lift in month one</li>
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold shrink-0">·</span> You want someone to make the decisions for you</li>
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold shrink-0">·</span> You are single-SKU dropshipping or gray-market resale</li>
+              <li class="flex items-start gap-2"><span class="text-rose-400 font-bold shrink-0">·</span> You have no paid traffic yet — start with the free audit instead</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free Diagnostics Tool Matrix -->
+  <section class="py-16 sm:py-24 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">Run It Yourself First</div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Free Diagnostics For Your Store</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-3 leading-relaxed">
+          These are the same engines I use inside paid audits. No signup, no pitch — run them on your own numbers and decide if the work is worth it.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/tools/click-loss-auditor" class="group bg-slate-950 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all hover:-translate-y-1 block">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-11 h-11 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono">NEW</span>
+          </div>
+          <h3 class="text-sm font-bold text-white group-hover:text-blue-300 transition-colors mb-2">Click-Loss Auditor</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Reconcile Meta outbound clicks against GA4 landing page views. Prices the gap and tells you if it is rendering loss or a tracking artifact.
+          </p>
+          <span class="text-xs font-semibold text-blue-400">Run the audit →</span>
+        </a>
+
+        <a href="/tools/chargeback-scorecard" class="group bg-slate-950 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all hover:-translate-y-1 block">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono">NEW</span>
+          </div>
+          <h3 class="text-sm font-bold text-white group-hover:text-blue-300 transition-colors mb-2">Chargeback Risk Scorecard</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Eight questions, one risk score, and the specific fix for every red flag — from fulfilment truth to dispute evidence packs.
+          </p>
+          <span class="text-xs font-semibold text-blue-400">Score my store →</span>
+        </a>
+
+        <a href="/tools" class="group bg-slate-950 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all hover:-translate-y-1 block">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </span>
+          </div>
+          <h3 class="text-sm font-bold text-white group-hover:text-blue-300 transition-colors mb-2">Ad ROI & Latency Calculator</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Quantify what mobile load time costs you in wasted ad spend, lost clicks and recoverable orders — grounded in Google field data.
+          </p>
+          <span class="text-xs font-semibold text-blue-400">Open calculator →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 sm:py-20 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <NewsletterSignup
+        source="homepage"
+        heading="The Ad-Waste Report"
+        subheading="Every week I take one real DTC store, find where it is burning paid media, and show you the fix with the revenue math. The teardown I would have given away on a call."
+        ctaLabel="Send Me The Report"
+        showNameField={false}
+        showStoreField={false}
+      />
     </div>
   </section>
 

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
 
 const defaultSpend = 10000;
 const defaultCpc = 2.5;
@@ -42,6 +43,31 @@ const defaultCvr = 1.8;
         <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
           Slow mobile loading times do not just frustrate visitors—they burn paid marketing capital. Measure how latency inflates bounce rates, discards paid clicks before first paint, and calculate the exact financial upside of upgrading to a sub-1.0s Jamstack architecture.
         </p>
+      </div>
+
+      <!-- Tool Switcher -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+        <a href="/tools/click-loss-auditor" class="group bg-slate-900 border border-rose-500/20 rounded-xl p-5 hover:border-rose-500/50 transition-colors">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-white group-hover:text-rose-300 transition-colors">Click-Loss Auditor</span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono">NEW</span>
+          </div>
+          <p class="text-[11px] text-slate-400 leading-relaxed">Reconcile Meta outbound clicks vs GA4 landing page views and price the gap.</p>
+        </a>
+        <a href="/tools/chargeback-scorecard" class="group bg-slate-900 border border-amber-500/20 rounded-xl p-5 hover:border-amber-500/50 transition-colors">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-white group-hover:text-amber-300 transition-colors">Chargeback Risk Scorecard</span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono">NEW</span>
+          </div>
+          <p class="text-[11px] text-slate-400 leading-relaxed">Eight questions, one seller-health score, and the fix for every red flag.</p>
+        </a>
+        <div class="bg-slate-900 border border-blue-500/30 rounded-xl p-5">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-white">Ad ROI & Latency Calculator</span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 font-mono">YOU ARE HERE</span>
+          </div>
+          <p class="text-[11px] text-slate-400 leading-relaxed">Price the cost of mobile load time in wasted ad spend and lost orders.</p>
+        </div>
       </div>
 
       <!-- Main Calculator Stage -->
@@ -362,6 +388,20 @@ const defaultCvr = 1.8;
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 sm:py-20 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <NewsletterSignup
+        source="roi-calculator"
+        heading="Get the full latency teardown, not just the calculator"
+        subheading="The calculator tells you what it costs. The weekly report tells you exactly which template, which app and which third-party script is causing it — on stores I am auditing right now."
+        ctaLabel="Send Me The Report"
+        showNameField={true}
+        showStoreField={true}
+      />
     </div>
   </section>
 </Layout>
