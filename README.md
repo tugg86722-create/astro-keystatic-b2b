@@ -128,18 +128,55 @@ npm run preview
 
 ## Deployment
 
-Cloudflare Worker deployment (the site is not on Pages — it is a Worker with the
-Astro Cloudflare adapter).
+> ⚠️ **This site is deployed TWICE. Both targets must be updated on every
+> release, or the public domain will silently serve a stale build.**
+
+| Target | What it serves | Command |
+|---|---|---|
+| **Pages project `naif-dtc`** | `https://naif.is-a.dev` — the **production** domain. Static assets from `dist/client` + the `functions/` bundle. | `npx wrangler pages deploy dist/client --project-name naif-dtc --branch master` |
+| **Worker `astro-keystatic-b2b`** | `https://astro-keystatic-b2b.dewellsmell.workers.dev` — full SSR (per-request rendering, KV session, edge API). | `npx wrangler deploy -c dist/server/wrangler.json` |
+
+The custom domain `naif.is-a.dev` is bound to the **Pages** project, not to the
+Worker. Deploying only the Worker leaves the live site on the old build — this
+is exactly what happened when the six-locale i18n work shipped: the Worker got
+the new code, the domain kept serving the pre-i18n HTML, so the
+browser-language redirect appeared "not implemented".
+
+Always deploy both:
 
 ```bash
 npm run build
-npx wrangler deploy
+npx wrangler pages deploy dist/client --project-name naif-dtc --branch master
+npx wrangler deploy -c dist/server/wrangler.json
 ```
+
+### Secrets
+
+- `RESEND_API_KEY` must exist in **both** places:
+  `npx wrangler pages secret put RESEND_API_KEY --project-name naif-dtc` and
+  `npx wrangler secret put RESEND_API_KEY -c dist/server/wrangler.json`.
 
 Verify what is live:
 
 ```bash
 npx wrangler deployments list --name astro-keystatic-b2b
+npx wrangler pages deployment list --project-name naif-dtc
+```
+
+### Browser-language auto-redirect
+
+`src/layouts/Layout.astro` inlines a small synchronous `<head>` script that
+reads `navigator.languages` and, on a first visit, moves the visitor to the
+matching locale prefix (`/zh/`, `/es/`, `/fr/`, `/de/`, `/ja/`). The choice is
+stored in `localStorage['wb-locale']` and always wins on later visits — the
+script will take the visitor back to their language even if they land on the
+English URL. Client-side only, so crawlers still receive complete HTML with
+correct `canonical` / `hreflang`.
+
+Live check (uses a real browser via CDP):
+
+```bash
+python tools/verify_lang_redirect.py
 ```
 
 ---
