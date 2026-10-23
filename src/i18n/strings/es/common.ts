@@ -1,0 +1,116 @@
+export const common = {
+  brandName: 'NAIF',
+  brandTag: 'DTC',
+  brandRole: 'Operador DTC y Arquitector de Crecimiento',
+  statusBar: 'Estado: Disponible para arquitectura de marca DTC, CRO y consultoría de crecimiento',
+  domain: 'naif.is-a.dev',
+
+  nav: {
+    home: 'Inicio',
+    caseStudies: 'Casos de éxito',
+    services: 'Servicios y precios',
+    tools: 'Herramientas',
+    toolsNew: 'NUEVO',
+    resources: 'Recursos',
+    about: 'Sobre mí',
+    contact: 'Contacto',
+    startProject: 'Empezar un proyecto',
+    mobileHub: 'Hub',
+  },
+
+  language: {
+    label: 'Idioma',
+    switchTo: 'Cambiar a',
+    current: 'Idioma actual',
+  },
+
+  footer: {
+    tagline:
+      'Operador de eCommerce DTC y Arquitector de Crecimiento de embudo completo. Cierro la brecha entre el relato de marca de ticket alto, la ingeniería de la tienda y la rentabilidad publicitaria en Meta y Google.',
+    systemsHeading: 'Sistemas DTC y casos de éxito',
+    navHeading: 'Navegación y herramientas',
+    advisoryHeading: 'Consultoría y consultas',
+    emailLabel: 'Email:',
+    githubLabel: 'GitHub:',
+    openFor:
+      'Disponible para auditorías de arquitectura DTC de ticket alto, optimización de la tasa de conversión y contratos de retención de ciclo de vida con Klaviyo.',
+    copyright: 'Construido con Astro, Tailwind CSS y Cloudflare Edge.',
+    domainLabel: 'Dominio:',
+    allCaseStudies: 'Todos los casos de arquitectura',
+    jewelryCase: 'Tienda de joyería de ticket alto',
+    clickLossCase: 'CRO de landing page publicitaria y pérdida de clics',
+    retentionCase: 'Retención con Klaviyo y escudo antichargeback',
+    servicesLink: 'Servicios, precios y comprobación de encaje',
+    aboutLink: 'Sobre mí y pilares estratégicos',
+    roiTool: 'Calculadora de ROI publicitario y latencia',
+    clickLossTool: 'Auditor de Pérdida de Clics',
+    scorecardTool: 'Scorecard de Riesgo de Chargeback',
+    resourcesLink: 'Hub curado para operadores y comercio',
+    whitepapers: 'Whitepapers técnicos',
+    faqLink: 'Preguntas frecuentes',
+    rfqLink: 'Consultoría de crecimiento y solicitud de auditoría',
+  },
+
+  crumbs: {
+    home: 'Inicio',
+    tools: 'Herramientas interactivas',
+    advisory: 'Consultoría',
+    about: 'Sobre mí y pilares estratégicos',
+    faq: 'Preguntas frecuentes',
+    services: 'Modalidades de colaboración',
+    caseStudies: 'Casos de éxito',
+  },
+
+  cta: {
+    requestAudit: 'Solicitar auditoría de arquitectura',
+    requestAuditArrow: 'Solicitar auditoría de arquitectura →',
+    viewCaseStudies: 'Ver casos de éxito',
+    sendInquiry: 'Enviar consulta',
+    exploreTool: 'Explorar la herramienta de ROI publicitario y latencia',
+    startConversation: 'Empezar a hablar',
+    runAudit: 'Ejecutar la auditoría',
+    scoreMyStore: 'Puntuar mi tienda',
+    openCalculator: 'Abrir la calculadora',
+    askQuestion: 'Haz tu pregunta',
+    compareTiers: 'Comparar modalidades de colaboración',
+    readAllFaqs: 'Leer todas las preguntas',
+    emailMe: 'Escríbeme',
+    bookCall: 'Reservar una llamada estratégica',
+  },
+
+  labels: {
+    viewAll: 'Ver todos los casos de éxito',
+    readCaseStudy: 'Leer el caso de éxito',
+    inquire: 'Consultar',
+    viewCase: 'Ver el caso de éxito',
+    new: 'NUEVO',
+    coreStack: 'Stack principal:',
+    benchmark: 'Referencia:',
+    engagement: 'Colaboración:',
+    industry: 'Sector',
+    result: 'Resultado:',
+    timeline: 'Plazo:',
+    onGoing: 'Seguimiento continuo',
+    youAreHere: 'ESTÁS AQUÍ',
+    loading: 'Cargando',
+    optional: 'opcional',
+  },
+
+  newsletter: {
+    badge: 'Newsletter semanal de auditorías DTC',
+    defaultHeading: 'El Informe de Desperdicio Publicitario',
+    defaultSubheading:
+      'Un desmontaje semanal de tiendas DTC reales que están quemando medios pagados — con la solución exacta, las cuentas de ingresos y la única métrica que lo demuestra. Gratis, sin relleno.',
+    defaultCta: 'Envíame el informe',
+    defaultNote: 'Sin spam. Un email a la semana, bajas con un clic.',
+    namePlaceholder: 'Tu nombre (opcional)',
+    storePlaceholder: 'tutienda.com (para la versión personalizada)',
+    emailPlaceholder: 'tu@marca.com',
+    subscribing: 'Suscribiendo...',
+    success: '<strong>Ya estás dentro.</strong> Tu informe está en cola — revisa tu bandeja en los próximos minutos.',
+    failure:
+      '<strong>No se pudo completar la suscripción:</strong> {error} — o escríbeme directamente a <a href="mailto:dewellsmell@gmail.com" class="underline text-white">dewellsmell@gmail.com</a>.',
+  },
+} as const;
+
+export type CommonStrings = typeof common;

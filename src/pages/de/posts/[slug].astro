@@ -1,0 +1,16 @@
+---
+import PostDetailPage from '../../../components/pages/PostDetailPage.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('posts', ({ id }) => id.startsWith('de/'));
+  return entries.map((entry) => ({
+    params: { slug: entry.id.split('/').slice(1).join('/') },
+    props: { post: entry },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<PostDetailPage locale="de" post={post} />

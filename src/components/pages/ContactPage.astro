@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RfqForm from '../RfqForm.astro';
+import { getStrings } from '../../i18n/strings';
+import { lp, type Locale } from '../../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getStrings(locale);
+const C = t.pages.contact;
+---
+
+<Layout title={C.meta.title} description={C.meta.description} locale={locale}>
+  <div class="py-12 sm:py-16 bg-slate-900 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">{C.eyebrow}</div>
+      <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight">{C.heading}</h1>
+      <p class="text-sm text-slate-400 mt-2 max-w-2xl">
+        {C.lead}
+      </p>
+    </div>
+  </div>
+
+  <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Left Info Column (5 cols) -->
+      <div class="lg:col-span-5 space-y-8">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+          <h3 class="text-lg font-bold text-white tracking-tight">{C.channelsHeading}</h3>
+
+          <div class="space-y-4 text-xs sm:text-sm">
+            <div>
+              <span class="text-slate-500 block mb-1">{C.emailLabel}</span>
+              <a href="mailto:dewellsmell@gmail.com" class="text-blue-400 hover:underline font-medium text-base">
+                dewellsmell@gmail.com
+              </a>
+            </div>
+
+            <div>
+              <span class="text-slate-500 block mb-1">{C.githubLabel}</span>
+              <a href="https://github.com/tugg86722-create" target="_blank" rel="noreferrer" class="text-slate-200 hover:text-blue-400 transition-colors font-medium text-base">
+                github.com/tugg86722-create
+              </a>
+            </div>
+
+            <div>
+              <span class="text-slate-500 block mb-1">{C.availabilityLabel}</span>
+              <p class="text-slate-300 leading-relaxed">
+                {C.availability}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scope of Work Notice -->
+        <div class="bg-blue-950/30 border border-blue-500/20 rounded-2xl p-6">
+          <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+            <span>🛠️ {C.offeringsHeading}</span>
+          </h4>
+          <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+            {C.offerings.map((o) => (
+              <li class="flex items-start gap-1.5">
+                <span class="text-blue-400 font-bold">•</span>
+                <span><strong>{o.title}</strong>: {o.body}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Form Column (7 cols) -->
+      <div class="lg:col-span-7" id="rfq">
+        <RfqForm locale={locale} />
+      </div>
+    </div>
+  </div>
+</Layout>

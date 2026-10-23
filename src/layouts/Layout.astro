@@ -1,24 +1,43 @@
 ---
 import '../styles/global.css';
 import Analytics from '../components/Analytics.astro';
+import { getStrings } from '../i18n/strings';
+import { DEFAULT_LOCALE, LOCALE_META, LOCALES, lp, hreflangPath, type Locale } from '../i18n/config';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  locale?: Locale;
 }
 
 const {
-  title = 'Naif | DTC eCommerce Operator & Full-Funnel Growth Architect',
-  description = 'Personal growth & systems portfolio of Naif. Specializing in high-ticket DTC Shopify/Jamstack storefronts, Meta ad landing page CRO, automated Klaviyo retention, and sub-second edge commerce.',
+  title,
+  description,
   image = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&auto=format&fit=crop&q=80',
+  locale = DEFAULT_LOCALE,
 } = Astro.props;
 
+const t = getStrings(locale);
+const meta = LOCALE_META[locale];
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://naif.is-a.dev');
+
+// Strip the locale prefix from the current pathname so alternate links can be
+// generated for every locale against the same logical page.
+const rawPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const basePath =
+  locale === DEFAULT_LOCALE ? rawPath : rawPath.replace(new RegExp(`^/${locale}(?=/|$)`), '') || '/';
+
+const siteOrigin = Astro.site || 'https://naif.is-a.dev';
+const alternates = LOCALES.map((l) => ({
+  locale: l,
+  href: new URL(hreflangPath(l, basePath), siteOrigin).toString(),
+}));
 ---
 
 <!doctype html>
-<html lang="en" class="bg-slate-950 text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+<html lang={meta.htmlLang} class="bg-slate-950 text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,21 +45,31 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://naif.is-
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO Meta Tags -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{title || t.pages.home.meta.title}</title>
+    <meta name="description" content={description || t.pages.home.meta.description} />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- hreflang alternates -->
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={LOCALE_META[a.locale].htmlLang} href={a.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(hreflangPath(DEFAULT_LOCALE, basePath), siteOrigin).toString()} />
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={title || t.pages.home.meta.title} />
+    <meta property="og:description" content={description || t.pages.home.meta.description} />
     <meta property="og:image" content={image} />
+    <meta property="og:locale" content={meta.ogLocale} />
+    {LOCALES.filter((l) => l !== locale).map((l) => (
+      <meta property="og:locale:alternate" content={LOCALE_META[l].ogLocale} />
+    ))}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={title || t.pages.home.meta.title} />
+    <meta name="twitter:description" content={description || t.pages.home.meta.description} />
     <meta name="twitter:image" content={image} />
 
     <!-- Developer Schema.org JSON-LD -->
@@ -72,7 +101,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://naif.is-
     <div class="bg-blue-900/30 border-b border-blue-500/20 text-xs py-1.5 px-4 text-center text-blue-200 flex items-center justify-center gap-4">
       <span class="inline-flex items-center gap-1.5 font-medium">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        Status: Available for DTC Brand Architecture, CRO & Growth Advisory
+        {t.common.statusBar}
       </span>
       <span class="hidden md:inline text-blue-400/60">|</span>
       <span class="hidden md:inline font-mono text-[11px] text-blue-300">naif.is-a.dev</span>
@@ -82,46 +111,71 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://naif.is-
     <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
         <!-- Developer Brand Logo -->
-        <a href="/" class="flex items-center gap-3 group">
+        <a href={lp(locale, '/')} class="flex items-center gap-3 group">
           <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 via-indigo-600 to-sky-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
             N
           </div>
           <div>
             <div class="font-bold text-lg text-white tracking-tight flex items-center gap-1.5">
-              NAIF
-              <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono font-semibold">DTC</span>
+              {t.common.brandName}
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono font-semibold">{t.common.brandTag}</span>
             </div>
-            <div class="text-[11px] text-slate-400 tracking-wider uppercase font-medium">DTC Operator & Growth Architect</div>
+            <div class="text-[11px] text-slate-400 tracking-wider uppercase font-medium">{t.common.brandRole}</div>
           </div>
         </a>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-          <a href="/" class="hover:text-blue-400 transition-colors">Home</a>
-          <a href="/products" class="hover:text-blue-400 transition-colors">Case Studies</a>
-          <a href="/services" class="hover:text-blue-400 transition-colors">Services & Pricing</a>
-          <a href="/tools" class="hover:text-blue-400 transition-colors flex items-center gap-1">
-            <span>Tools</span>
-            <span class="text-[9px] px-1 py-0.2 rounded bg-rose-500/10 text-rose-400 font-mono font-semibold border border-rose-500/20">NEW</span>
+          <a href={lp(locale, '/')} class="hover:text-blue-400 transition-colors">{t.common.nav.home}</a>
+          <a href={lp(locale, '/products')} class="hover:text-blue-400 transition-colors">{t.common.nav.caseStudies}</a>
+          <a href={lp(locale, '/services')} class="hover:text-blue-400 transition-colors">{t.common.nav.services}</a>
+          <a href={lp(locale, '/tools')} class="hover:text-blue-400 transition-colors flex items-center gap-1">
+            <span>{t.common.nav.tools}</span>
+            <span class="text-[9px] px-1 py-0.2 rounded bg-rose-500/10 text-rose-400 font-mono font-semibold border border-rose-500/20">{t.common.nav.toolsNew}</span>
           </a>
-          <a href="/resources" class="hover:text-blue-400 transition-colors">Resources</a>
-          <a href="/about" class="hover:text-blue-400 transition-colors">About</a>
+          <a href={lp(locale, '/resources')} class="hover:text-blue-400 transition-colors">{t.common.nav.resources}</a>
+          <a href={lp(locale, '/about')} class="hover:text-blue-400 transition-colors">{t.common.nav.about}</a>
+
+          <!-- Language Switcher (no-JS dropdown) -->
+          <details class="group relative">
+            <summary class="flex items-center gap-1.5 cursor-pointer list-none hover:text-blue-400 transition-colors px-2 py-1 rounded-lg border border-slate-800 bg-slate-900/60 text-xs">
+              <svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18" />
+              </svg>
+              <span class="font-mono">{LOCALE_META[locale].code.toUpperCase()}</span>
+              <svg class="w-3 h-3 text-slate-500 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="absolute right-0 mt-2 w-40 bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl z-50">
+              {LOCALES.map((l) => (
+                <a
+                  href={lp(l, basePath)}
+                  hreflang={LOCALE_META[l].htmlLang}
+                  class={`flex items-center justify-between px-3.5 py-2 text-xs transition-colors ${l === locale ? 'bg-blue-600/15 text-blue-300 font-semibold' : 'text-slate-300 hover:bg-slate-800 hover:text-white'}`}
+                >
+                  <span>{LOCALE_META[l].label}</span>
+                  {l === locale && <span class="text-[10px] font-mono">●</span>}
+                </a>
+              ))}
+            </div>
+          </details>
         </nav>
 
         <!-- CTA Action Button & Mobile Menu Toggle -->
         <div class="flex items-center gap-3">
           <a
-            href="/contact#rfq"
+            href={lp(locale, '/contact#rfq')}
             class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/30 transition-all hover:-translate-y-0.5"
           >
-            Start a Project
+            {t.common.nav.startProject}
           </a>
 
           <!-- Mobile Quick Nav Buttons -->
           <div class="flex md:hidden items-center gap-2 text-xs">
-            <a href="/tools" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-blue-400 font-medium">Tools</a>
-            <a href="/resources" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-medium">Hub</a>
-            <a href="/about" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-medium">About</a>
+            <a href={lp(locale, '/tools')} class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-blue-400 font-medium">{t.common.nav.tools}</a>
+            <a href={lp(locale, '/resources')} class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-medium">{t.common.nav.mobileHub}</a>
+            <a href={lp(locale, '/about')} class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-medium">{t.common.nav.about}</a>
           </div>
         </div>
       </div>
@@ -140,10 +194,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://naif.is-
           <div class="space-y-4">
             <div class="flex items-center gap-2">
               <div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white font-bold text-base">N</div>
-              <span class="font-bold text-white text-base tracking-tight">NAIF // DTC</span>
+              <span class="font-bold text-white text-base tracking-tight">{t.common.brandName} // {t.common.brandTag}</span>
             </div>
             <p class="text-xs text-slate-400 leading-relaxed">
-              DTC eCommerce Operator & Full-Funnel Growth Architect. Bridging the gap between high-ticket brand storytelling, storefront engineering, and Meta/Google ad profitability.
+              {t.common.footer.tagline}
             </p>
             <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
               <span>Shopify</span> • <span>Liquid</span> • <span>Klaviyo</span> • <span>Meta Ads</span> • <span>Astro Edge</span>
@@ -152,54 +206,54 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://naif.is-
 
           <!-- Col 2: Projects & Systems -->
           <div>
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">DTC Systems & Case Studies</h4>
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">{t.common.footer.systemsHeading}</h4>
             <ul class="space-y-2 text-xs">
-              <li><a href="/products" class="hover:text-blue-400 transition-colors">All Architecture Case Studies</a></li>
-              <li><a href="/products/sub-second-jamstack-edge-commerce-platform" class="hover:text-blue-400 transition-colors">High-Ticket Jewelry Storefront</a></li>
-              <li><a href="/products/event-driven-serverless-dispatch-gateway" class="hover:text-blue-400 transition-colors">Ad Landing Page & Click-Loss CRO</a></li>
-              <li><a href="/products/zero-overhead-web-telemetry-engine" class="hover:text-blue-400 transition-colors">Klaviyo Retention & Chargeback Shield</a></li>
+              <li><a href={lp(locale, '/products')} class="hover:text-blue-400 transition-colors">{t.common.footer.allCaseStudies}</a></li>
+              <li><a href={lp(locale, '/products/sub-second-jamstack-edge-commerce-platform')} class="hover:text-blue-400 transition-colors">{t.common.footer.jewelryCase}</a></li>
+              <li><a href={lp(locale, '/products/event-driven-serverless-dispatch-gateway')} class="hover:text-blue-400 transition-colors">{t.common.footer.clickLossCase}</a></li>
+              <li><a href={lp(locale, '/products/zero-overhead-web-telemetry-engine')} class="hover:text-blue-400 transition-colors">{t.common.footer.retentionCase}</a></li>
             </ul>
           </div>
 
           <!-- Col 3: Navigation & Tools -->
           <div>
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Navigation & Tools</h4>
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">{t.common.footer.navHeading}</h4>
             <ul class="space-y-2 text-xs">
-              <li><a href="/services" class="hover:text-blue-400 transition-colors">Services, Pricing & Fit Check</a></li>
-              <li><a href="/about" class="hover:text-blue-400 transition-colors">About & Strategic Pillars</a></li>
-              <li><a href="/tools" class="hover:text-blue-400 transition-colors">Ad ROI & Latency Calculator</a></li>
-              <li><a href="/tools/click-loss-auditor" class="hover:text-blue-400 transition-colors">Click-Loss Auditor</a></li>
-              <li><a href="/tools/chargeback-scorecard" class="hover:text-blue-400 transition-colors">Chargeback Risk Scorecard</a></li>
-              <li><a href="/resources" class="hover:text-blue-400 transition-colors">Curated Operator & Trade Hub</a></li>
-              <li><a href="/#articles" class="hover:text-blue-400 transition-colors">Technical Whitepapers</a></li>
-              <li><a href="/faq" class="hover:text-blue-400 transition-colors">FAQ</a></li>
-              <li><a href="/contact" class="hover:text-blue-400 transition-colors">Growth Advisory & Audit RFQ</a></li>
+              <li><a href={lp(locale, '/services')} class="hover:text-blue-400 transition-colors">{t.common.footer.servicesLink}</a></li>
+              <li><a href={lp(locale, '/about')} class="hover:text-blue-400 transition-colors">{t.common.footer.aboutLink}</a></li>
+              <li><a href={lp(locale, '/tools')} class="hover:text-blue-400 transition-colors">{t.common.footer.roiTool}</a></li>
+              <li><a href={lp(locale, '/tools/click-loss-auditor')} class="hover:text-blue-400 transition-colors">{t.common.footer.clickLossTool}</a></li>
+              <li><a href={lp(locale, '/tools/chargeback-scorecard')} class="hover:text-blue-400 transition-colors">{t.common.footer.scorecardTool}</a></li>
+              <li><a href={lp(locale, '/resources')} class="hover:text-blue-400 transition-colors">{t.common.footer.resourcesLink}</a></li>
+              <li><a href={lp(locale, '/#articles')} class="hover:text-blue-400 transition-colors">{t.common.footer.whitepapers}</a></li>
+              <li><a href={lp(locale, '/faq')} class="hover:text-blue-400 transition-colors">{t.common.footer.faqLink}</a></li>
+              <li><a href={lp(locale, '/contact')} class="hover:text-blue-400 transition-colors">{t.common.footer.rfqLink}</a></li>
             </ul>
           </div>
 
           <!-- Col 4: Contact -->
           <div class="space-y-3">
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-2">Advisory & Inquiries</h4>
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-2">{t.common.footer.advisoryHeading}</h4>
             <div class="text-xs space-y-1.5 text-slate-300">
               <p class="flex items-center gap-2">
-                <span class="text-slate-500">Email:</span>
-                <a href="mailto:contact@naif.is-a.dev" class="text-blue-400 hover:underline">contact@naif.is-a.dev</a>
+                <span class="text-slate-500">{t.common.footer.emailLabel}</span>
+                <a href="mailto:dewellsmell@gmail.com" class="text-blue-400 hover:underline">dewellsmell@gmail.com</a>
               </p>
               <p class="flex items-center gap-2">
-                <span class="text-slate-500">GitHub:</span>
+                <span class="text-slate-500">{t.common.footer.githubLabel}</span>
                 <a href="https://github.com/tugg86722-create" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline">tugg86722-create</a>
               </p>
               <p class="text-slate-400 text-[11px] pt-1">
-                Open for high-ticket DTC architecture audits, conversion rate optimization, and Klaviyo lifecycle retention contracts.
+                {t.common.footer.openFor}
               </p>
             </div>
           </div>
         </div>
 
         <div class="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} Naif. Engineered with Astro, Tailwind CSS & Cloudflare Edge.</p>
+          <p>© {new Date().getFullYear()} Naif. {t.common.footer.copyright}</p>
           <div class="flex items-center gap-4">
-            <span class="text-slate-500">Domain: <strong class="text-blue-400">naif.is-a.dev</strong></span>
+            <span class="text-slate-500">{t.common.footer.domainLabel} <strong class="text-blue-400">{t.common.domain}</strong></span>
           </div>
         </div>
       </div>

@@ -1,0 +1,201 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getStrings } from '../../i18n/strings';
+import { lp, type Locale } from '../../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getStrings(locale);
+const S = t.pages.services;
+---
+
+<Layout title={S.meta.title} description={S.meta.description} locale={locale}>
+  <!-- Breadcrumb -->
+  <div class="border-b border-slate-800 bg-slate-900/60 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-400">
+        <a href={lp(locale, '/')} class="hover:text-blue-400 transition-colors">{t.common.crumbs.home}</a>
+        <span>/</span>
+        <span class="text-blue-400">{t.common.crumbs.advisory}</span>
+        <span>/</span>
+        <span class="text-slate-200">{t.common.crumbs.services}</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <section class="py-14 sm:py-20 bg-slate-950 border-b border-slate-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b0a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b0a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[650px] h-[280px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>{S.header.badge}</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-5">
+        {S.header.headingLead} <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-300">{S.header.headingHighlight}</span>
+      </h1>
+      <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
+        {S.header.lead}
+      </p>
+    </div>
+  </section>
+
+  <!-- Tier Cards -->
+  <section class="py-16 sm:py-20 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {S.tiers.map((tier, i) => (
+          <div
+            class={`relative flex flex-col rounded-2xl p-6 sm:p-8 border transition-colors ${
+              i === 1
+                ? 'bg-gradient-to-br from-blue-950/40 to-slate-900 border-blue-500/40 shadow-xl shadow-blue-600/10'
+                : 'bg-slate-900 border-slate-800 hover:border-slate-700'
+            }`}
+          >
+            {i === 1 && (
+              <span class="absolute -top-3 left-6 px-3 py-1 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider">
+                {t.common.labels.new} · Most Common
+              </span>
+            )}
+
+            <div class="flex items-start justify-between gap-4 mb-5">
+              <div class="flex items-center gap-3.5">
+                <span class="w-11 h-11 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-mono text-sm font-bold">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h2 class="text-lg font-bold text-white tracking-tight">{tier.name}</h2>
+                  <div class="text-[11px] text-slate-500 font-mono mt-0.5">{tier.duration}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-baseline gap-2 mb-1">
+              <span class="text-2xl sm:text-3xl font-black text-white tracking-tight">{tier.price}</span>
+            </div>
+            <div class="text-[11px] text-slate-500 font-mono mb-5">{tier.priceNote}</div>
+
+            <p class="text-xs text-slate-300 leading-relaxed mb-5 italic">“{tier.bestFor}”</p>
+
+            <ul class="space-y-2.5 mb-7">
+              {tier.includes.map((inc) => (
+                <li class="flex items-start gap-2.5 text-xs text-slate-400 leading-relaxed">
+                  <svg class="w-4 h-4 text-blue-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{inc}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={lp(locale, `/contact?project=${encodeURIComponent(tier.name)}#rfq`)}
+              class={`mt-auto text-center py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all hover:-translate-y-0.5 ${
+                i === 1
+                  ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700'
+              }`}
+            >
+              Request {tier.name}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-[11px] text-slate-500 leading-relaxed mt-6 text-center">
+        {S.footnote}
+      </p>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-16 sm:py-24 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">{S.process.eyebrow}</div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">{S.process.heading}</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-3 leading-relaxed">
+          {S.process.lead}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {S.process.items.map((p, i) => (
+          <div class="relative bg-slate-950 border border-slate-800 rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-[11px] font-mono text-blue-400 font-semibold uppercase tracking-wider">{p.stage}</span>
+              <span class="text-[11px] text-slate-500 font-mono">{p.duration}</span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2.5">{p.title}</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">{p.detail}</p>
+            {i < S.process.items.length - 1 && (
+              <div class="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 text-slate-700 text-xl">→</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Not A Fit -->
+  <section class="py-16 sm:py-24 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-4">
+          <div class="text-xs uppercase tracking-wider text-rose-400 font-semibold mb-2">{S.notFit.eyebrow}</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight mb-4">
+            {S.notFit.headingLead} <span class="text-rose-400">{S.notFit.headingHighlight}</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            {S.notFit.lead}
+          </p>
+        </div>
+
+        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {S.notFit.items.map((n) => (
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 sm:p-6">
+              <div class="flex items-start gap-3">
+                <span class="shrink-0 w-6 h-6 rounded-md bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center text-xs font-bold mt-0.5">
+                  ✕
+                </span>
+                <div>
+                  <h3 class="text-sm font-bold text-white mb-1.5 leading-snug">{n.title}</h3>
+                  <p class="text-xs text-slate-400 leading-relaxed">{n.detail}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 sm:py-20 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">{S.cta.heading}</h2>
+      <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-7">
+        {S.cta.lead}
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={lp(locale, '/tools/click-loss-auditor')}
+          class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5"
+        >
+          {t.common.cta.runAudit}
+        </a>
+        <a
+          href={lp(locale, '/faq')}
+          class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-slate-950 hover:bg-slate-900 text-slate-200 border border-slate-800 transition-colors"
+        >
+          {t.common.cta.readAllFaqs}
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

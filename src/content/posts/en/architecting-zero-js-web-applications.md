@@ -18,4 +18,4 @@ Astro pioneered the modern **Islands Architecture**:
 
 ### Measurable Results
 - **90% Smaller Payloads**: Initial HTML payload dropped from 480KB to 24KB.
-- **Zero Hydration Delay**: Main thread CPU idle time improves by 300ms+, ensuring an Instant to Next Paint (INP) under 30ms on real-world 4G mobile devices.
+- **Zero Hydration Delay**: Main thread CPU idle time improves by 300ms+, ensuring an Interaction to Next Paint (INP) under 30ms on real-world 4G mobile devices.

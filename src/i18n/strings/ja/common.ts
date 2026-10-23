@@ -1,0 +1,116 @@
+export const common = {
+  brandName: 'NAIF',
+  brandTag: 'DTC',
+  brandRole: 'DTCオペレーター & グロースアーキテクト',
+  statusBar: 'ステータス：DTCブランド設計・CRO・グロース顧問を受付中',
+  domain: 'naif.is-a.dev',
+
+  nav: {
+    home: 'ホーム',
+    caseStudies: 'ケーススタディ',
+    services: 'サービス & 料金',
+    tools: 'ツール',
+    toolsNew: 'NEW',
+    resources: 'リソース',
+    about: 'プロフィール',
+    contact: 'お問い合わせ',
+    startProject: 'ご相談を始める',
+    mobileHub: 'ハブ',
+  },
+
+  language: {
+    label: '言語',
+    switchTo: '切り替え先',
+    current: '現在の言語',
+  },
+
+  footer: {
+    tagline:
+      'DTC ECオペレーター & フルファネル・グロースアーキテクト。ハイチケットブランドのストーリーテリング、ストアフロントの技術実装、Meta/Google広告の収益性、そのすべてを橋渡しします。',
+    systemsHeading: 'DTCシステム & ケーススタディ',
+    navHeading: 'ナビゲーション & ツール',
+    advisoryHeading: '顧問 & お問い合わせ',
+    emailLabel: 'メール：',
+    githubLabel: 'GitHub：',
+    openFor:
+      'ハイチケットDTCのアーキテクチャ監査、コンバージョン率最適化、Klaviyoライフサイクルによるリテンション契約、承っています。',
+    copyright: 'Astro、Tailwind CSS、Cloudflare Edgeで構築。',
+    domainLabel: 'ドメイン：',
+    allCaseStudies: 'すべてのアーキテクチャ事例',
+    jewelryCase: 'ハイチケット宝飾品ストアフロント',
+    clickLossCase: '広告LP & クリック損失CRO',
+    retentionCase: 'Klaviyoリテンション & チャージバックシールド',
+    servicesLink: 'サービス・料金・フィットチェック',
+    aboutLink: 'プロフィール & 戦略ピラー',
+    roiTool: '広告ROI & レイテンシ計算機',
+    clickLossTool: 'クリック損失監査',
+    scorecardTool: 'チャージバックリスク評価',
+    resourcesLink: '厳選された運用・業界情報ハブ',
+    whitepapers: '技術ホワイトペーパー',
+    faqLink: 'FAQ',
+    rfqLink: 'グロース顧問 & 監査のお見積り依頼',
+  },
+
+  crumbs: {
+    home: 'ホーム',
+    tools: 'インタラクティブツール',
+    advisory: '顧問',
+    about: 'プロフィール & 戦略ピラー',
+    faq: 'FAQ',
+    services: '契約プラン',
+    caseStudies: 'ケーススタディ',
+  },
+
+  cta: {
+    requestAudit: 'アーキテクチャ監査を依頼',
+    requestAuditArrow: 'アーキテクチャ監査を依頼 →',
+    viewCaseStudies: 'ケーススタディを見る',
+    sendInquiry: 'お問い合わせを送る',
+    exploreTool: '広告ROI & レイテンシ計算機を使う',
+    startConversation: '会話をはじめる',
+    runAudit: '監査を実行する',
+    scoreMyStore: '自分のストアをスコアする',
+    openCalculator: '計算機を開く',
+    askQuestion: '質問を送る',
+    compareTiers: '契約プランを比較する',
+    readAllFaqs: 'すべてのFAQを読む',
+    emailMe: 'メールを送る',
+    bookCall: '戦略相談を予約',
+  },
+
+  labels: {
+    viewAll: 'すべてのケーススタディを見る',
+    readCaseStudy: 'ケーススタディを読む',
+    inquire: 'お問い合わせ',
+    viewCase: 'ケーススタディを見る',
+    new: 'NEW',
+    coreStack: '主要スタック：',
+    benchmark: 'ベンチマーク：',
+    engagement: '契約形態：',
+    industry: '業界',
+    result: '成果：',
+    timeline: '期間：',
+    onGoing: '継続モニタリング',
+    youAreHere: '現在地',
+    loading: '読み込み中',
+    optional: '任意',
+  },
+
+  newsletter: {
+    badge: '週刊DTC監査ニュースレター',
+    defaultHeading: '広告浪費レポート',
+    defaultSubheading:
+      '広告予算を燃やしている実在のDTCストアを、毎週1つずつ解剖。奔赴すべき修正、収益の計算、そして効果を証明する1つの指標まで。無料、蛇足なし。',
+    defaultCta: 'レポートを届けてください',
+    defaultNote: 'スパムなし。週1通、ワンクリックで解除できます。',
+    namePlaceholder: 'お名前（任意）',
+    storePlaceholder: 'yourstore.com（パーソナライズ版用）',
+    emailPlaceholder: 'you@yourbrand.com',
+    subscribing: '登録中...',
+    success: '<strong>登録完了。</strong> レポートを送信します。数分以内に受信箱をご確認ください。',
+    failure:
+      '<strong>登録できませんでした：</strong> {error} — または <a href="mailto:dewellsmell@gmail.com" class="underline text-white">dewellsmell@gmail.com</a> へ直接メールを送ってください。',
+  },
+} as const;
+
+export type CommonStrings = typeof common;

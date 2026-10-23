@@ -7,6 +7,7 @@ const products = defineCollection({
     title: z.string(),
     sku: z.string().optional().default(''),
     category: z.string().default('valves'),
+    categoryLabel: z.string().optional().default(''),
     summary: z.string().optional().default(''),
     badge: z.string().optional().default('Custom OEM Available'),
     minOrderQty: z.string().optional().default('50 PCS'),

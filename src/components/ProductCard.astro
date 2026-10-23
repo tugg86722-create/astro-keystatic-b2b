@@ -1,9 +1,13 @@
 ---
+import { lp, type Locale } from '../i18n/config';
+
 interface Props {
+  locale: Locale;
   title: string;
   slug: string;
   sku?: string;
   category: string;
+  categoryLabel?: string;
   summary?: string;
   badge?: string;
   minOrderQty?: string;
@@ -16,10 +20,12 @@ interface Props {
 }
 
 const {
+  locale,
   title,
   slug,
   sku,
   category,
+  categoryLabel,
   summary,
   badge = 'Production Live',
   minOrderQty = 'Astro, TypeScript, Edge',
@@ -34,7 +40,7 @@ const {
 
 <div class="group flex flex-col bg-slate-900 border border-slate-800 rounded-xl overflow-hidden hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
   <!-- Project Thumbnail Stage -->
-  <a href={`/products/${slug}`} class="relative aspect-[16/10] bg-slate-950 overflow-hidden block">
+  <a href={lp(locale, `/products/${slug}`)} class="relative aspect-[16/10] bg-slate-950 overflow-hidden block">
     <img
       src={image || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80'}
       alt={title}
@@ -61,10 +67,10 @@ const {
   <div class="p-5 flex-1 flex flex-col justify-between">
     <div>
       <div class="text-[11px] uppercase tracking-wider text-blue-400 font-semibold mb-1">
-        {category.replace('-', ' ')}
+        {(categoryLabel || category).replace('-', ' ')}
       </div>
       <h3 class="font-bold text-base text-white group-hover:text-blue-400 transition-colors line-clamp-2 mb-2">
-        <a href={`/products/${slug}`}>
+        <a href={lp(locale, `/products/${slug}`)}>
           {title}
         </a>
       </h3>
@@ -111,13 +117,13 @@ const {
 
       <div class="flex items-center gap-2">
         <a
-          href={`/products/${slug}`}
+          href={lp(locale, `/products/${slug}`)}
           class="flex-1 text-center py-2 px-3 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors border border-slate-700"
         >
           View Case Study
         </a>
         <a
-          href={`/contact?project=${encodeURIComponent(sku || title)}#rfq`}
+          href={lp(locale, `/contact?project=${encodeURIComponent(sku || title)}#rfq`)}
           class="py-2 px-3 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-sm transition-colors"
         >
           Inquire

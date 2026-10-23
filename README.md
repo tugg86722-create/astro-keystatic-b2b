@@ -29,7 +29,7 @@ chargeback defense.
 ```
 /                              Home — hero, 4 pillars, fit check, tool matrix, RFQ
 /services                      Engagement tiers, price ranges, process, "not a fit"
-/faq                           12 FAQs + FAQPage JSON-LD
+/faq                           13 FAQs + FAQPage JSON-LD
 /products                      Case study index (filterable by category)
 /products/[slug]               Individual case study deep-dive
 /posts/[slug]                  Whitepapers / technical guides
@@ -39,6 +39,40 @@ chargeback defense.
 /resources                     24-tool curated operator & trade hub
 /about                         Background, pillars, working model
 /contact                       RFQ form (→ /api/rfq)
+```
+
+### Internationalisation
+
+Six locales: `en` (default, served from the root), `zh`, `es`, `fr`, `de`, `ja`.
+Non-default locales live under their own prefix (`/zh/about`, `/ja/tools`, …).
+
+| Piece | Location |
+|-------|----------|
+| Locale list + URL helpers (`lp`, `hreflangPath`) | `src/i18n/config.ts` |
+| English master string packs | `src/i18n/strings/en/{common,pages,tools}.ts` |
+| Per-locale string packs | `src/i18n/strings/{locale}/{common,pages,tools}.ts` |
+| Shared page components (take a `locale` prop) | `src/components/pages/*.astro` |
+| Route wrappers (thin shells, 72 files) | `src/pages/**` + `src/pages/{locale}/**` |
+| Translated case studies & posts | `src/content/{products,posts}/{locale}/` |
+
+`src/i18n/strings/index.ts` derives the `Strings` type from the English master, so
+every other locale is type-checked against the English shape — a missing key is a
+compile error, not a runtime blank.
+
+**Content ids are locale-prefixed** (`en/foo`, `zh/foo`); the slug after the
+first `/` segment is the route slug.
+
+### Maintenance scripts
+
+```bash
+# Regenerate the 72 route wrapper pages (run after adding a locale or a page)
+python scripts/generate_i18n_routes.py
+
+# Verify every locale's key tree matches the English master
+node --experimental-strip-types scripts/check-i18n-parity.ts
+
+# Translation rules, field mapping table and glossary
+# → scripts/i18n-translation-spec.md
 ```
 
 ### Serverless edge endpoints
@@ -56,7 +90,7 @@ chargeback defense.
 `src/content.config.ts` defines two collections with Zod validation.
 
 **`products`** — case studies. Frontmatter fields include `title`, `sku`, `category`,
-`summary`, `badge`, `specs[]`, `features[]`, plus credibility fields for
+`categoryLabel`, `summary`, `badge`, `specs[]`, `features[]`, plus credibility fields for
 prospect-facing detail: `industry`, `clientProfile`, `engagementWindow`, `year`,
 `headlineMetrics[]`.
 
@@ -65,6 +99,10 @@ prospect-facing detail: `industry`, `clientProfile`, `engagementWindow`, `year`,
 
 **`posts`** — whitepapers. Fields: `title`, `publishedDate`, `author`, `summary`,
 `coverImage`.
+
+> ⚠️ Content lives under a locale sub-directory (`en/`, `zh/`, …). The collection id is
+> `<locale>/<slug>`, so `getCollection('posts', ({ id }) => id.startsWith('zh/'))` filters
+> by language and `id.split('/')[1]` is the route slug.
 
 ---
 

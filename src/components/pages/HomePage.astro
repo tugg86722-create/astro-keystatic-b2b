@@ -1,0 +1,340 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../ProductCard.astro';
+import RfqForm from '../RfqForm.astro';
+import NewsletterSignup from '../NewsletterSignup.astro';
+import { getCollection } from 'astro:content';
+import { getStrings } from '../../i18n/strings';
+import { lp, type Locale } from '../../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getStrings(locale);
+const H = t.pages.home;
+
+const allProjects = await getCollection('products', ({ id }) => id.startsWith(`${locale}/`));
+const featuredProjects = allProjects.slice(0, 3);
+const allPosts = await getCollection('posts', ({ id }) => id.startsWith(`${locale}/`));
+---
+
+<Layout title={H.meta.title} description={H.meta.description} locale={locale}>
+  <!-- Hero Section -->
+  <section class="relative pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden">
+    <!-- Subtle Grid & Radial Glow -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b08_1px,transparent_1px),linear-gradient(to_bottom,#1e293b08_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <!-- Developer Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-blue-400 mb-6 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>{H.hero.pill}</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6">
+          {H.hero.titleLead} <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-300">{H.hero.titleHighlight}</span> {H.hero.titleTail}
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-2xl">
+          {H.hero.lead}
+        </p>
+
+        <!-- Client Qualification Statement -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-xl px-4 py-3.5 mb-8 max-w-2xl">
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 mt-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              <span class="text-white font-semibold">{H.hero.fitPrefix}</span> {H.hero.fitBody}
+              <a href={lp(locale, '/services')} class="text-blue-400 hover:text-blue-300 font-semibold ml-1">{H.hero.fitLink}</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href={lp(locale, '/contact#rfq')}
+            class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5 flex items-center gap-2"
+          >
+            <span>{t.common.cta.requestAudit}</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+
+          <a
+            href={lp(locale, '/products')}
+            class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition-colors"
+          >
+            {t.common.cta.viewCaseStudies}
+          </a>
+        </div>
+      </div>
+
+      <!-- Engineering Benchmarks Bar -->
+      <div class="mt-16 pt-8 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div>
+          <div class="text-2xl sm:text-3xl font-black text-white">100<span class="text-blue-400 text-base">/100</span></div>
+          <div class="text-xs text-slate-400 mt-0.5">{H.benchmarks.cwv}</div>
+        </div>
+        <div>
+          <div class="text-2xl sm:text-3xl font-black text-white">&lt; 8<span class="text-blue-400 text-base">%</span></div>
+          <div class="text-xs text-slate-400 mt-0.5">{H.benchmarks.clickLoss}</div>
+        </div>
+        <div>
+          <div class="text-2xl sm:text-3xl font-black text-white">15<span class="text-blue-400 text-base">%+</span></div>
+          <div class="text-xs text-slate-400 mt-0.5">{H.benchmarks.klaviyo}</div>
+        </div>
+        <div>
+          <div class="text-2xl sm:text-3xl font-black text-white">$99<span class="text-blue-400 text-base">+</span></div>
+          <div class="text-xs text-slate-400 mt-0.5">{H.benchmarks.ticket}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects & Architectures Section -->
+  <section class="py-16 sm:py-24 bg-slate-950/50 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div>
+          <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">{H.cases.eyebrow}</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">{H.cases.heading}</h2>
+        </div>
+        <a href={lp(locale, '/products')} class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300">
+          <span>{t.common.labels.viewAll}</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {featuredProjects.map((p) => (
+          <ProductCard
+            locale={locale}
+            title={p.data.title}
+            slug={p.id.split('/').slice(1).join('/')}
+            sku={p.data.sku}
+            category={p.data.category}
+            summary={p.data.summary}
+            badge={p.data.badge}
+            minOrderQty={p.data.minOrderQty}
+            leadTime={p.data.leadTime}
+            image={p.data.image}
+            industry={p.data.industry}
+            engagementWindow={p.data.engagementWindow}
+            year={p.data.year}
+            headlineMetrics={p.data.headlineMetrics}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering Principles & Technical Standards Section: 4 Pillars -->
+  <section id="engineering" class="py-20 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">{H.pillars.eyebrow}</div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">{H.pillars.heading}</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-3 leading-relaxed">
+          {H.pillars.lead}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {H.pillars.items.map((pillar, i) => (
+          <div class="bg-slate-950 border border-slate-800 p-8 rounded-2xl relative">
+            <div class="w-12 h-12 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-lg mb-6">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">{pillar.title}</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              {pillar.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Fit Check: Who It's For / Not A Fit -->
+  <section class="py-16 sm:py-24 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-4">
+          <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">{H.fitCheck.eyebrow}</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight mb-4">
+            {H.fitCheck.headingLead} <span class="text-blue-400">{H.fitCheck.headingHighlight}</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            {H.fitCheck.lead}
+          </p>
+        </div>
+
+        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="bg-slate-900 border border-emerald-500/20 rounded-2xl p-6">
+            <h3 class="text-sm font-bold text-emerald-400 mb-4 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-xs">✓</span>
+              {H.fitCheck.goodTitle}
+            </h3>
+            <ul class="space-y-2.5 text-xs text-slate-300 leading-relaxed">
+              {H.fitCheck.good.map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 font-bold shrink-0">·</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="bg-slate-900 border border-rose-500/20 rounded-2xl p-6">
+            <h3 class="text-sm font-bold text-rose-400 mb-4 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-xs">✕</span>
+              {H.fitCheck.badTitle}
+            </h3>
+            <ul class="space-y-2.5 text-xs text-slate-300 leading-relaxed">
+              {H.fitCheck.bad.map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-rose-400 font-bold shrink-0">·</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free Diagnostics Tool Matrix -->
+  <section class="py-16 sm:py-24 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">{H.diagnostics.eyebrow}</div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">{H.diagnostics.heading}</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-3 leading-relaxed">
+          {H.diagnostics.lead}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href={lp(locale, '/tools/click-loss-auditor')} class="group bg-slate-950 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all hover:-translate-y-1 block">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-11 h-11 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono">{t.common.labels.new}</span>
+          </div>
+          <h3 class="text-sm font-bold text-white group-hover:text-blue-300 transition-colors mb-2">{H.diagnostics.clickLossTitle}</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            {H.diagnostics.clickLossDesc}
+          </p>
+          <span class="text-xs font-semibold text-blue-400">{t.common.cta.runAudit} →</span>
+        </a>
+
+        <a href={lp(locale, '/tools/chargeback-scorecard')} class="group bg-slate-950 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all hover:-translate-y-1 block">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono">{t.common.labels.new}</span>
+          </div>
+          <h3 class="text-sm font-bold text-white group-hover:text-blue-300 transition-colors mb-2">{H.diagnostics.scorecardTitle}</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            {H.diagnostics.scorecardDesc}
+          </p>
+          <span class="text-xs font-semibold text-blue-400">{t.common.cta.scoreMyStore} →</span>
+        </a>
+
+        <a href={lp(locale, '/tools')} class="group bg-slate-950 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all hover:-translate-y-1 block">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </span>
+          </div>
+          <h3 class="text-sm font-bold text-white group-hover:text-blue-300 transition-colors mb-2">{H.diagnostics.roiTitle}</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            {H.diagnostics.roiDesc}
+          </p>
+          <span class="text-xs font-semibold text-blue-400">{t.common.cta.openCalculator} →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 sm:py-20 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <NewsletterSignup
+        locale={locale}
+        source="homepage"
+        heading={t.common.newsletter.defaultHeading}
+        subheading={t.common.newsletter.defaultSubheading}
+        ctaLabel={t.common.newsletter.defaultCta}
+        note={t.common.newsletter.defaultNote}
+        showNameField={false}
+        showStoreField={false}
+      />
+    </div>
+  </section>
+
+  <!-- Interactive Project Inquiry / Work With Me Section -->
+  <section id="rfq-section" class="py-20 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <RfqForm locale={locale} />
+    </div>
+  </section>
+
+  <!-- Technical Articles & Whitepapers -->
+  {allPosts.length > 0 && (
+    <section id="articles" class="py-16 bg-slate-900 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-1">{H.articles.eyebrow}</div>
+            <h2 class="text-2xl font-bold text-white tracking-tight">{H.articles.heading}</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {allPosts.map((post) => (
+            <div class="bg-slate-950 border border-slate-800 rounded-xl p-6 sm:p-7 flex flex-col justify-between hover:border-blue-500/40 transition-colors group">
+              <div>
+                {post.data.coverImage && (
+                  <div class="w-full aspect-video rounded-lg overflow-hidden bg-slate-900 mb-5">
+                    <img src={post.data.coverImage} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  </div>
+                )}
+                <div class="text-[11px] text-slate-500 font-mono mb-2">
+                  {post.data.author} • {post.data.publishedDate ? new Date(post.data.publishedDate).toISOString().slice(0, 10) : ''}
+                </div>
+                <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors mb-2.5">
+                  <a href={lp(locale, `/posts/${post.id.split('/').slice(1).join('/')}`)}>{post.data.title}</a>
+                </h3>
+                <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                  {post.data.summary}
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-800/80">
+                <a href={lp(locale, `/posts/${post.id.split('/').slice(1).join('/')}`)} class="text-xs font-semibold text-blue-400 group-hover:text-blue-300 hover:underline inline-flex items-center gap-1">
+                  <span>{H.articles.read}</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</Layout>

@@ -1,0 +1,116 @@
+export const common = {
+  brandName: 'NAIF',
+  brandTag: 'DTC',
+  brandRole: 'DTC Operator & Growth Architect',
+  statusBar: 'Status: Available for DTC Brand Architecture, CRO & Growth Advisory',
+  domain: 'naif.is-a.dev',
+
+  nav: {
+    home: 'Home',
+    caseStudies: 'Case Studies',
+    services: 'Services & Pricing',
+    tools: 'Tools',
+    toolsNew: 'NEW',
+    resources: 'Resources',
+    about: 'About',
+    contact: 'Contact',
+    startProject: 'Start a Project',
+    mobileHub: 'Hub',
+  },
+
+  language: {
+    label: 'Language',
+    switchTo: 'Switch to',
+    current: 'Current language',
+  },
+
+  footer: {
+    tagline:
+      'DTC eCommerce Operator & Full-Funnel Growth Architect. Bridging the gap between high-ticket brand storytelling, storefront engineering, and Meta/Google ad profitability.',
+    systemsHeading: 'DTC Systems & Case Studies',
+    navHeading: 'Navigation & Tools',
+    advisoryHeading: 'Advisory & Inquiries',
+    emailLabel: 'Email:',
+    githubLabel: 'GitHub:',
+    openFor:
+      'Open for high-ticket DTC architecture audits, conversion rate optimization, and Klaviyo lifecycle retention contracts.',
+    copyright: 'Engineered with Astro, Tailwind CSS & Cloudflare Edge.',
+    domainLabel: 'Domain:',
+    allCaseStudies: 'All Architecture Case Studies',
+    jewelryCase: 'High-Ticket Jewelry Storefront',
+    clickLossCase: 'Ad Landing Page & Click-Loss CRO',
+    retentionCase: 'Klaviyo Retention & Chargeback Shield',
+    servicesLink: 'Services, Pricing & Fit Check',
+    aboutLink: 'About & Strategic Pillars',
+    roiTool: 'Ad ROI & Latency Calculator',
+    clickLossTool: 'Click-Loss Auditor',
+    scorecardTool: 'Chargeback Risk Scorecard',
+    resourcesLink: 'Curated Operator & Trade Hub',
+    whitepapers: 'Technical Whitepapers',
+    faqLink: 'FAQ',
+    rfqLink: 'Growth Advisory & Audit RFQ',
+  },
+
+  crumbs: {
+    home: 'Home',
+    tools: 'Interactive Tools',
+    advisory: 'Advisory',
+    about: 'About & Strategic Pillars',
+    faq: 'FAQ',
+    services: 'Engagement Tiers',
+    caseStudies: 'Case Studies',
+  },
+
+  cta: {
+    requestAudit: 'Request Architecture Audit',
+    requestAuditArrow: 'Request Architecture Audit →',
+    viewCaseStudies: 'View Case Studies',
+    sendInquiry: 'Send Inquiry',
+    exploreTool: 'Explore Ad ROI & Latency Tool',
+    startConversation: 'Start a conversation',
+    runAudit: 'Run the audit',
+    scoreMyStore: 'Score my store',
+    openCalculator: 'Open calculator',
+    askQuestion: 'Ask Your Question',
+    compareTiers: 'Compare Engagement Tiers',
+    readAllFaqs: 'Read All FAQs',
+    emailMe: 'Email Me',
+    bookCall: 'Book a Strategy Call',
+  },
+
+  labels: {
+    viewAll: 'View All Case Studies',
+    readCaseStudy: 'Read Case Study',
+    inquire: 'Inquire',
+    viewCase: 'View Case Study',
+    new: 'NEW',
+    coreStack: 'Core Stack:',
+    benchmark: 'Benchmark:',
+    engagement: 'Engagement:',
+    industry: 'Industry',
+    result: 'Result:',
+    timeline: 'Timeline:',
+    onGoing: 'Ongoing Monitoring',
+    youAreHere: 'YOU ARE HERE',
+    loading: 'Loading',
+    optional: 'optional',
+  },
+
+  newsletter: {
+    badge: 'Weekly DTC Audit Newsletter',
+    defaultHeading: 'The Ad-Waste Report',
+    defaultSubheading:
+      'A weekly teardown of real DTC stores that are burning paid media — with the exact fix, the revenue math, and the one metric that proves it. Free, no fluff.',
+    defaultCta: 'Send Me The Report',
+    defaultNote: 'No spam. One email a week, unsubscribe in one click.',
+    namePlaceholder: 'Your name (optional)',
+    storePlaceholder: 'yourstore.com (for the personalised version)',
+    emailPlaceholder: 'you@yourbrand.com',
+    subscribing: 'Subscribing...',
+    success: '<strong>You are in.</strong> Your report is queued — check your inbox in the next few minutes.',
+    failure:
+      '<strong>Could not subscribe:</strong> {error} — or email me directly at <a href="mailto:dewellsmell@gmail.com" class="underline text-white">dewellsmell@gmail.com</a>.',
+  },
+} as const;
+
+export type CommonStrings = typeof common;

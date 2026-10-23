@@ -1,0 +1,276 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getStrings } from '../../i18n/strings';
+import { lp, type Locale } from '../../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getStrings(locale);
+const A = t.pages.about;
+---
+
+<Layout title={A.meta.title} description={A.meta.description} locale={locale}>
+  <!-- Breadcrumb -->
+  <div class="border-b border-slate-800 bg-slate-900/60 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-400">
+        <a href={lp(locale, '/')} class="hover:text-blue-400 transition-colors">{t.common.crumbs.home}</a>
+        <span>/</span>
+        <span class="text-slate-200">{t.common.crumbs.about}</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Profile Section -->
+  <section class="py-16 sm:py-24 bg-slate-950 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b0a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b0a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    <div class="absolute top-1/4 right-1/4 w-[500px] h-[350px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left: Bio & Positioning (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-blue-400">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>{A.hero.pill}</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+            {A.hero.titleLead} <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-300">{A.hero.titleHighlight}</span> {A.hero.titleTail}
+          </h1>
+
+          <p class="text-base text-slate-300 leading-relaxed font-medium">
+            {A.hero.quote}
+          </p>
+
+          <p class="text-sm text-slate-400 leading-relaxed">
+            {A.hero.lead}
+          </p>
+
+          <!-- Core Attributes Pill Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs">
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+              <span class="text-slate-500 block text-[10px] uppercase font-mono">{A.attributes.locationLabel}</span>
+              <strong class="text-slate-200">{A.attributes.locationValue}</strong>
+              <div class="text-[11px] text-slate-400 mt-0.5">{A.attributes.locationNote}</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+              <span class="text-slate-500 block text-[10px] uppercase font-mono">{A.attributes.focusLabel}</span>
+              <strong class="text-slate-200">{A.attributes.focusValue}</strong>
+              <div class="text-[11px] text-slate-400 mt-0.5">{A.attributes.focusNote}</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 col-span-2 sm:col-span-1">
+              <span class="text-slate-500 block text-[10px] uppercase font-mono">{A.attributes.metricLabel}</span>
+              <strong class="text-emerald-400">{A.attributes.metricValue}</strong>
+              <div class="text-[11px] text-slate-400 mt-0.5">{A.attributes.metricNote}</div>
+            </div>
+          </div>
+
+          <!-- Direct CTAs -->
+          <div class="flex flex-wrap items-center gap-4 pt-4">
+            <a
+              href={lp(locale, '/contact#rfq')}
+              class="px-6 py-3 rounded-xl font-semibold text-xs text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/30 transition-all hover:-translate-y-0.5"
+            >
+              {t.common.cta.requestAudit}
+            </a>
+            <a
+              href={lp(locale, '/tools')}
+              class="px-6 py-3 rounded-xl font-semibold text-xs text-slate-300 bg-slate-900 hover:bg-slate-800 border border-slate-800 transition-colors"
+            >
+              {t.common.cta.exploreTool}
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Operator Command Card & Terminal Mockup (5 cols) -->
+        <div class="lg:col-span-5">
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl p-6 relative">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800 font-mono text-xs text-slate-400">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                <span class="ml-2 text-slate-300 font-semibold">naif@dtc-command:~</span>
+              </div>
+              <span class="text-[10px] text-blue-400">v3.2-dtc</span>
+            </div>
+
+            <!-- Terminal Content -->
+            <div class="py-4 space-y-3 font-mono text-xs leading-relaxed">
+              <div>
+                <span class="text-emerald-400">$</span> <span class="text-slate-200">whoami --verbose</span>
+                <div class="text-slate-400 pl-4 mt-1">
+                  Name: Naif<br />
+                  Role: DTC eCommerce Operator & Growth Architect<br />
+                  Specialty: High-Ticket CRO, Sub-Second Speed, Klaviyo Retention<br />
+                  Execution: Shopify OS2.0, Liquid, Jamstack, Meta Ads
+                </div>
+              </div>
+
+              <div>
+                <span class="text-emerald-400">$</span> <span class="text-slate-200">audit-funnel --store=production</span>
+                <div class="text-blue-400 pl-4 mt-1">
+                  core-web-vitals: 100/100 (LCP 0.62s)<br />
+                  meta-click-loss: 7.4% (vs 25%+ benchmark)<br />
+                  klaviyo-flow-revenue: 16.2% lift
+                </div>
+              </div>
+
+              <div>
+                <span class="text-emerald-400">$</span> <span class="text-slate-200">cat /etc/mission.txt</span>
+                <div class="text-amber-300/90 pl-4 mt-1">
+                  "Bridge luxury brand storytelling with hardcore technical storefront performance. Eliminate ad leakage, elevate conversion, and protect seller health."
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span>Full-Funnel Commerce Ops</span>
+              <span class="text-emerald-400 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Operational
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Stack Radar & Matrix -->
+  <section class="py-16 sm:py-24 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">{A.stack.eyebrow}</div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">{A.stack.heading}</h2>
+        <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+          {A.stack.lead}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {A.stack.items.map((item, i) => (
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 relative group hover:border-slate-700 transition-colors">
+            <div class={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-base mb-4 border ${
+              ['bg-blue-600/10 text-blue-400 border-blue-500/20',
+               'bg-indigo-600/10 text-indigo-400 border-indigo-500/20',
+               'bg-sky-600/10 text-sky-400 border-sky-500/20',
+               'bg-emerald-600/10 text-emerald-400 border-emerald-500/20'][i]
+            }`}>
+              {['SF', 'CR', 'AT', 'RT'][i]}
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">{item.title}</h3>
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+              {item.desc}
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              {[
+                ['Shopify OS2.0', 'Liquid Refactoring', 'Astro 5+', 'Tailwind CSS', 'Cloudflare Edge'],
+                ['Meta Ads Manager', 'Direct-to-Checkout', '6-Shot Visual Directing', 'Hook-FAB-Ideal', 'TikTok Ads'],
+                ['GA4 Custom Forensics', 'Google Search Console', 'Meta Graph API', 'Shopify Web Pixel', 'CrUX / CWV RUM'],
+                ['Klaviyo Flow Automation', 'Chargeback Defense', 'Fulfillment Truth Audit', 'Multi-Language Healer', 'Python Automation'],
+              ][i].map((tag) => (
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-[11px] font-mono text-slate-300 border border-slate-800">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategic Pillars: 4 Pillars -->
+  <section class="py-16 sm:py-24 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">{A.pillars.eyebrow}</div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">{A.pillars.heading}</h2>
+        <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+          {A.pillars.lead}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {A.pillars.items.map((pillar, i) => (
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 relative">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-8 h-8 rounded-lg bg-blue-600/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-sm">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 class="text-xl font-bold text-white">{pillar.title}</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+              {pillar.body}
+            </p>
+            <div class="flex items-center gap-2 text-xs text-blue-400 font-mono">
+              <span>{t.common.labels.result}</span>
+              <span class="text-slate-300">{pillar.result}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement Flow: 4-Step Lifecycle -->
+  <section class="py-16 sm:py-24 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">{A.flow.eyebrow}</div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">{A.flow.heading}</h2>
+        <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+          {A.flow.lead}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {A.flow.items.map((step, i) => (
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 relative">
+            <div class="text-xs font-mono font-bold text-blue-400 mb-3">STAGE {String(i + 1).padStart(2, '0')}</div>
+            <h3 class="text-base font-bold text-white mb-2">{step.title}</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              {step.body}
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-800 text-[11px] text-slate-500 font-mono">
+              {t.common.labels.timeline} {step.timeline}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement CTA Box -->
+  <section class="py-16 sm:py-20 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-6">
+        <span>{A.cta.badge}</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
+        {A.cta.heading}
+      </h2>
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+        {A.cta.lead}
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={lp(locale, '/contact#rfq')}
+          class="px-8 py-3.5 rounded-xl font-semibold text-sm text-white bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5"
+        >
+          {t.common.cta.requestAudit}
+        </a>
+        <a
+          href="mailto:dewellsmell@gmail.com"
+          class="px-8 py-3.5 rounded-xl font-semibold text-sm text-slate-300 bg-slate-900 hover:bg-slate-800 border border-slate-800 transition-colors"
+        >
+          {A.cta.emailButton}
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

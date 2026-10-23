@@ -1,9 +1,15 @@
 ---
+import { getStrings } from '../i18n/strings';
+import { type Locale } from '../i18n/config';
+
 interface Props {
+  locale: Locale;
   presetSku?: string;
 }
 
-const { presetSku = '' } = Astro.props;
+const { locale, presetSku = '' } = Astro.props;
+const t = getStrings(locale);
+const R = t.pages.rfq;
 ---
 
 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
@@ -11,36 +17,36 @@ const { presetSku = '' } = Astro.props;
 
   <div class="mb-6">
     <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-3">
-      ⚡ DTC Architecture & Growth Consultation
+      ⚡ {R.badge}
     </div>
-    <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Initiate a DTC Architecture Audit or Advisory Contract</h3>
+    <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">{R.heading}</h3>
     <p class="text-xs sm:text-sm text-slate-400 mt-1">
-      Whether you need high-ticket Shopify re-architecture, Meta ad landing page acceleration, or automated Klaviyo retention flows, reach out below. Direct response within 24 hours.
+      {R.lead}
     </p>
   </div>
 
   <form id="rfq-form" class="space-y-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
-        <label for="fullName" class="block text-xs font-medium text-slate-300 mb-1">Your Name *</label>
+        <label for="fullName" class="block text-xs font-medium text-slate-300 mb-1">{R.nameLabel}</label>
         <input
           type="text"
           id="fullName"
           name="fullName"
           required
-          placeholder="e.g. Alex Morgan"
+          placeholder={R.namePlaceholder}
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
 
       <div>
-        <label for="company" class="block text-xs font-medium text-slate-300 mb-1">Brand / Store URL / Company *</label>
+        <label for="company" class="block text-xs font-medium text-slate-300 mb-1">{R.companyLabel}</label>
         <input
           type="text"
           id="company"
           name="company"
           required
-          placeholder="e.g. Amesha Energy / brand.com"
+          placeholder={R.companyPlaceholder}
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
@@ -48,24 +54,24 @@ const { presetSku = '' } = Astro.props;
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
-        <label for="email" class="block text-xs font-medium text-slate-300 mb-1">Work Email Address *</label>
+        <label for="email" class="block text-xs font-medium text-slate-300 mb-1">{R.emailLabel}</label>
         <input
           type="email"
           id="email"
           name="email"
           required
-          placeholder="alex@brand.com"
+          placeholder={R.emailPlaceholder}
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
 
       <div>
-        <label for="whatsapp" class="block text-xs font-medium text-slate-300 mb-1">Telegram / WhatsApp / Phone</label>
+        <label for="whatsapp" class="block text-xs font-medium text-slate-300 mb-1">{R.contactLabel}</label>
         <input
           type="text"
           id="whatsapp"
           name="whatsapp"
-          placeholder="@username or phone"
+          placeholder={R.contactPlaceholder}
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
@@ -73,37 +79,37 @@ const { presetSku = '' } = Astro.props;
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
-        <label for="productSku" class="block text-xs font-medium text-slate-300 mb-1">Engagement Type / Scope</label>
+        <label for="productSku" class="block text-xs font-medium text-slate-300 mb-1">{R.scopeLabel}</label>
         <input
           type="text"
           id="productSku"
           name="productSku"
           value={presetSku}
-          placeholder="e.g. High-Ticket Shopify Storefront / Meta Ad Landing CRO / Klaviyo Flow"
+          placeholder={R.scopePlaceholder}
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
 
       <div>
-        <label for="quantity" class="block text-xs font-medium text-slate-300 mb-1">Target Timeline & Monthly Budget</label>
+        <label for="quantity" class="block text-xs font-medium text-slate-300 mb-1">{R.budgetLabel}</label>
         <input
           type="text"
           id="quantity"
           name="quantity"
-          placeholder="e.g. Immediate / $3k-$10k sprint or advisory retainer"
+          placeholder={R.budgetPlaceholder}
           class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
         />
       </div>
     </div>
 
     <div>
-      <label for="message" class="block text-xs font-medium text-slate-300 mb-1">Store URL, Current Monthly GMV & Key Bottlenecks *</label>
+      <label for="message" class="block text-xs font-medium text-slate-300 mb-1">{R.messageLabel}</label>
       <textarea
         id="message"
         name="message"
         rows="4"
         required
-        placeholder="Briefly describe your brand, current monthly GMV, ad platforms, and primary conversion or retention bottlenecks..."
+        placeholder={R.messagePlaceholder}
         class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
       ></textarea>
     </div>
@@ -113,7 +119,7 @@ const { presetSku = '' } = Astro.props;
         <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
-        <span>Strict IP & NDA Confidentiality Protected</span>
+        <span>{R.confidentiality}</span>
       </div>
 
       <button
@@ -121,7 +127,7 @@ const { presetSku = '' } = Astro.props;
         id="submit-btn"
         class="px-6 py-2.5 rounded-lg text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer"
       >
-        <span>Send Inquiry</span>
+        <span>{t.common.cta.sendInquiry}</span>
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
@@ -133,19 +139,20 @@ const { presetSku = '' } = Astro.props;
   </form>
 </div>
 
-<script is:inline>
+<script is:inline define:vars={{ submitLabel: R.submitting, successTemplate: R.success, failureTemplate: R.failure }}>
   const form = document.getElementById('rfq-form');
   const feedback = document.getElementById('form-feedback');
   const submitBtn = document.getElementById('submit-btn');
 
-  if (form) {
+  if (form && !form.dataset.bound) {
+    form.dataset.bound = '1';
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       submitBtn.disabled = true;
       submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
       feedback.classList.remove('hidden', 'bg-emerald-950/80', 'text-emerald-300', 'border-emerald-500/30', 'bg-rose-950/80', 'text-rose-300', 'border-rose-500/30');
       feedback.classList.add('block', 'bg-blue-950/60', 'text-blue-300', 'border', 'border-blue-500/30');
-      feedback.innerHTML = 'Connecting to edge gateway...';
+      feedback.innerHTML = submitLabel;
 
       const formData = new FormData(form);
       const payload = Object.fromEntries(formData.entries());
@@ -161,8 +168,8 @@ const { presetSku = '' } = Astro.props;
 
         if (response.ok && result.success) {
           feedback.className = 'block mt-4 p-4 rounded-lg text-xs leading-relaxed bg-emerald-950/80 text-emerald-200 border border-emerald-500/30';
-          feedback.innerHTML = `<strong>Inquiry Received!</strong> Thanks ${payload.fullName}. Your project request has been logged. I will review your requirements and respond via email (${payload.email}) within 24 hours.`;
-          
+          feedback.innerHTML = successTemplate.replace('{name}', payload.fullName).replace('{email}', payload.email);
+
           if (typeof window.trackEvent === 'function') {
             window.trackEvent('lead_rfq_submitted', {
               productSku: payload.productSku || 'General Advisory',
@@ -170,14 +177,14 @@ const { presetSku = '' } = Astro.props;
               budget: payload.quantity || 'unspecified'
             });
           }
-          
+
           form.reset();
         } else {
           throw new Error(result.error || 'Submission failed');
         }
       } catch (err) {
         feedback.className = 'block mt-4 p-4 rounded-lg text-xs leading-relaxed bg-rose-950/80 text-rose-200 border border-rose-500/30';
-        feedback.innerHTML = `<strong>Error submitting inquiry:</strong> ${err.message}. You can also email me directly at <a href="mailto:dewellsmell@gmail.com" class="underline text-white">dewellsmell@gmail.com</a>.`;
+        feedback.innerHTML = failureTemplate.replace('{error}', err.message);
       } finally {
         submitBtn.disabled = false;
         submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');

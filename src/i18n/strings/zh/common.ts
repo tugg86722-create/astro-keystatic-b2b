@@ -1,0 +1,116 @@
+export const common = {
+  brandName: 'NAIF',
+  brandTag: 'DTC',
+  brandRole: 'DTC 操盘手 & 全漏斗增长架构师',
+  statusBar: '状态：可承接 DTC 品牌架构、CRO 与增长顾问合作',
+  domain: 'naif.is-a.dev',
+
+  nav: {
+    home: '首页',
+    caseStudies: '案例研究',
+    services: '服务与定价',
+    tools: '工具',
+    toolsNew: '新',
+    resources: '资源',
+    about: '关于',
+    contact: '联系',
+    startProject: '启动项目',
+    mobileHub: '资源库',
+  },
+
+  language: {
+    label: '语言',
+    switchTo: '切换到',
+    current: '当前语言',
+  },
+
+  footer: {
+    tagline:
+      'DTC 电商操盘手 & 全漏斗增长架构师。弥合高客单价品牌叙事、店铺前台工程与 Meta/Google 广告盈利之间的断层。',
+    systemsHeading: 'DTC 系统与案例',
+    navHeading: '导航与工具',
+    advisoryHeading: '顾问与对接',
+    emailLabel: '邮箱：',
+    githubLabel: 'GitHub：',
+    openFor:
+      '现可承接高客单价 DTC 架构审计、转化率优化，以及 Klaviyo 生命周期留存合同。',
+    copyright: '由 Astro、Tailwind CSS 与 Cloudflare Edge 构建。',
+    domainLabel: '域名：',
+    allCaseStudies: '全部架构案例',
+    jewelryCase: '高客单价珠宝店铺前台',
+    clickLossCase: '广告落地页与点击流失优化',
+    retentionCase: 'Klaviyo 留存与拒付防护',
+    servicesLink: '服务、定价与匹配度自检',
+    aboutLink: '关于与战略支柱',
+    roiTool: '广告 ROI 与延迟计算器',
+    clickLossTool: '点击流失审计器',
+    scorecardTool: '拒付风险评分卡',
+    resourcesLink: '精选运营与贸易资源库',
+    whitepapers: '技术白皮书',
+    faqLink: '常见问题',
+    rfqLink: '增长顾问与审计需求',
+  },
+
+  crumbs: {
+    home: '首页',
+    tools: '交互式工具',
+    advisory: '顾问服务',
+    about: '关于与战略支柱',
+    faq: '常见问题',
+    services: '合作档位',
+    caseStudies: '案例研究',
+  },
+
+  cta: {
+    requestAudit: '申请架构审计',
+    requestAuditArrow: '申请架构审计 →',
+    viewCaseStudies: '查看案例',
+    sendInquiry: '发送咨询',
+    exploreTool: '打开广告 ROI 与延迟工具',
+    startConversation: '开始一次对话',
+    runAudit: '立即测评',
+    scoreMyStore: '为我的店铺打分',
+    openCalculator: '打开计算器',
+    askQuestion: '提出你的问题',
+    compareTiers: '对比合作档位',
+    readAllFaqs: '查看全部问答',
+    emailMe: '发邮件给我',
+    bookCall: '预约一次策略沟通',
+  },
+
+  labels: {
+    viewAll: '查看全部案例',
+    readCaseStudy: '阅读案例',
+    inquire: '咨询详情',
+    viewCase: '查看案例',
+    new: '新',
+    coreStack: '核心技术栈：',
+    benchmark: '基准：',
+    engagement: '合作周期：',
+    industry: '行业',
+    result: '成果：',
+    timeline: '周期：',
+    onGoing: '持续监控',
+    youAreHere: '当前所在',
+    loading: '加载中',
+    optional: '选填',
+  },
+
+  newsletter: {
+    badge: '每周 DTC 审计通讯',
+    defaultHeading: '广告浪费报告',
+    defaultSubheading:
+      '每周拆解一个正在烧付费流量钱的真实 DTC 店铺——给出具体改法、收益账，以及那个能证明效果的指标。免费，不说废话。',
+    defaultCta: '把报告发给我',
+    defaultNote: '不发垃圾邮件。每周一封，一键退订。',
+    namePlaceholder: '你的名字（选填）',
+    storePlaceholder: 'yourstore.com（用于生成个性化版本）',
+    emailPlaceholder: 'you@yourbrand.com',
+    subscribing: '订阅中...',
+    success: '<strong>订阅成功。</strong>报告已在队列里——几分钟内去邮箱查收。',
+    failure:
+      '<strong>订阅失败：</strong>{error}——你也可以直接发邮件到 <a href="mailto:dewellsmell@gmail.com" class="underline text-white">dewellsmell@gmail.com</a>。',
+  },
+} as const;
+
+export type CommonStrings = typeof common;

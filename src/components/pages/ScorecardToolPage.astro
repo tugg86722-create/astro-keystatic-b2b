@@ -1,0 +1,308 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NewsletterSignup from '../NewsletterSignup.astro';
+import { getStrings } from '../../i18n/strings';
+import { lp, type Locale } from '../../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getStrings(locale);
+const T = t.tools.scorecard;
+---
+
+<Layout title={T.meta.title} description={T.meta.description} locale={locale}>
+  <!-- Breadcrumb -->
+  <div class="border-b border-slate-800 bg-slate-900/60 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-slate-400">
+        <a href={lp(locale, '/')} class="hover:text-blue-400 transition-colors">{t.common.crumbs.home}</a>
+        <span>/</span>
+        <a href={lp(locale, '/tools')} class="hover:text-blue-400 transition-colors">{t.common.crumbs.tools}</a>
+        <span>/</span>
+        <span class="text-slate-200">{t.common.footer.scorecardTool}</span>
+      </nav>
+    </div>
+  </div>
+
+  <section class="py-12 sm:py-16 bg-slate-950 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b0a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b0a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    <div class="absolute top-12 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <!-- Header -->
+      <div class="max-w-3xl mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-4">
+          <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+          <span>{T.badge}</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          {T.headingLead} <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-rose-400">{T.headingHighlight}</span>
+        </h1>
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+          {T.lead}
+        </p>
+      </div>
+
+      <!-- Exposure inputs -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-7 mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-xs">
+            <label for="gmv-input" class="font-semibold text-slate-300">{T.exposure.gmv}</label>
+            <div class="flex items-center bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1">
+              <span class="text-slate-500 mr-1">$</span>
+              <input id="gmv-input" type="number" min="1000" max="10000000" step="500" value="60000" class="w-20 bg-transparent text-right font-mono font-bold text-white focus:outline-none" />
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-500 leading-relaxed">{T.exposure.gmvHint}</p>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-xs">
+            <label for="cb-rate-input" class="font-semibold text-slate-300">{T.exposure.cbRate}</label>
+            <div class="flex items-center bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1">
+              <input id="cb-rate-input" type="number" min="0" max="5" step="0.01" value="0.42" class="w-16 bg-transparent text-right font-mono font-bold text-white focus:outline-none" />
+              <span class="text-slate-500 ml-1">%</span>
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-500 leading-relaxed">{T.exposure.cbRateHint}</p>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-xs">
+            <label for="aov-input" class="font-semibold text-slate-300">{T.exposure.aov}</label>
+            <div class="flex items-center bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1">
+              <span class="text-slate-500 mr-1">$</span>
+              <input id="aov-input" type="number" min="10" max="2000" step="5" value="120" class="w-16 bg-transparent text-right font-mono font-bold text-white focus:outline-none" />
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-500 leading-relaxed">{T.exposure.aovHint}</p>
+        </div>
+      </div>
+
+      <!-- Questions -->
+      <div id="question-list" class="space-y-4">
+        {T.questions.map((question, qi) => (
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-7" data-qid={question.id} data-max={Math.max(...question.options.map((o) => o.score))}>
+            <div class="flex items-start gap-3.5 mb-4">
+              <span class="shrink-0 w-8 h-8 rounded-lg bg-blue-600/10 text-blue-400 border border-blue-500/20 font-mono text-xs font-bold flex items-center justify-center mt-0.5">
+                {String(qi + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h2 class="text-sm sm:text-base font-bold text-white leading-snug">{question.q}</h2>
+                <p class="text-xs text-slate-500 leading-relaxed mt-1.5">{question.why}</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              {question.options.map((option, oi) => (
+                <label class="cursor-pointer group">
+                  <input type="radio" name={question.id} value={oi} class="peer sr-only" checked={oi === 0} />
+                  <span class="flex items-start gap-2.5 h-full p-3.5 rounded-xl bg-slate-950 border border-slate-800 group-hover:border-slate-700 peer-checked:border-blue-500/60 peer-checked:bg-blue-950/40 transition-colors">
+                    <span class="shrink-0 w-4 h-4 rounded-full border border-slate-600 group-hover:border-slate-500 peer-checked:border-blue-400 mt-0.5 flex items-center justify-center">
+                      <span class="w-2 h-2 rounded-full bg-blue-400 scale-0 peer-checked:scale-100 transition-transform"></span>
+                    </span>
+                    <span class="text-xs text-slate-300 leading-relaxed peer-checked:text-white">{option.label}</span>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Calculate button -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <div class="text-xs text-slate-400 leading-relaxed">
+          <strong class="text-white block mb-1 text-sm">{T.action.heading}</strong>
+          {T.action.body}
+        </div>
+        <button
+          id="score-btn"
+          type="button"
+          class="px-7 py-3.5 rounded-xl text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5 cursor-pointer whitespace-nowrap"
+        >
+          {T.action.button}
+        </button>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="hidden mt-8 space-y-6">
+        <!-- Score card -->
+        <div class="bg-gradient-to-br from-slate-900 to-blue-950/30 border border-slate-800 rounded-2xl p-6 sm:p-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-4 text-center">
+              <div class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mb-2">{T.results.scoreLabel}</div>
+              <div class="text-6xl font-black font-mono tracking-tight" id="score-value">0</div>
+              <div class="text-[11px] text-slate-500 font-mono mb-4">{T.results.outOf.replace('{max}', String(T.questions.reduce((sum, q) => sum + Math.max(...q.options.map((o) => o.score)), 0)))}</div>
+              <span id="score-tier" class="inline-block px-4 py-1.5 rounded-full text-xs font-bold">—</span>
+            </div>
+
+            <div class="lg:col-span-8 space-y-5">
+              <p class="text-sm text-slate-300 leading-relaxed" id="score-verdict">—</p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                  <div class="text-[11px] uppercase tracking-wider text-rose-400 font-semibold mb-1">{T.results.exposureLabel}</div>
+                  <div class="text-xl font-black text-white font-mono" id="metric-exposure">$0</div>
+                  <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">{T.results.exposureDesc}</p>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                  <div class="text-[11px] uppercase tracking-wider text-emerald-400 font-semibold mb-1">{T.results.recoverableLabel}</div>
+                  <div class="text-xl font-black text-white font-mono" id="metric-recoverable">$0</div>
+                  <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">{T.results.recoverableDesc}</p>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                  <div class="text-[11px] uppercase tracking-wider text-amber-400 font-semibold mb-1">{T.results.disputesLabel}</div>
+                  <div class="text-xl font-black text-white font-mono" id="metric-disputes">0</div>
+                  <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">{T.results.disputesDesc}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flagged items -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-7">
+          <h3 class="text-sm font-bold text-white mb-1">{T.results.fixHeading}</h3>
+          <p class="text-xs text-slate-500 mb-5">{T.results.fixLead}</p>
+          <div id="fix-list" class="space-y-3"></div>
+        </div>
+
+        <!-- Email gate -->
+        <div>
+          <NewsletterSignup
+            locale={locale}
+            source="chargeback-scorecard"
+            heading={T.results.gate.heading}
+            subheading={T.results.gate.subheading}
+            ctaLabel={T.results.gate.cta}
+            showNameField={true}
+            showStoreField={true}
+            note={T.results.gate.note}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script is:inline define:vars={{ T }}>
+  function initScorecard() {
+    const scoreBtn = document.getElementById('score-btn');
+    const results = document.getElementById('results');
+    if (!scoreBtn) return;
+
+    const questions = T.questions;
+    const totalPoints = questions.reduce(function (sum, q) {
+      return sum + Math.max.apply(null, q.options.map(function (o) { return o.score; }));
+    }, 0);
+
+    function money(v) { return '$' + Math.round(v).toLocaleString('en-US'); }
+
+    scoreBtn.addEventListener('click', () => {
+      const gmv = Math.max(0, parseFloat(document.getElementById('gmv-input').value) || 0);
+      const cbRate = Math.max(0, parseFloat(document.getElementById('cb-rate-input').value) || 0);
+      const aov = Math.max(0, parseFloat(document.getElementById('aov-input').value) || 0);
+
+      let score = 0;
+      const flagged = [];
+
+      questions.forEach((q) => {
+        const card = document.querySelector('[data-qid="' + q.id + '"]');
+        const checked = card ? card.querySelector('input:checked') : null;
+        const idx = checked ? parseInt(checked.value, 10) : 0;
+        const opt = q.options[idx] || q.options[0];
+        score += opt.score;
+        if (opt.score > 0) {
+          flagged.push({
+            q: q.q,
+            label: opt.label,
+            fix: opt.fix,
+            points: opt.score,
+            max: Math.max.apply(null, q.options.map(function (o) { return o.score; }))
+          });
+        }
+      });
+
+      const ratio = totalPoints > 0 ? score / totalPoints : 0;
+      const scoreEl = document.getElementById('score-value');
+      const tierEl = document.getElementById('score-tier');
+      const verdictEl = document.getElementById('score-verdict');
+
+      scoreEl.textContent = score;
+      scoreEl.className = 'text-6xl font-black font-mono tracking-tight ' + (ratio >= 0.66 ? 'text-rose-400' : ratio >= 0.4 ? 'text-orange-400' : ratio >= 0.2 ? 'text-amber-400' : 'text-emerald-400');
+
+      let tierKey, tierClass, verdictKey;
+      if (ratio >= 0.66) {
+        tierKey = 'critical';
+        tierClass = 'bg-rose-500/10 text-rose-300 border border-rose-500/30';
+        verdictKey = 'critical';
+      } else if (ratio >= 0.4) {
+        tierKey = 'elevated';
+        tierClass = 'bg-orange-500/10 text-orange-300 border border-orange-500/30';
+        verdictKey = 'elevated';
+      } else if (ratio >= 0.2) {
+        tierKey = 'moderate';
+        tierClass = 'bg-amber-500/10 text-amber-300 border border-amber-500/30';
+        verdictKey = 'moderate';
+      } else {
+        tierKey = 'healthy';
+        tierClass = 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/30';
+        verdictKey = 'healthy';
+      }
+
+      const tier = T.results.tiers[tierKey];
+      const verdict = T.results.verdicts[verdictKey];
+
+      tierEl.textContent = tier;
+      tierEl.className = 'inline-block px-4 py-1.5 rounded-full text-xs font-bold ' + tierClass;
+      verdictEl.textContent = verdict;
+
+      // Financial exposure
+      const annualRevenue = gmv * 12;
+      const disputesPerYear = Math.round((annualRevenue / Math.max(aov, 1)) * (cbRate / 100));
+      const exposure = annualRevenue * (cbRate / 100);
+      const recoverable = annualRevenue * Math.max(0, (cbRate - 0.1) / 100);
+      document.getElementById('metric-exposure').textContent = money(exposure);
+      document.getElementById('metric-recoverable').textContent = money(recoverable);
+      document.getElementById('metric-disputes').textContent = disputesPerYear.toLocaleString('en-US');
+
+      // Fix queue
+      flagged.sort(function (a, b) { return (b.points / b.max) - (a.points / a.max); });
+      const fixList = document.getElementById('fix-list');
+      if (flagged.length === 0) {
+        fixList.innerHTML = '<div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/20 text-xs text-emerald-200">' + T.results.noFlags + '</div>';
+      } else {
+        fixList.innerHTML = flagged.map(function (f, i) {
+          const severityKey = (f.points / f.max) >= 0.8 ? 'critical' : (f.points / f.max) >= 0.5 ? 'high' : 'moderate';
+          const severity = T.results.severities[severityKey];
+          const sevClass = severityKey === 'critical' ? 'bg-rose-500/10 text-rose-400 border-rose-500/30' : severityKey === 'high' ? 'bg-orange-500/10 text-orange-400 border border-orange-500/30' : 'bg-amber-500/10 text-amber-400 border border-amber-500/30';
+          return '<div class="p-4 rounded-xl bg-slate-950 border border-slate-800/80">' +
+            '<div class="flex items-start justify-between gap-3 mb-1.5">' +
+            '<strong class="text-white text-xs leading-snug">' + (i + 1) + '. ' + f.q + '</strong>' +
+            '<span class="shrink-0 text-[10px] px-2 py-0.5 rounded-full font-mono border ' + sevClass + '">' + severity + '</span>' +
+            '</div>' +
+            '<div class="text-[11px] text-slate-500 mb-2">' + T.results.yourAnswer + ' ' + f.label + '</div>' +
+            '<div class="text-xs text-blue-300 leading-relaxed"><strong class="text-blue-400">' + T.results.fixPrefix + '</strong> ' + f.fix + '</div>' +
+            '</div>';
+        }).join('');
+      }
+
+      results.classList.remove('hidden');
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      if (typeof window.trackEvent === 'function') {
+        window.trackEvent('chargeback_scorecard_completed', { score: score, tier: tier, flags: flagged.length });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScorecard);
+  } else {
+    initScorecard();
+  }
+</script>

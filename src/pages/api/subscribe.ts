@@ -30,9 +30,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     // Resolve Resend API Key from Cloudflare Env / Vite Env / process.env
     const env = (locals as any)?.runtime?.env || {};
-    const resendApiKey = env.RESEND_API_KEY || 
-                         import.meta.env.RESEND_API_KEY || 
-                         (typeof process !== 'undefined' ? process.env.RESEND_API_KEY : '') ||
+    const procEnv = (globalThis as any)?.process?.env || {};
+    const resendApiKey = env.RESEND_API_KEY ||
+                         import.meta.env.RESEND_API_KEY ||
+                         procEnv.RESEND_API_KEY ||
                          '';
 
     let emailSent = false;

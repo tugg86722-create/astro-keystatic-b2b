@@ -1,0 +1,116 @@
+export const common = {
+  brandName: 'NAIF',
+  brandTag: 'DTC',
+  brandRole: 'DTC-Operator & Growth-Architekt',
+  statusBar: 'Status: Offen für DTC-Markenarchitektur, CRO & Growth-Beratung',
+  domain: 'naif.is-a.dev',
+
+  nav: {
+    home: 'Startseite',
+    caseStudies: 'Case Studies',
+    services: 'Leistungen & Preise',
+    tools: 'Tools',
+    toolsNew: 'NEU',
+    resources: 'Ressourcen',
+    about: 'Über mich',
+    contact: 'Kontakt',
+    startProject: 'Projekt starten',
+    mobileHub: 'Hub',
+  },
+
+  language: {
+    label: 'Sprache',
+    switchTo: 'Wechseln zu',
+    current: 'Aktuelle Sprache',
+  },
+
+  footer: {
+    tagline:
+      'DTC E-Commerce-Operator & Full-Funnel Growth-Architekt. Ich schließe die Lücke zwischen High-Ticket Brand Storytelling, Storefront-Engineering und Meta/Google-Ad-Profitabilität.',
+    systemsHeading: 'DTC Systeme & Case Studies',
+    navHeading: 'Navigation & Tools',
+    advisoryHeading: 'Beratung & Anfragen',
+    emailLabel: 'E-Mail:',
+    githubLabel: 'GitHub:',
+    openFor:
+      'Offen für High-Ticket DTC Architektur-Audits, Conversion-Rate-Optimierung und Klaviyo Lifecycle-Retention-Verträge.',
+    copyright: 'Gebaut mit Astro, Tailwind CSS & Cloudflare Edge.',
+    domainLabel: 'Domain:',
+    allCaseStudies: 'Alle Architektur-Case Studies',
+    jewelryCase: 'High-Ticket Schmuck-Storefront',
+    clickLossCase: 'Ad-Landingpage & Klick-Verlust-CRO',
+    retentionCase: 'Klaviyo Retention & Chargeback-Schutz',
+    servicesLink: 'Leistungen, Preise & Fit-Check',
+    aboutLink: 'Über mich & Strategische Säulen',
+    roiTool: 'Ad-ROI & Latency-Rechner',
+    clickLossTool: 'Klick-Verlust-Prüfer',
+    scorecardTool: 'Chargeback-Risiko-Scorecard',
+    resourcesLink: 'Kuratierter Operator- & Trade-Hub',
+    whitepapers: 'Technische Whitepapers',
+    faqLink: 'FAQ',
+    rfqLink: 'Growth-Beratung & Audit-Anfrage',
+  },
+
+  crumbs: {
+    home: 'Startseite',
+    tools: 'Interaktive Tools',
+    advisory: 'Beratung',
+    about: 'Über mich & Strategische Säulen',
+    faq: 'FAQ',
+    services: 'Engagement-Stufen',
+    caseStudies: 'Case Studies',
+  },
+
+  cta: {
+    requestAudit: 'Architektur-Audit anfragen',
+    requestAuditArrow: 'Architektur-Audit anfragen →',
+    viewCaseStudies: 'Case Studies ansehen',
+    sendInquiry: 'Anfrage senden',
+    exploreTool: 'Ad-ROI & Latency-Tool erkunden',
+    startConversation: 'Gespräch beginnen',
+    runAudit: 'Audit starten',
+    scoreMyStore: 'Store bewerten',
+    openCalculator: 'Rechner öffnen',
+    askQuestion: 'Stellen Sie Ihre Frage',
+    compareTiers: 'Engagement-Stufen vergleichen',
+    readAllFaqs: 'Alle FAQs lesen',
+    emailMe: 'Schreiben Sie mir',
+    bookCall: 'Strategie-Call buchen',
+  },
+
+  labels: {
+    viewAll: 'Alle Case Studies ansehen',
+    readCaseStudy: 'Case Study lesen',
+    inquire: 'Anfragen',
+    viewCase: 'Case Study ansehen',
+    new: 'NEU',
+    coreStack: 'Core Stack:',
+    benchmark: 'Benchmark:',
+    engagement: 'Engagement:',
+    industry: 'Branche',
+    result: 'Ergebnis:',
+    timeline: 'Zeitraum:',
+    onGoing: 'Laufendes Monitoring',
+    youAreHere: 'SIE SIND HIER',
+    loading: 'Lädt',
+    optional: 'optional',
+  },
+
+  newsletter: {
+    badge: 'Wöchentlicher DTC-Audit-Newsletter',
+    defaultHeading: 'Der Ad-Waste-Report',
+    defaultSubheading:
+      'Wöchentliche Zerlegung echter DTC-Stores, die ihr Paid Media verbrennen — mit dem exakten Fix, der Umsatzrechnung und der einen Kennzahl, die beweist, dass es wirkt. Kostenlos, ohne Blabla.',
+    defaultCta: 'Report anfordern',
+    defaultNote: 'Kein Spam. Eine E-Mail pro Woche, Abmeldung mit einem Klick.',
+    namePlaceholder: 'Ihr Name (optional)',
+    storePlaceholder: 'ihrstore.com (für die personalisierte Version)',
+    emailPlaceholder: 'you@yourbrand.com',
+    subscribing: 'Anmeldung läuft...',
+    success: '<strong>Sie sind dabei.</strong> Ihr Report ist in der Queue — prüfen Sie in den nächsten Minuten Ihr Postfach.',
+    failure:
+      '<strong>Anmeldung fehlgeschlagen:</strong> {error} — oder schreiben Sie mir direkt an <a href="mailto:dewellsmell@gmail.com" class="underline text-white">dewellsmell@gmail.com</a>.',
+  },
+} as const;
+
+export type CommonStrings = typeof common;

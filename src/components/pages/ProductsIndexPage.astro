@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../ProductCard.astro';
+import { getCollection } from 'astro:content';
+import { getStrings } from '../../i18n/strings';
+import { lp, type Locale } from '../../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getStrings(locale);
+const P = t.pages.products;
+
+const allProjects = await getCollection('products', ({ id }) => id.startsWith(`${locale}/`));
+
+// Extract unique categories
+const categories = Array.from(new Set(allProjects.map((p) => p.data.category)));
+---
+
+<Layout title={P.meta.title} description={P.meta.description} locale={locale}>
+  <div class="py-12 sm:py-16 bg-slate-900 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mb-2">{P.eyebrow}</div>
+      <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight">{P.heading}</h1>
+      <p class="text-sm text-slate-400 mt-2 max-w-2xl">
+        {P.lead}
+      </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center gap-2 mt-8" id="category-filters">
+        <button
+          data-filter="all"
+          class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-blue-600 text-white shadow-sm transition-colors cursor-pointer"
+        >
+          {P.allSystems} ({allProjects.length})
+        </button>
+        {categories.map((cat) => (
+          <button
+            data-filter={cat}
+            class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white transition-colors cursor-pointer capitalize"
+          >
+            {cat.replace('-', ' ')}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects Grid -->
+  <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+      {allProjects.map((p) => (
+        <div class="product-item" data-category={p.data.category}>
+          <ProductCard
+            locale={locale}
+            title={p.data.title}
+            slug={p.id.split('/').slice(1).join('/')}
+            sku={p.data.sku}
+            category={p.data.category}
+            categoryLabel={p.data.categoryLabel}
+            summary={p.data.summary}
+            badge={p.data.badge}
+            minOrderQty={p.data.minOrderQty}
+            leadTime={p.data.leadTime}
+            image={p.data.image}
+            industry={p.data.industry}
+            engagementWindow={p.data.engagementWindow}
+            year={p.data.year}
+            headlineMetrics={p.data.headlineMetrics}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  (function () {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.product-item');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => {
+          b.classList.remove('bg-blue-600', 'text-white');
+          b.classList.add('bg-slate-800', 'text-slate-300');
+        });
+        btn.classList.add('bg-blue-600', 'text-white');
+        btn.classList.remove('bg-slate-800', 'text-slate-300');
+
+        const filter = btn.getAttribute('data-filter');
+
+        items.forEach((item) => {
+          const itemCat = item.getAttribute('data-category');
+          if (filter === 'all' || itemCat === filter) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>

@@ -1,0 +1,116 @@
+export const common = {
+  brandName: 'NAIF',
+  brandTag: 'DTC',
+  brandRole: 'Opérateur DTC & Architecte de la croissance',
+  statusBar: 'Statut : disponible pour l’architecture de marque DTC, la CRO et le conseil en croissance',
+  domain: 'naif.is-a.dev',
+
+  nav: {
+    home: 'Accueil',
+    caseStudies: 'Études de cas',
+    services: 'Services & tarifs',
+    tools: 'Outils',
+    toolsNew: 'NOUVEAU',
+    resources: 'Ressources',
+    about: 'À propos',
+    contact: 'Contact',
+    startProject: 'Démarrer un projet',
+    mobileHub: 'Hub',
+  },
+
+  language: {
+    label: 'Langue',
+    switchTo: 'Passer à',
+    current: 'Langue actuelle',
+  },
+
+  footer: {
+    tagline:
+      'Opérateur e-commerce DTC & Architecte de la croissance sur l’entonnoir complet. Je comble le gap entre le storytelling des marques à ticket élevé, l’ingénierie de la boutique et la rentabilité des pubs Meta/Google.',
+    systemsHeading: 'Systèmes DTC & études de cas',
+    navHeading: 'Navigation & outils',
+    advisoryHeading: 'Conseil & demandes',
+    emailLabel: 'E-mail :',
+    githubLabel: 'GitHub :',
+    openFor:
+      'Ouvert aux audits d’architecture DTC à ticket élevé, à l’optimisation du taux de conversion et aux contrats de rétention Klaviyo.',
+    copyright: 'Conçu avec Astro, Tailwind CSS & Cloudflare Edge.',
+    domainLabel: 'Domaine :',
+    allCaseStudies: 'Toutes les études de cas d’architecture',
+    jewelryCase: 'Boutique de joaillerie à ticket élevé',
+    clickLossCase: 'Landing page publicitaire & CRO anti-perte de clics',
+    retentionCase: 'Rétention Klaviyo & bouclier anti-chargeback',
+    servicesLink: 'Services, tarifs & vérification d’adéquation',
+    aboutLink: 'À propos & piliers stratégiques',
+    roiTool: 'Calculateur ROI pub & latence',
+    clickLossTool: 'Auditeur de perte de clics',
+    scorecardTool: 'Scorecard de risque de chargeback',
+    resourcesLink: 'Hub de ressources opérateur & métier',
+    whitepapers: 'Whitepapers techniques',
+    faqLink: 'FAQ',
+    rfqLink: 'Demande de conseil & audit',
+  },
+
+  crumbs: {
+    home: 'Accueil',
+    tools: 'Outils interactifs',
+    advisory: 'Conseil',
+    about: 'À propos & piliers stratégiques',
+    faq: 'FAQ',
+    services: 'Niveaux d’engagement',
+    caseStudies: 'Études de cas',
+  },
+
+  cta: {
+    requestAudit: 'Demander un audit d’architecture',
+    requestAuditArrow: 'Demander un audit d’architecture →',
+    viewCaseStudies: 'Voir les études de cas',
+    sendInquiry: 'Envoyer une demande',
+    exploreTool: 'Explorer l’outil ROI pub & latence',
+    startConversation: 'Démarrer une conversation',
+    runAudit: 'Lancer l’audit',
+    scoreMyStore: 'Évaluer ma boutique',
+    openCalculator: 'Ouvrir le calculateur',
+    askQuestion: 'Posez votre question',
+    compareTiers: 'Comparer les niveaux d’engagement',
+    readAllFaqs: 'Lire toutes les FAQ',
+    emailMe: 'M’écrire',
+    bookCall: 'Réserver un appel stratégique',
+  },
+
+  labels: {
+    viewAll: 'Voir toutes les études de cas',
+    readCaseStudy: 'Lire l’étude de cas',
+    inquire: 'Se renseigner',
+    viewCase: 'Voir l’étude de cas',
+    new: 'NOUVEAU',
+    coreStack: 'Stack principal :',
+    benchmark: 'Référence :',
+    engagement: 'Engagement :',
+    industry: 'Secteur',
+    result: 'Résultat :',
+    timeline: 'Durée :',
+    onGoing: 'Suivi continu',
+    youAreHere: 'VOUS ÊTES ICI',
+    loading: 'Chargement',
+    optional: 'facultatif',
+  },
+
+  newsletter: {
+    badge: 'Newsletter d’audit DTC hebdomadaire',
+    defaultHeading: 'Le Rapport sur le Gaspillage Publicitaire',
+    defaultSubheading:
+      'Un démontage hebdomadaire de vraies boutiques DTC qui brûlent leur budget media — avec le correctif exact, le calcul de revenus, et la seule métrique qui le prouve. Gratuit, sans remplissage.',
+    defaultCta: 'Envoyez-moi le rapport',
+    defaultNote: 'Pas de spam. Un e-mail par semaine, désinscription en un clic.',
+    namePlaceholder: 'Votre nom (facultatif)',
+    storePlaceholder: 'votreboutique.com (pour la version personnalisée)',
+    emailPlaceholder: 'vous@votremarque.com',
+    subscribing: 'Inscription...',
+    success: '<strong>Vous êtes inscrit.</strong> Votre rapport est en file d’attente — surveillez votre boîte mail dans les prochaines minutes.',
+    failure:
+      '<strong>Inscription impossible :</strong> {error} — ou écrivez-moi directement à <a href="mailto:dewellsmell@gmail.com" class="underline text-white">dewellsmell@gmail.com</a>.',
+  },
+} as const;
+
+export type CommonStrings = typeof common;

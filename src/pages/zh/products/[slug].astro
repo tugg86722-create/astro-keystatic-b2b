@@ -1,0 +1,16 @@
+---
+import ProductDetailPage from '../../../components/pages/ProductDetailPage.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('products', ({ id }) => id.startsWith('zh/'));
+  return entries.map((entry) => ({
+    params: { slug: entry.id.split('/').slice(1).join('/') },
+    props: { product: entry },
+  }));
+}
+
+const { product } = Astro.props;
+---
+
+<ProductDetailPage locale="zh" product={product} />
