@@ -115,4 +115,4 @@ L’avenir de l’architecture web qui convertit est statique par défaut, dynam
 
 ---
 
-*Vous voulez auditer votre infrastructure web actuelle ou explorer une feuille de route de migration Edge Jamstack ? [Planifiez une consultation technique avec Naif](/fr/contact#rfq).*
+*Vous voulez auditer votre infrastructure web actuelle ou explorer une feuille de route de migration Edge Jamstack ? [Planifiez une consultation technique avec Naif](/fr/contact/#rfq).*

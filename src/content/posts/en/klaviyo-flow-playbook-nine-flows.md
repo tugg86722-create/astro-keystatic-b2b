@@ -123,4 +123,4 @@ If your flows are under 10% of revenue, the account is not under-optimised — i
 
 ---
 
-*Want the audit version? Run the [Chargeback Risk Scorecard](/tools/chargeback-scorecard) to see which of these flows your store is missing, or [start a Klaviyo lifecycle engagement](/contact#rfq).*
+*Want the audit version? Run the [Chargeback Risk Scorecard](/tools/chargeback-scorecard/) to see which of these flows your store is missing, or [start a Klaviyo lifecycle engagement](/contact/#rfq).*

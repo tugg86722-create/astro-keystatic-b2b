@@ -123,4 +123,4 @@ Si tus flujos están por debajo del 10% de los ingresos, la cuenta no está mal 
 
 ---
 
-*¿Quieres la versión de auditoría? Ejecuta el [Scorecard de Riesgo de Chargeback](/es/tools/chargeback-scorecard) para ver qué flujos le faltan a tu tienda, o [arranca una colaboración de ciclo de vida en Klaviyo](/es/contact#rfq).*
+*¿Quieres la versión de auditoría? Ejecuta el [Scorecard de Riesgo de Chargeback](/es/tools/chargeback-scorecard/) para ver qué flujos le faltan a tu tienda, o [arranca una colaboración de ciclo de vida en Klaviyo](/es/contact/#rfq).*

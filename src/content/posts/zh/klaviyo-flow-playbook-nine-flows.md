@@ -123,4 +123,4 @@ coverImage: https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&a
 
 ---
 
-*想要审计版？跑一下[拒付风险评分卡](/zh/tools/chargeback-scorecard)，看看你的店铺缺了哪几条流程；或者[启动一次 Klaviyo 生命周期合作](/zh/contact#rfq)。*
+*想要审计版？跑一下[拒付风险评分卡](/zh/tools/chargeback-scorecard/)，看看你的店铺缺了哪几条流程；或者[启动一次 Klaviyo 生命周期合作](/zh/contact/#rfq)。*

@@ -119,4 +119,4 @@ Purchase → Repeat           (loss: no post-purchase flow, no replenishment pro
 
 ---
 
-*跑一下免费的[点击流失审计器](/zh/tools/click-loss-auditor)，一分钟内拿到你的第 1 步数字；或者用[广告 ROI 与延迟计算器](/zh/tools)给同一个问题的延迟侧标个价。*
+*跑一下免费的[点击流失审计器](/zh/tools/click-loss-auditor/)，一分钟内拿到你的第 1 步数字；或者用[广告 ROI 与延迟计算器](/zh/tools/)给同一个问题的延迟侧标个价。*

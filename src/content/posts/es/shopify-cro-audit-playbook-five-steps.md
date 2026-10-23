@@ -119,4 +119,4 @@ Si la respuesta es "sabremos exactamente dónde está la fuga", la auditoría ha
 
 ---
 
-*Ejecuta el gratuito [Auditor de Pérdida de Clics](/es/tools/click-loss-auditor) para tener tu cifra del Paso 1 en menos de un minuto, o la [Calculadora de ROI publicitario y latencia](/es/tools) para poner precio a la cara de latencia del mismo problema.*
+*Ejecuta el gratuito [Auditor de Pérdida de Clics](/es/tools/click-loss-auditor/) para tener tu cifra del Paso 1 en menos de un minuto, o la [Calculadora de ROI publicitario y latencia](/es/tools/) para poner precio a la cara de latencia del mismo problema.*

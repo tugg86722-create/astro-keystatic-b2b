@@ -123,4 +123,4 @@ Si vos flux pèsent moins de 10% du CA, le compte n’est pas sous-optimisé —
 
 ---
 
-*Vous voulez la version audit ? Lancez le [Scorecard de risque de chargeback](/fr/tools/chargeback-scorecard) pour voir quels de ces flux manquent à votre boutique, ou [lancez une mission de cycle de vie Klaviyo](/fr/contact#rfq).*
+*Vous voulez la version audit ? Lancez le [Scorecard de risque de chargeback](/fr/tools/chargeback-scorecard/) pour voir quels de ces flux manquent à votre boutique, ou [lancez une mission de cycle de vie Klaviyo](/fr/contact/#rfq).*

@@ -122,4 +122,4 @@ Die Zukunft der hochkonvertierenden Web-Architektur ist standardmäßig statisch
 
 ---
 
-*Interessiert, Ihre aktuelle Web-Infrastruktur auditieren zu lassen oder eine Edge-Jamstack-Migrations-Roadmap zu explorieren? [Technische Beratung mit Naif vereinbaren](/de/contact#rfq).*
+*Interessiert, Ihre aktuelle Web-Infrastruktur auditieren zu lassen oder eine Edge-Jamstack-Migrations-Roadmap zu explorieren? [Technische Beratung mit Naif vereinbaren](/de/contact/#rfq).*

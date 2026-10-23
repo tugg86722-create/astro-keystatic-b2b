@@ -123,4 +123,4 @@ Wenn Ihre Flows unter 10% des Umsatzes liegen, ist der Account nicht unter-optim
 
 ---
 
-*Brauchen Sie die Audit-Version? Führen Sie die [Chargeback-Risiko-Scorecard](/de/tools/chargeback-scorecard) aus, um zu sehen, welche dieser Flows Ihrem Store fehlen, oder [starten Sie ein Klaviyo Lifecycle-Engagement](/de/contact#rfq).*
+*Brauchen Sie die Audit-Version? Führen Sie die [Chargeback-Risiko-Scorecard](/de/tools/chargeback-scorecard/) aus, um zu sehen, welche dieser Flows Ihrem Store fehlen, oder [starten Sie ein Klaviyo Lifecycle-Engagement](/de/contact/#rfq).*

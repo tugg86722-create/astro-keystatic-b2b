@@ -122,4 +122,4 @@ Astro 会把站点 100% 的布局、设计排版和内容区块编译成原生�
 
 ---
 
-*想审计你现在的 Web 基础设施，或者探索边缘 Jamstack 迁移路线图？[和 Naif 预约一次技术咨询](/zh/contact#rfq)。*
+*想审计你现在的 Web 基础设施，或者探索边缘 Jamstack 迁移路线图？[和 Naif 预约一次技术咨询](/zh/contact/#rfq)。*

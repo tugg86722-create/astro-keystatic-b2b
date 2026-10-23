@@ -42,7 +42,7 @@ const scenarios: Scenario[] = [
     languages: ['zh-CN', 'zh'],
     stored: null,
     path: '/about',
-    expect: { url: '/zh/about', stored: 'zh' },
+    expect: { url: '/zh/about/', stored: 'zh' },
   },
   {
     name: 'Japanese browser, deep link to /products/foo',
@@ -50,7 +50,7 @@ const scenarios: Scenario[] = [
     languages: ['ja', 'en-US'],
     stored: null,
     path: '/products/foo',
-    expect: { url: '/ja/products/foo', stored: 'ja' },
+    expect: { url: '/ja/products/foo/', stored: 'ja' },
   },
   {
     name: 'English browser stays on the English page',
@@ -74,7 +74,7 @@ const scenarios: Scenario[] = [
     languages: ['fr-CA', 'fr'],
     stored: null,
     path: '/tools',
-    expect: { url: '/fr/tools', stored: 'fr' },
+    expect: { url: '/fr/tools/', stored: 'fr' },
   },
   {
     name: 'stored choice wins over the browser language',
@@ -98,7 +98,7 @@ const scenarios: Scenario[] = [
     languages: ['es-ES'],
     stored: null,
     path: '/contact',
-    expect: { url: '/es/contact', stored: 'es' },
+    expect: { url: '/es/contact/', stored: 'es' },
   },
 ];
 

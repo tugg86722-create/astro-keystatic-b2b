@@ -115,4 +115,4 @@ El futuro de la arquitectura web de alta conversión es estática por defecto, d
 
 ---
 
-*¿Te interesa auditar tu infraestructura web actual o explorar una hoja de ruta de migración a Edge Jamstack? [Reserva una consulta técnica con Naif](/es/contact#rfq).*
+*¿Te interesa auditar tu infraestructura web actual o explorar una hoja de ruta de migración a Edge Jamstack? [Reserva una consulta técnica con Naif](/es/contact/#rfq).*

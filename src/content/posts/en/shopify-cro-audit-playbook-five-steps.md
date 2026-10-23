@@ -119,4 +119,4 @@ If the answer is "we will know exactly where the leak is", the audit was worth i
 
 ---
 
-*Run the free [Click-Loss Auditor](/tools/click-loss-auditor) to get your Step 1 number in under a minute, or the [Ad ROI & Latency Calculator](/tools) to price the latency side of the same problem.*
+*Run the free [Click-Loss Auditor](/tools/click-loss-auditor/) to get your Step 1 number in under a minute, or the [Ad ROI & Latency Calculator](/tools/) to price the latency side of the same problem.*

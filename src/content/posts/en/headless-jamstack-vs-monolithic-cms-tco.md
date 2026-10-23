@@ -115,4 +115,4 @@ The future of high-converting web architecture is static by default, dynamic on 
 
 ---
 
-*Interested in auditing your current web infrastructure or exploring an Edge Jamstack migration roadmap? [Schedule a technical consultation with Naif](/contact#rfq).*
+*Interested in auditing your current web infrastructure or exploring an Edge Jamstack migration roadmap? [Schedule a technical consultation with Naif](/contact/#rfq).*

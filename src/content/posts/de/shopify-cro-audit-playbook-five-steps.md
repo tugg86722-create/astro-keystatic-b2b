@@ -119,4 +119,4 @@ Wenn die Antwort lautet „wir wissen genau, wo das Leck ist", war das Audit sei
 
 ---
 
-*Führen Sie den kostenlosen [Klick-Verlust-Prüfer](/de/tools/click-loss-auditor) aus, um in unter einer Minute Ihre Zahl aus Schritt 1 zu bekommen — oder nutzen Sie den [Ad-ROI & Latency-Rechner](/de/tools), um die Latenz-Seite desselben Problems zu beziffern.*
+*Führen Sie den kostenlosen [Klick-Verlust-Prüfer](/de/tools/click-loss-auditor/) aus, um in unter einer Minute Ihre Zahl aus Schritt 1 zu bekommen — oder nutzen Sie den [Ad-ROI & Latency-Rechner](/de/tools/), um die Latenz-Seite desselben Problems zu beziffern.*

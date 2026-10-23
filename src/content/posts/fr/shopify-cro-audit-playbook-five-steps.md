@@ -119,4 +119,4 @@ Si la réponse est « on saura exactement où est la fuite », l’audit valait 
 
 ---
 
-*Lancez l’[Auditeur de perte de clics](/fr/tools/click-loss-auditor) gratuit pour obtenir votre chiffre d’étape 1 en moins d’une minute, ou le [Calculateur ROI pub & latence](/fr/tools) pour chiffrer le versant latence du même problème.*
+*Lancez l’[Auditeur de perte de clics](/fr/tools/click-loss-auditor/) gratuit pour obtenir votre chiffre d’étape 1 en moins d’une minute, ou le [Calculateur ROI pub & latence](/fr/tools/) pour chiffrer le versant latence du même problème.*

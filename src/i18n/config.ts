@@ -41,21 +41,32 @@ export function isLocale(value: string | undefined): value is Locale {
 /**
  * Build a locale-aware href.
  *
+ * URLs are emitted in directory form (`/about/`). Astro's static build writes
+ * `about/index.html`, and the Cloudflare adapter 307-redirects `/about` to
+ * `/about/` — so emitting the final form directly means no internal link pays
+ * for a redirect round trip.
+ *
  * @example
- * lp('zh', '/about')            // → '/zh/about'
- * lp('en', '/about')            // → '/about'
- * lp('zh', '/contact', '#rfq')  // → '/zh/contact#rfq'
+ * lp('zh', '/about')            // → '/zh/about/'
+ * lp('en', '/about')            // → '/about/'
+ * lp('zh', '/contact', '#rfq')  // → '/zh/contact/#rfq'
  */
 export function lp(locale: Locale, path: string): string {
   const clean = path.startsWith('/') ? path : `/${path}`;
-  const [pathname, hash] = clean.split('#');
+  const [rawPath, hash] = clean.split('#');
   const suffix = hash ? `#${hash}` : '';
+  const pathname = rawPath === '/' ? '/' : `${rawPath.replace(/\/+$/, '')}/`;
   if (locale === DEFAULT_LOCALE) return `${pathname}${suffix}`;
-  return `/${locale}${pathname === '/' ? '' : pathname}${suffix}`;
+  return `/${locale}${pathname === '/' ? '/' : pathname}${suffix}`;
 }
 
 /** Alternate-language link for <link rel="alternate" hreflang>. */
 export function hreflangPath(locale: Locale, path: string): string {
   const clean = path.startsWith('/') ? path : `/${path}`;
-  return locale === DEFAULT_LOCALE ? clean : `/${locale}${clean === '/' ? '' : clean}`;
+  const [rawPath, hash] = clean.split('#');
+  const suffix = hash ? `#${hash}` : '';
+  const pathname = rawPath === '/' ? '/' : `${rawPath.replace(/\/+$/, '')}/`;
+  return locale === DEFAULT_LOCALE
+    ? `${pathname}${suffix}`
+    : `/${locale}${pathname === '/' ? '/' : pathname}${suffix}`;
 }

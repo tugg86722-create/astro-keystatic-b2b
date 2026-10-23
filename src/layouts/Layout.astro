@@ -115,10 +115,12 @@ const alternates = LOCALES.map((l) => ({
                 }
               }
               if (target) {
-                var path = location.pathname.replace(/\/+$/, '') || '/';
+                var path = location.pathname.replace(/\/+$/, '');
                 localStorage.setItem(KEY, target);
                 redirecting = true;
-                location.replace('/' + target + (path === '/' ? '' : path) + location.search + location.hash);
+                location.replace(
+                  '/' + target + (path ? path + '/' : '') + location.search + location.hash
+                );
               }
             }
           }

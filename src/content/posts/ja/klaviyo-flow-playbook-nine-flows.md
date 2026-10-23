@@ -123,4 +123,4 @@ coverImage: https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&a
 
 ---
 
-*監査版をお望みですか？[チャージバックリスク評価](/ja/tools/chargeback-scorecard)を実行して、どのフローがストアに欠けているか確かめるか、[Klaviyoライフサイクル契約のはじまり](/ja/contact#rfq)をご検討ください。*
+*監査版をお望みですか？[チャージバックリスク評価](/ja/tools/chargeback-scorecard/)を実行して、どのフローがストアに欠けているか確かめるか、[Klaviyoライフサイクル契約のはじまり](/ja/contact/#rfq)をご検討ください。*
