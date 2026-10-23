@@ -6,3 +6,13 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
 }
+
+/*
+ * Set by the inline browser-language detector before it decides whether to
+ * move the visitor to a translated version. Keeps the English page from
+ * flashing while the redirect is prepared. Removed immediately when no
+ * redirect happens, so a visitor without JS is never affected.
+ */
+html.wb-lang-pending body {
+  visibility: hidden;
+}

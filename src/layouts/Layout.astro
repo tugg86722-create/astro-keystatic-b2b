@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Analytics from '../components/Analytics.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import { getStrings } from '../i18n/strings';
 import { DEFAULT_LOCALE, LOCALE_META, LOCALES, lp, hreflangPath, type Locale } from '../i18n/config';
 
@@ -72,6 +73,71 @@ const alternates = LOCALES.map((l) => ({
     <meta name="twitter:description" content={description || t.pages.home.meta.description} />
     <meta name="twitter:image" content={image} />
 
+    <!--
+      Browser-language detection.
+      Runs synchronously in <head> so the visitor never sees the English page
+      flash before we move them. Client-side only — crawlers get the full
+      English HTML with correct canonical/hreflang, so SEO is unaffected.
+      A stored choice always wins, so this fires at most once per visitor.
+    -->
+    <script is:inline>
+      (function () {
+        var KEY = 'wb-locale';
+        var SUPPORTED = ['zh', 'es', 'fr', 'de', 'ja'];
+        var html = document.documentElement;
+        var redirecting = false;
+
+        // Hide the body while we decide, so an incoming visitor never sees the
+        // English page flash before we move them. Removed again below if we
+        // are staying put (same tick, so nothing is ever painted).
+        html.classList.add('wb-lang-pending');
+
+        try {
+          var stored = localStorage.getItem(KEY);
+          var pageLocale = (html.getAttribute('lang') || 'en').toLowerCase().split('-')[0];
+
+          if (!stored) {
+            if (pageLocale && pageLocale !== 'en') {
+              // Arrived directly on a translated page — remember it, don't bounce.
+              localStorage.setItem(KEY, pageLocale);
+            } else {
+              var langs =
+                (navigator.languages && navigator.languages.length
+                  ? navigator.languages
+                  : [navigator.language || '']) || [];
+              var target = null;
+              for (var i = 0; i < langs.length; i++) {
+                var code = String(langs[i] || '').toLowerCase().split('-')[0];
+                if (code === 'en') break; // English is the top preference — stay put.
+                if (SUPPORTED.indexOf(code) !== -1) {
+                  target = code;
+                  break;
+                }
+              }
+              if (target) {
+                var path = location.pathname.replace(/\/+$/, '') || '/';
+                localStorage.setItem(KEY, target);
+                redirecting = true;
+                location.replace('/' + target + (path === '/' ? '' : path) + location.search + location.hash);
+              }
+            }
+          }
+
+          // Remember an explicit pick from the switcher.
+          document.addEventListener('click', function (e) {
+            var el = e.target && e.target.closest ? e.target.closest('[data-wb-locale]') : null;
+            if (el) {
+              try {
+                localStorage.setItem(KEY, el.getAttribute('data-wb-locale'));
+              } catch (err) {}
+            }
+          });
+        } catch (e) {}
+
+        if (!redirecting) html.classList.remove('wb-lang-pending');
+      })();
+    </script>
+
     <!-- Developer Schema.org JSON-LD -->
     <script type="application/ld+json" is:inline>
       {
@@ -137,29 +203,7 @@ const alternates = LOCALES.map((l) => ({
           <a href={lp(locale, '/about')} class="hover:text-blue-400 transition-colors">{t.common.nav.about}</a>
 
           <!-- Language Switcher (no-JS dropdown) -->
-          <details class="group relative">
-            <summary class="flex items-center gap-1.5 cursor-pointer list-none hover:text-blue-400 transition-colors px-2 py-1 rounded-lg border border-slate-800 bg-slate-900/60 text-xs">
-              <svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18" />
-              </svg>
-              <span class="font-mono">{LOCALE_META[locale].code.toUpperCase()}</span>
-              <svg class="w-3 h-3 text-slate-500 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="absolute right-0 mt-2 w-40 bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl z-50">
-              {LOCALES.map((l) => (
-                <a
-                  href={lp(l, basePath)}
-                  hreflang={LOCALE_META[l].htmlLang}
-                  class={`flex items-center justify-between px-3.5 py-2 text-xs transition-colors ${l === locale ? 'bg-blue-600/15 text-blue-300 font-semibold' : 'text-slate-300 hover:bg-slate-800 hover:text-white'}`}
-                >
-                  <span>{LOCALE_META[l].label}</span>
-                  {l === locale && <span class="text-[10px] font-mono">●</span>}
-                </a>
-              ))}
-            </div>
-          </details>
+          <LanguageSwitcher locale={locale} basePath={basePath} variant="desktop" />
         </nav>
 
         <!-- CTA Action Button & Mobile Menu Toggle -->
@@ -175,7 +219,9 @@ const alternates = LOCALES.map((l) => ({
           <div class="flex md:hidden items-center gap-2 text-xs">
             <a href={lp(locale, '/tools')} class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-blue-400 font-medium">{t.common.nav.tools}</a>
             <a href={lp(locale, '/resources')} class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-medium">{t.common.nav.mobileHub}</a>
-            <a href={lp(locale, '/about')} class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-medium">{t.common.nav.about}</a>
+            <a href={lp(locale, '/about')} class="hidden sm:inline-flex px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-medium">{t.common.nav.about}</a>
+            <!-- Language Switcher (mobile) -->
+            <LanguageSwitcher locale={locale} basePath={basePath} variant="mobile" />
           </div>
         </div>
       </div>

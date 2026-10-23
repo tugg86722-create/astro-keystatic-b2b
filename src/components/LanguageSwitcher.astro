@@ -1,0 +1,45 @@
+---
+import { LOCALE_META, LOCALES, lp, type Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  /** Locale-less path of the current page, e.g. '/about' or '/'. */
+  basePath: string;
+  variant?: 'desktop' | 'mobile';
+}
+
+const { locale, basePath, variant = 'desktop' } = Astro.props;
+const isMobile = variant === 'mobile';
+---
+
+<details class="group relative wb-lang-switcher">
+  <summary
+    class:list={[
+      'flex items-center gap-1.5 cursor-pointer list-none hover:text-blue-400 transition-colors rounded-lg border border-slate-800 bg-slate-900/60 text-xs',
+      isMobile ? 'px-2 py-1.5' : 'px-2 py-1',
+    ]}
+  >
+    <svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18" />
+    </svg>
+    <span class="font-mono">{LOCALE_META[locale].code.toUpperCase()}</span>
+    {!isMobile && (
+      <svg class="w-3 h-3 text-slate-500 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    )}
+  </summary>
+  <div class="absolute right-0 mt-2 w-40 bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl z-50">
+    {LOCALES.map((l) => (
+      <a
+        href={lp(l, basePath)}
+        hreflang={LOCALE_META[l].htmlLang}
+        data-wb-locale={l}
+        class={`flex items-center justify-between px-3.5 py-2 text-xs transition-colors ${l === locale ? 'bg-blue-600/15 text-blue-300 font-semibold' : 'text-slate-300 hover:bg-slate-800 hover:text-white'}`}
+      >
+        <span>{LOCALE_META[l].label}</span>
+        {l === locale && <span class="text-[10px] font-mono">●</span>}
+      </a>
+    ))}
+  </div>
+</details>
