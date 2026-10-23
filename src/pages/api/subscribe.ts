@@ -1,11 +1,42 @@
 import type { APIRoute } from 'astro';
 import { generateWelcomeEmailHtml } from '../../lib/email-template';
 
-export const prerender = false; // Serverless Edge Function on Cloudflare Pages
+export const prerender = false; // Serverless Edge Function on Cloudflare
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-export const POST: APIRoute = async ({ request, locals }) => {
+/**
+ * Astro v6 removed `Astro.locals.runtime.env`. On Cloudflare the supported
+ * way is the `cloudflare:workers` env import, but that module only exists
+ * inside the Workers runtime — so it is loaded lazily and guarded.
+ */
+async function readEnv(): Promise<Record<string, string | undefined>> {
+  const collected: Record<string, string | undefined> = {};
+
+  try {
+    const mod = await import('cloudflare:workers');
+    const cfEnv = (mod as any)?.env;
+    if (cfEnv) {
+      for (const key of ['RESEND_API_KEY']) {
+        if (cfEnv[key]) collected[key] = cfEnv[key];
+      }
+    }
+  } catch {
+    // Not running on the Workers runtime (e.g. a Pages Function) — fall through.
+  }
+
+  const procEnv = (globalThis as any)?.process?.env || {};
+  if (!collected.RESEND_API_KEY && procEnv.RESEND_API_KEY) {
+    collected.RESEND_API_KEY = procEnv.RESEND_API_KEY;
+  }
+  if (!collected.RESEND_API_KEY && (import.meta as any)?.env?.RESEND_API_KEY) {
+    collected.RESEND_API_KEY = (import.meta as any).env.RESEND_API_KEY;
+  }
+
+  return collected;
+}
+
+export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
     const { email, name, source, storeUrl, meta } = data;
@@ -28,13 +59,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
       meta: meta || null,
     });
 
-    // Resolve Resend API Key from Cloudflare Env / Vite Env / process.env
-    const env = (locals as any)?.runtime?.env || {};
-    const procEnv = (globalThis as any)?.process?.env || {};
-    const resendApiKey = env.RESEND_API_KEY ||
-                         import.meta.env.RESEND_API_KEY ||
-                         procEnv.RESEND_API_KEY ||
-                         '';
+    const env = await readEnv();
+    const resendApiKey = env.RESEND_API_KEY || '';
 
     let emailSent = false;
     let emailId = null;
